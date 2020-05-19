@@ -84,7 +84,6 @@
 |------|----|-------|
 |title|string||
 |image|string||
-|body|text||
 |teach_id|integer|null: false, foreign_key: true|
 |tag_id|integer|null: false, foreign_key: true|
 ### Association
