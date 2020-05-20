@@ -5,5 +5,6 @@ class User < ApplicationRecord
           :recoverable, :rememberable, :validatable
 
   validates :name, presence: true, uniqueness: true
+  THUMBNAIL_SIZE = [100, 100]
   mount_uploader :image, ImageUploader
 end
