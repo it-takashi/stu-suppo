@@ -5,7 +5,7 @@
 header{
   // background-color:blueviolet;
   width: 100vw;
-  height: 100px;
+  height: 120px;
   .hyoji{
     display: flex;
     justify-content: space-between;
@@ -40,7 +40,11 @@ header{
       &__logout{
         text-decoration: none;
         color: black;
-      }      
+      }
+      &__profile{
+        text-decoration: none;
+        color: black;
+      }
       &__tweet{
         text-decoration: none;
         color: black;

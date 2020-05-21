@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20200520035134) do
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name",                                              null: false
-    t.string   "image",                                             null: false
+    t.string   "image"
     t.text     "introduction",           limit: 65535
     t.text     "profile",                limit: 65535
     t.string   "subject"
