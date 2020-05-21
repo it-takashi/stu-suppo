@@ -1,0 +1,223 @@
+* {
+  box-sizing: border-box;
+}
+
+header{
+  // background-color:blueviolet;
+  width: 100vw;
+  height: 120px;
+  .hyoji{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .logo{
+      width: 120px;
+      // height: 120px;
+      .logo-link{
+        line-height: 30px;
+        font-size: 30px;
+        font-family: 'Oswald', sans-serif;
+        padding-left: 20px;
+        text-decoration: none;
+        color: black;
+      }
+    }
+    
+
+    .title-link{
+      width: 600px;
+      height: 120%;
+      font-size: 80px;
+      line-height: 80px;
+      font-family: 'Anton', sans-serif;
+      text-align: center;
+      text-decoration: none;
+      color: black;
+    }
+
+    .btn{
+      padding-right: 20px;
+      &__logout{
+        text-decoration: none;
+        color: black;
+      }
+      &__profile{
+        text-decoration: none;
+        color: black;
+      }
+      &__tweet{
+        text-decoration: none;
+        color: black;
+      }      
+      &__teach{
+        text-decoration: none;
+        color: black;
+      }      
+      &__group{
+        text-decoration: none;
+        color: black;
+      }      
+    }   
+  }
+}
+
+.main-tweet{
+  background-color: yellowgreen;
+  width: 100%;
+  height: 100vh;
+  overflow: scroll;
+  padding-bottom: 50px;
+
+  .section{
+    width: 500px;
+    height: auto;
+    font-size: 40px;
+    margin-left: 59.545px;
+    padding: 50px 0 0 0;
+    font-family: 'Concert One', cursive;
+  }
+  
+  .tweet-box{
+    background-color: khaki;
+    height: 450px;
+    width: 90%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    overflow: scroll;
+    margin:auto;
+    padding-top: 50px;
+    
+    .tweet-card{
+      background-color:lightblue;
+      width: 400px;
+      height: 400px;
+      margin-right: 50px;
+      margin: 0 0 50px 58px;
+      border: solid 1px cornflowerblue;
+      .box{
+        display: flex;
+          .profile{
+            background-color: honeydew;
+            width: 100px;
+            height: 100px;
+            text-decoration: none;
+            color: black;
+            &__image{
+              background-color: indigo;
+              width: 80px;
+              height: 80px;
+              border-radius: 50%;
+              margin: auto;
+            }
+            &__name{
+              width: 100px;
+              text-align: center;
+              margin: auto;
+            }
+          }
+          .tweet{
+            width: 300px;
+            height: 100px;
+            &__title{
+              width: 100%;
+              height: 60px;
+              font-size: 20px;
+              flex-wrap: wrap;
+              text-decoration: none;
+              color: black;
+            }
+            &__tags{
+              width: 100%;
+              height: 40px;
+              display: flex;
+              flex-wrap: wrap;
+              &__tag{
+                background-color: cornflowerblue;
+                line-height: 16px;
+                margin:0 0 4px 10px;
+                border-radius:20%;
+                height: 16px;
+              }
+            }
+          }
+        }
+        .body{
+          width: 400px;
+          height: 300px;
+        }
+    }
+  }
+  .teach-box{
+    background-color: khaki;
+    height: 450px;
+    width: 90%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    overflow: scroll;
+    margin:auto;
+    padding-top: 50px;
+    
+    .teach-card{
+      background-color:lightblue;
+      width: 400px;
+      height: 400px;
+      margin-right: 50px;
+      margin: 0 0 50px 58px;
+      border: solid 1px cornflowerblue;
+      .box{
+        display: flex;
+          .profile{
+            background-color: honeydew;
+            width: 100px;
+            height: 100px;
+            text-decoration: none;
+            color: black;
+            &__image{
+              background-color: indigo;
+              width: 80px;
+              height: 80px;
+              border-radius: 50%;
+              margin: auto;
+            }
+            &__name{
+              width: 100px;
+              text-align: center;
+              margin: auto;
+            }
+          }
+          .teach{
+            width: 300px;
+            height: 100px;
+            &__title{
+              width: 100%;
+              height: 60px;
+              font-size: 20px;
+              flex-wrap: wrap;
+              text-decoration: none;
+              color: black;
+            }
+            &__tags{
+              width: 100%;
+              height: 40px;
+              display: flex;
+              flex-wrap: wrap;
+              &__tag{
+                background-color: cornflowerblue;
+                line-height: 16px;
+                margin:0 0 4px 10px;
+                border-radius:20%;
+                height: 16px;
+              }
+            }
+          }
+        }
+        .body{
+          width: 400px;
+          height: 300px;
+        }
+    }
+  }
+
+}

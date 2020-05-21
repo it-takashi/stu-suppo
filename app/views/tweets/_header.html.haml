@@ -1,0 +1,21 @@
+.hyoji
+  %h1.logo
+    = link_to "#", class:"logo-link" do
+      stu
+      %br
+      　suppo
+  .title
+    = link_to "#", class:"title-link" do
+      study-support
+  %ul.btn
+    = link_to edit_user_path(current_user), class:"btn__profile" do
+      %li
+        = current_user.name
+    = link_to "#", class:"btn__logout" do
+      %li ログアウト
+    = link_to "#", class:"btn__tweet" do
+      %li アウトプット
+    = link_to "#", class:"btn__teach" do
+      %li 教えて
+    = link_to "#", class:"btn__group" do
+      %li 勉強会
