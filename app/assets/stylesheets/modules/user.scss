@@ -1,21 +1,12 @@
 .account-page {
   .account-page__inner {
     width: 980px;
+    height: 1100px;
     margin: 60px auto;
     padding: 60px;
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 5px;
-
-    .account-page__inner--left, .account-page__inner--right {
-      float: left;
-      width: 50%;
-    }
-    &:after {
-      clear: both;
-      content: "";
-      display: block;
-    }
   }
 
   .account-page__header {
@@ -70,9 +61,11 @@
       }
     }
 
-    .field-input-introduction{
-      width: 100px;
-      height: 500px;
+    #user_introduction{
+      width: 100%;
+      height: 300px;
+      overflow: scroll;
+
     }
   }
 
