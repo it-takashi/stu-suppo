@@ -90,7 +90,7 @@ header{
     
     .tweet-card{
       background-color:lightblue;
-      width: 400px;
+      width: 350px;
       height: 400px;
       margin-right: 50px;
       margin: 0 0 50px 58px;
@@ -100,20 +100,31 @@ header{
           .profile{
             background-color: honeydew;
             width: 100px;
-            height: 100px;
+            height: 115px;
             text-decoration: none;
             color: black;
             &__image{
-              background-color: indigo;
+              display: block;
               width: 80px;
               height: 80px;
-              border-radius: 50%;
-              margin: auto;
+              border-radius: 10%;
+              margin: 10px auto;
+            }
+            &__no-image{
+              background-color:#CBCBC7;
+              width: 80px;
+              height: 80px;
+              border-radius: 10%;
+              margin: 10px auto;
+              font-size: 20px;
+              line-height:40px ;
+              text-align: center;
             }
             &__name{
               width: 100px;
               text-align: center;
               margin: auto;
+              line-height: 3px;
             }
           }
           .tweet{

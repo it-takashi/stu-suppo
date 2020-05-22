@@ -1,0 +1,27 @@
+.tweet-card
+  .box
+    -# .face
+    = link_to "#", class:"profile" do
+      -# %img{src="#" alt="貼る予定"}
+      - if tweet.user.image.present?
+        %p
+          = image_tag tweet.user.image.url, class: 'profile__image'
+      - else
+        .profile__no-image
+          No-
+          %br
+          image
+      .profile__name
+        = tweet.user.name
+    .tweet
+      = link_to "#", class:"tweet__title" do
+        = tweet.title
+      .tweet__tags
+        .tweet__tags__tag
+          
+        .tweet__tags__tag
+          
+        .tweet__tags__tag
+          
+  .body
+    = tweet.body

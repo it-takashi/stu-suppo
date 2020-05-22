@@ -1,5 +1,6 @@
 class TweetsController < ApplicationController
   def index
+    @tweets = Tweet.all.includes(:user)
   end
 
   def new
@@ -12,9 +13,8 @@ class TweetsController < ApplicationController
   end
 
   def show
-    @tweet = Tweet.find(user_id(current_user)
+    @tweet = Tweet.find(params[:id])
   end
-
 end
 
 private
