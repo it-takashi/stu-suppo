@@ -1,8 +1,6 @@
 .tweet-card
   .box
-    -# .face
     = link_to "#", class:"profile" do
-      -# %img{src="#" alt="貼る予定"}
       - if tweet.user.image.present?
         %p
           = image_tag tweet.user.image.url, class: 'profile__image'
@@ -14,7 +12,7 @@
       .profile__name
         = tweet.user.name
     .tweet
-      = link_to "#", class:"tweet__title" do
+      = link_to tweet_path(tweet.id), method: :get, class:"tweet__title" do
         = tweet.title
       .tweet__tags
         .tweet__tags__tag
