@@ -11,6 +11,10 @@ class TweetsController < ApplicationController
     redirect_to root_path
   end
 
+  def show
+    @tweet = Tweet.find(user_id(current_user)
+  end
+
 end
 
 private
