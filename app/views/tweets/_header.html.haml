@@ -13,7 +13,7 @@
         = current_user.name
     = link_to destroy_user_session_path, method: :delete, class:"btn__logout" do
       %li ログアウト
-    = link_to "#", class:"btn__tweet" do
+    = link_to new_tweet_path, method: :get, class:"btn__tweet" do
       %li アウトプット
     = link_to "#", class:"btn__teach" do
       %li 教えて
