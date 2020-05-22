@@ -15,5 +15,5 @@ end
 
 private
 def tweet_params
-  params.require(:tweet).premit(:title, :body, :image).merge(user_id: current_user.id)
+  params.require(:tweet).permit(:title, :body, :image).merge(user_id: current_user.id)
 end
