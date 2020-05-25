@@ -26,6 +26,6 @@
       .tweet__tags__tag
     .tweet__body
       = @tweet.body
-    - if @tweet.user.image.present?
+    - if @tweet.image.present?
       %p
-        = image_tag @tweet.user.image.url, class: 'tweet__image'
+        = image_tag @tweet.image.url, class: 'tweet__image'
