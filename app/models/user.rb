@@ -7,4 +7,5 @@ class User < ApplicationRecord
   validates :name, presence: true, uniqueness: true
   THUMBNAIL_SIZE = [100, 100]
   mount_uploader :image, ImageUploader
+  has_many :tweets
 end

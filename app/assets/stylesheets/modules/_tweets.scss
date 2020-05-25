@@ -90,7 +90,7 @@ header{
     
     .tweet-card{
       background-color:lightblue;
-      width: 400px;
+      width: 350px;
       height: 400px;
       margin-right: 50px;
       margin: 0 0 50px 58px;
@@ -100,20 +100,31 @@ header{
           .profile{
             background-color: honeydew;
             width: 100px;
-            height: 100px;
+            height: 115px;
             text-decoration: none;
             color: black;
             &__image{
-              background-color: indigo;
+              display: block;
               width: 80px;
               height: 80px;
-              border-radius: 50%;
-              margin: auto;
+              border-radius: 10%;
+              margin: 10px auto;
+            }
+            &__no-image{
+              background-color:#CBCBC7;
+              width: 80px;
+              height: 80px;
+              border-radius: 10%;
+              margin: 10px auto;
+              font-size: 20px;
+              line-height:40px ;
+              text-align: center;
             }
             &__name{
               width: 100px;
               text-align: center;
               margin: auto;
+              line-height: 3px;
             }
           }
           .tweet{
@@ -220,4 +231,76 @@ header{
     }
   }
 
+}
+
+// showのview
+.show-body{
+  background-color: lightcoral;
+  width: 100%;
+  height: 100%;
+  .author{
+    background-color: blanchedalmond;
+    width: 1000px;
+    height: 90px;
+    margin: auto;
+    display: flex;
+    align-items: flex-end;
+    &__image{
+      width: 80px;
+      height: 80px;
+    }
+    &__name{
+      text-decoration: none;
+      color: black;
+      padding-left: 5px;
+    }
+  }
+  .tweetManage{
+    width: 1000px;
+    display: flex;
+    justify-content: flex-end;
+    margin: 10px auto 0 auto;
+    &__edit{
+      display: block;
+      border-radius: 5px;
+      color: #ffffff;
+      background-color:#55c500;
+      padding: 0 10px;
+      text-decoration: none;
+      margin-right: 10px;
+    }
+    &__destroy{
+      display: block;
+      border-radius: 5px;
+      color: #ffffff;
+      background-color:#55c500;
+      padding: 0 10px;
+      text-decoration: none;
+      margin-left: 10px;
+    }
+  }
+  .tweet{
+    &__title{
+      padding-top: 20px;
+      text-align: center;
+      font-size: 40px;
+      font-weight: bold;
+    }
+    &__body{
+      width: 1000px;
+      margin: auto;
+    }
+    &__image{
+      display: block;
+      width: 400px;
+      height: 400px;
+      margin: auto;
+    }
+  }
+}
+
+// form
+.tweet_image{
+  width: 400px;
+  height: 400px;
 }

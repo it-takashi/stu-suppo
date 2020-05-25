@@ -1,0 +1,25 @@
+.tweet-card
+  .box
+    = link_to "#", class:"profile" do
+      - if tweet.user.image.present?
+        %p
+          = image_tag tweet.user.image.url, class: 'profile__image'
+      - else
+        .profile__no-image
+          No-
+          %br
+          image
+      .profile__name
+        = tweet.user.name
+    .tweet
+      = link_to tweet_path(tweet.id), method: :get, class:"tweet__title" do
+        = tweet.title
+      .tweet__tags
+        .tweet__tags__tag
+          
+        .tweet__tags__tag
+          
+        .tweet__tags__tag
+          
+  .body
+    = tweet.body

@@ -1,0 +1,19 @@
+.field
+  .field-label
+    = form.label :title, "タイトル"
+  .field-input
+    = form.text_field :title
+.field-image 
+  .field-image-label
+    -if @tweet.image.present?
+      = image_tag @tweet.image.url, class: 'tweet_image'
+    = form.label :image, "画像"
+    .field-input
+      = form.file_field :image, class: 'hidden'
+.field
+  .field-label
+    = form.label :"body"
+  .field-input
+    = form.text_area :body  
+.actions
+  = form.submit "投稿する", class: 'btn'

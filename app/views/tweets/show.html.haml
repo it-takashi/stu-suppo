@@ -1,0 +1,31 @@
+%header
+  = render "header"
+.show-body
+  .author
+    = link_to "#"do
+      - if @tweet.user.image.present?
+        %p
+          = image_tag @tweet.user.image.url, class: 'author__image'
+      - else
+        .author__no-image
+          No-
+          %br
+          image
+    = link_to "#", class: "author__name" do
+      = @tweet.user.name
+  -if user_signed_in? && current_user.id == @tweet.user_id
+    .tweetManage
+      = link_to "編集", edit_tweet_path(@tweet.id), class: "tweetManage__edit"
+      = link_to "削除", tweet_path(@tweet.id), method: :delete, class: "tweetManage__destroy"
+  .tweet
+    .tweet__title
+      = @tweet.title
+    .tweet__tags
+      .tweet__tags__tag
+      .tweet__tags__tag
+      .tweet__tags__tag
+    .tweet__body
+      = @tweet.body
+    - if @tweet.image.present?
+      %p
+        = image_tag @tweet.image.url, class: 'tweet__image'
