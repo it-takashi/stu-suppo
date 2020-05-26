@@ -97,3 +97,14 @@
 ### Association
 - has_many :teach_tags
 - has_many :teaches, through: :teach_tags
+
+## teach_messagesテーブル
+|Column|Type|Options|
+|------|----|-------|
+|comment|text|null: false|
+|image|string||
+|teach_id|integer|null: false, foreign_key: true|
+|user_id|integer|null: false, foreign_key: true|
+### Association
+- belongs_to :teach
+- belongs_to :user
