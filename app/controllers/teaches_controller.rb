@@ -1,8 +1,8 @@
 class TeachesController < ApplicationController
 
-  def index
-    @teaches = Teach.all.includes(:user)
-  end
+  # def index
+  #   @teaches = Teach.all.includes(:user)
+  # end
 
   def new
 @teach = Teach.new
@@ -23,11 +23,16 @@ class TeachesController < ApplicationController
   end
 
   def update
-    @tweet = Teach.find(params[:id])
-    @tweet.update(teach_params)
+    @teach = Teach.find(params[:id])
+    @teach.update(teach_params)
     redirect_to root_path
   end
 
+  def destroy
+    @teach = Teach.find(params[:id])
+    @teach.destroy
+    redirect_to root_path
+  end
 end
 
 private
