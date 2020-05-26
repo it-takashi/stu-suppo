@@ -3,6 +3,6 @@ Rails.application.routes.draw do
   root "tweets#index"
   resources :users, only: [:edit, :update]
   resources :tweets, only: [:new, :create, :show,:edit, :update, :destroy]
-  resources :teaches, only: [:index]
+  resources :teaches, only: [:index,:new, :create, :show,:edit, :update, :destroy]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

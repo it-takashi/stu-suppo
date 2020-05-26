@@ -2,6 +2,7 @@ class TweetsController < ApplicationController
 
   def index
     @tweets = Tweet.all.includes(:user)
+    @teaches = Teach.all.includes(:user)
   end
 
   def new

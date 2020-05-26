@@ -8,4 +8,5 @@ class User < ApplicationRecord
   THUMBNAIL_SIZE = [100, 100]
   mount_uploader :image, ImageUploader
   has_many :tweets
+  has_many :teaches
 end

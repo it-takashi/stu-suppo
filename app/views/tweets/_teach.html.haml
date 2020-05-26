@@ -1,0 +1,22 @@
+.teach-card
+  .box
+    = link_to "#", class:"profile" do
+      - if teach.user.image.present?
+        %p
+          = image_tag teach.user.image.url, class: 'profile__image'
+      - else
+        .profile__no-image
+          No-
+          %br
+          image
+      .profile__image       
+      .profile__name
+        = teach.user.name
+    .teach
+      = link_to teach_path(teach.id), method: :get,class:"teach__title" do
+        = teach.title
+      .tweet__tags
+        .tweet__tags__tag
+          -# = teach.tag
+  .body
+    = teach.body
