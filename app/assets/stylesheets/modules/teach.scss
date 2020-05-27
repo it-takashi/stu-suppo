@@ -51,7 +51,60 @@
   margin: auto;
 }
 
+.message-list{
+  background-color:antiquewhite;
+  width: 1200px;
+  height: 400px;
+  overflow: scroll;
+  margin: auto;
+  margin-bottom: 50px;
+}
+
+.form{
+  width: 1200px;
+  margin: 20px auto;
+
+  #new_message{
+    width: 1000px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    #message_comment{
+      width: 1000px;
+    }
+    .form__message{
+      width: calc(100% - 115px );
+      height: 50px;
+      padding-left: 10px;
+    }
+    .form__mask{
+      position: relative;
+      height: 50px;
+      .icon{
+        position: absolute;
+        right: 10px;
+        line-height: 50px;
+        cursor: pointer;
+      }
+      .hidden{
+        display: none;
+      }
+    }
+    .form__submit{
+      height: 100%;
+      width: 100px;
+      margin-left: 15px;
+      background-color: #28aef0;
+      color: #fafafa;
+      cursor: pointer;
+    }
+  }
+}
+
 .teach{
+  width: 1000px;
+  height: 400px;
+  margin: auto;
   &__title{
     padding-top: 20px;
     text-align: center;

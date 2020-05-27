@@ -5,7 +5,7 @@ class TeachesController < ApplicationController
   # end
 
   def new
-@teach = Teach.new
+    @teach = Teach.new
   end
 
   def create
@@ -15,8 +15,9 @@ class TeachesController < ApplicationController
 
   def show
     @teach = Teach.find(params[:id])
+    @message = Message.new
+    @messages = @teach.messages.includes(:user)
   end
-
 
   def edit
     @teach = Teach.find(params[:id])
