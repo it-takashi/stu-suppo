@@ -30,6 +30,9 @@
   %button#make-call 発信
   %video#their-video{autoplay: "", muted: "",playsinline: "", :width => "400px"}
 
+.message-list
+  = render partial: 'message', collection: @messages, as: :messages
+
 .form
   = form_for [@teach, @message] do |f|
     = f.text_field :comment, class: 'form__message', placeholder: 'type a message'

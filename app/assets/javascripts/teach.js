@@ -45,4 +45,62 @@ $(function(){
   });
   }
 
+  function buildHTML(messages) {
+    if ( messages.image ){
+      var html = 
+        `<div class='message-list__box', data-message-id=${messages.id}>
+          <div class='message-list__box__comment-info'>
+            <div class='message-list__box__comment-info__name'>
+              ${messages.user_name}
+            </div>
+            <div class='message-list__box__comment-info__day'>
+              ${messages.created_at}
+            </div>
+          </div>
+          <div class='message-list__box__comment'>
+            <p>${messages.comment}</p>
+            <img class="lower-message__image" src=${messages.image} >
+          </div>
+        </div>`
+        return html;
+    }else {
+      var html = 
+      `<div class='message-list__box', data-message-id=${messages.id}>
+        <div class='message-list__box__comment-info'>
+          <div class='message-list__box__comment-info__name'>
+            ${messages.user_name}
+          </div>
+          <div class='message-list__box__comment-info__day'>
+            ${messages.created_at}
+          </div>
+        </div>
+        <div class='message-list__box__comment'>
+          <p>${messages.comment}</p>
+        </div>
+      </div>`
+      return html;
+    }
+  }
+
+  $('#new_message').on('submit', function(e){
+    e.preventDefault()
+    var formData = new FormData(this);
+    var url = $(this).attr('action');
+
+    $.ajax({
+      url: url,  //同期通信でいう『パス』
+      type: "POST",  //同期通信でいう『HTTPメソッド』
+      data: formData,  
+      dataType: 'json',
+      processData: false,
+      contentType: false
+    })
+
+    .done(function(data){
+      var html = buildHTML(data);
+    })
+
+  })
+
+
 });

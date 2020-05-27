@@ -4,11 +4,13 @@ class MessagesController < ApplicationController
   def create
     @message = @teach.messages.new(message_params)
     if @message.save
-      redirect_to teach_path(@teach), notice: 'メッセージが送信されました'
+      respond_to do |format|
+        format.json
+      end
     else
       @messages = @teach.messages.includes(:user)
       flash.now[:alert] = 'メッセージを入力してください。'
-      redirect_to teach_path(@teach)
+      render template: 'teach/show', layout: 'show'
     end
   end
 
