@@ -1,0 +1,11 @@
+.reply-list__box{data: {reply: {id: replies.id}}}
+  .reply-list__box__comment-info
+    .reply-list__box__comment-info__name
+      = replies.user.name
+    .reply-list__box__comment-info__day
+      = replies.created_at.strftime("%Y年%m月%d日 %H時%M分")
+  .reply-list__box__comment
+    - if replies.comment.present?
+      %p
+        = replies.comment
+    = image_tag replies.image.url, class: 'lower-reply__image' if replies.image.present?

@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   devise_for :users
   root "tweets#index"
   resources :users, only: [:edit, :update]
-  resources :tweets, only: [:new, :create, :show,:edit, :update, :destroy]
+  resources :tweets do
+    resources :replies, only:[:create, :edit, :update, :destroy]
+  end
   resources :teaches do
     resources :messages, only: [:create]
   end
