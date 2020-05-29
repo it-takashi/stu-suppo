@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200527031119) do
+ActiveRecord::Schema.define(version: 20200529043815) do
 
   create_table "messages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "comment"
@@ -21,6 +21,17 @@ ActiveRecord::Schema.define(version: 20200527031119) do
     t.datetime "updated_at", null: false
     t.index ["teach_id"], name: "index_messages_on_teach_id", using: :btree
     t.index ["user_id"], name: "index_messages_on_user_id", using: :btree
+  end
+
+  create_table "replies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "comment"
+    t.string   "image"
+    t.integer  "tweet_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tweet_id"], name: "index_replies_on_tweet_id", using: :btree
+    t.index ["user_id"], name: "index_replies_on_user_id", using: :btree
   end
 
   create_table "teaches", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -64,6 +75,8 @@ ActiveRecord::Schema.define(version: 20200527031119) do
 
   add_foreign_key "messages", "teaches"
   add_foreign_key "messages", "users"
+  add_foreign_key "replies", "tweets"
+  add_foreign_key "replies", "users"
   add_foreign_key "teaches", "users"
   add_foreign_key "tweets", "users"
 end

@@ -29,6 +29,7 @@ $(function(){
   const mediaConnection = peer.call(theirID, localStream);
   setEventListener(mediaConnection);
   };
+    
   
   // イベントリスナを設置する関数
   const setEventListener = mediaConnection => {
@@ -100,11 +101,18 @@ $(function(){
     
     .done(function(data){
       var html = buildHTML(data);
-      console.log("dekita")
       $('.message-list').append(html);
+      $('.message-list').animate({ scrollTop: $('.message-list')[0].scrollHeight});
+    })
+
+    .fail(function(){
+      alert("メッセージ送信に失敗しました")
+    })
+
+    .always(function() {
       $('.form__submit').prop('disabled', false);
       $('#new_message')[0].reset();
-    })
+    });
     
   })
 });

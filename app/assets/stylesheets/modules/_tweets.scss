@@ -311,6 +311,56 @@ header{
   }
 }
 
+.form{
+  width: 1200px;
+  margin: 20px auto;
+
+  #new_reply{
+    width: 1000px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    #reply_comment{
+      width: 1000px;
+    }
+    .form__message{
+      width: calc(100% - 115px );
+      height: 50px;
+      padding-left: 10px;
+    }
+    .form__mask{
+      position: relative;
+      height: 50px;
+      .icon{
+        position: absolute;
+        right: 10px;
+        line-height: 50px;
+        cursor: pointer;
+      }
+      .hidden{
+        display: none;
+      }
+    }
+    .form__submit{
+      height: 100%;
+      width: 100px;
+      margin-left: 15px;
+      background-color: #28aef0;
+      color: #fafafa;
+      cursor: pointer;
+    }
+  }
+}
+
+.reply-list{
+  background-color:antiquewhite;
+  width: 1200px;
+  height: 400px;
+  overflow: scroll;
+  margin: auto;
+  margin-bottom: 50px;
+}
+
 // form
 .tweet_image{
   width: 400px;

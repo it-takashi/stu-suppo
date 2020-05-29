@@ -33,3 +33,15 @@
     - if @tweet.image.present?
       %p
         = image_tag @tweet.image.url, class: 'tweet__image'
+
+.form
+  = form_for [@tweet, @reply] do |f|
+    = f.text_field :comment, class: 'form__message', placeholder: 'type a message'
+    .form__mask
+      = f.label :image, class: 'form__mask__image' do
+        = icon('fas', 'image', class: 'icon')
+        = f.file_field :image, class: 'hidden'
+    = f.submit 'Send', class: 'form__submit'
+
+.reply-list
+  = render partial: 'reply', collection: @replies, as: :replies
