@@ -1,6 +1,8 @@
 $(function(){
   
-  let localStream;
+  let localStream;  
+  // カメラ映像取得
+  
   const peer = new Peer({
     key: 'e751c12a-973c-4ca1-bd50-1f2cec55d91a',
     debug: 3
@@ -8,9 +10,7 @@ $(function(){
   peer.on('open', () => {
     document.getElementById('my-id').textContent = peer.id;
   });
-  
-  // カメラ映像取得
-  
+
   navigator.mediaDevices.getUserMedia({video: true, audio: true})
     .then( stream => {
     // 成功時にvideo要素にカメラ映像をセットし、再生
@@ -24,6 +24,9 @@ $(function(){
     console.error('mediaDevice.getUserMedia() error:', error);
     return;
   });
+
+  
+
   //発信処理
   document.getElementById('make-call').onclick = () => {
     const theirID = document.getElementById('their-id').value;
