@@ -51,6 +51,14 @@ $(function(){
   });
   }
 
+  peer.on('error', err => {
+    alert(err.message);
+  });
+
+  peer.on('close', () => {
+    alert('通信が切断しました。');
+  });
+
   function buildHTML(message) {
     if ( message.image ){
       var html = 
