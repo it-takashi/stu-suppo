@@ -10,7 +10,7 @@ class TweetsController < ApplicationController
   end
 
   def create
-    @tweet = Tweet.create(tweet_params)
+    Tweet.create(tweet_params)
     redirect_to root_path
   end
 
