@@ -13,6 +13,7 @@ $(function(){
 
   navigator.mediaDevices.getUserMedia({video: true, audio: true})
     .then( stream => {
+      flash.now[:alert] = 'メッセージを入力してください。'
       // 成功時にvideo要素にカメラ映像をセットし、再生
       const videoElm = document.getElementById('my-video')
       videoElm.srcObject = stream;
