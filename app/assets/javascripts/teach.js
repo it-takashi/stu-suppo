@@ -9,7 +9,7 @@ $(function(){
   });
   peer.on('open', () => {
     document.getElementById('my-id').textContent = peer.id;
-    
+    alert('id成功。')
   });
 
   navigator.mediaDevices.getUserMedia({video: true, audio: true})
