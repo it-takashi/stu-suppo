@@ -119,6 +119,7 @@ $(function(){
       var html = buildHTML(data);
       $('.message-list').append(html);
       $('.message-list').animate({ scrollTop: $('.message-list')[0].scrollHeight});
+      console.log('投稿完了')
     })
 
     .fail(function(){
