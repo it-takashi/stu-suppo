@@ -9,12 +9,12 @@ $(function(){
   });
   peer.on('open', () => {
     document.getElementById('my-id').textContent = peer.id;
-    alert('id成功。')
+    console.log('ID取得完了')
   });
 
   navigator.mediaDevices.getUserMedia({video: true, audio: true})
     .then( stream => {
-      alert('成功。')
+      console.log('ビデオ設置完了')
       // 成功時にvideo要素にカメラ映像をセットし、再生
       const videoElm = document.getElementById('my-video')
       videoElm.srcObject = stream;
