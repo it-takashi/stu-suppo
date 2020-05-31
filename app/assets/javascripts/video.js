@@ -1,67 +1,89 @@
 $(function(){ 
+  const Peer = window.Peer;
+  window.__SKYWAY_KEY__ = 'e751c12a-973c-4ca1-bd50-1f2cec55d91a';
   
-  let localStream;  
-  // カメラ映像取得
+  (async function main() {
+    const localVideo = document.getElementById('js-local-stream');
+    const localId = document.getElementById('js-local-id');
+    const callTrigger = document.getElementById('js-call-trigger');
+    const closeTrigger = document.getElementById('js-close-trigger');
+    const remoteVideo = document.getElementById('js-remote-stream');
+    const remoteId = document.getElementById('js-remote-id');
+    const meta = document.getElementById('js-meta');
+    const sdkSrc = document.querySelector('script[src*=skyway]');
   
-  const peer = new Peer({
-    key: 'e751c12a-973c-4ca1-bd50-1f2cec55d91a',
-    debug: 3
-  });
-  peer.on('open', () => {
-    document.getElementById('my-id').textContent = peer.id;
-    console.log('ID取得完了')
-  });
-
-  navigator.mediaDevices.getUserMedia({video: true, audio: true})
-    .then( stream => {
-      console.log('ビデオ設置完了')
-      // 成功時にvideo要素にカメラ映像をセットし、再生
-      // const videoElm = document.getElementById('my-video')
-      const videoElm = $('#my-video').get(0);
-      videoElm.srcObject = stream;
-      videoElm.play();
-      // 着信時に相手にカメラ映像を返せるように、グローバル変数に保存しておく
-      localStream = stream;
-  }).catch( error => {
-    // 失敗時にはエラーログを出力
-    console.error('mediaDevice.getUserMedia() error:', error);
-    return;
-  });
-
+    // meta.innerText = `
+    //   UA: ${navigator.userAgent}
+    //   SDK: ${sdkSrc ? sdkSrc.src : 'unknown'}
+    // `.trim();
   
-
-  //発信処理
-  document.getElementById('make-call').onclick = () => {
-    const theirID = document.getElementById('their-id').value;
-    const mediaConnection = peer.call(theirID, localStream);
-    setEventListener(mediaConnection);
-    alert('発信しました。')
-  };
-    
+    const localStream = await navigator.mediaDevices
+      .getUserMedia({
+        audio: true,
+        video: true,
+      })
+      .catch(console.error);
   
-  // イベントリスナを設置する関数
-  const setEventListener = mediaConnection => {
-    mediaConnection.on('stream', stream => {
-      // video要素にカメラ映像をセットして再生
-      const videoElm = document.getElementById('their-video')
-      videoElm.srcObject = stream;
-      videoElm.play();
+    // Render local stream
+    localVideo.muted = true;
+    localVideo.srcObject = localStream;
+    localVideo.playsInline = true;
+    await localVideo.play().catch(console.error);
+  
+    const peer = (window.peer = new Peer({
+      key: window.__SKYWAY_KEY__,
+      debug: 3,
+    }));
+  
+    // Register caller handler
+    callTrigger.addEventListener('click', () => {
+      // Note that you need to ensure the peer has connected to signaling server
+      // before using methods of peer instance.
+      if (!peer.open) {
+        return;
+      }
+  
+      const mediaConnection = peer.call(remoteId.value, localStream);
+  
+      mediaConnection.on('stream', async stream => {
+        // Render remote stream for caller
+        remoteVideo.srcObject = stream;
+        remoteVideo.playsInline = true;
+        await remoteVideo.play().catch(console.error);
+      });
+  
+      mediaConnection.once('close', () => {
+        remoteVideo.srcObject.getTracks().forEach(track => track.stop());
+        remoteVideo.srcObject = null;
+      });
+  
+      closeTrigger.addEventListener('click', () => mediaConnection.close(true));
     });
   
-  //着信処理
-  peer.on('call', mediaConnection => {
-    mediaConnection.answer(localStream);
-    setEventListener(mediaConnection);
-    alert('着信があります。')
-  });
-  }
-
-  peer.on('error', err => {
-    alert(err.message);
-  });
-
-  peer.on('close', () => {
-    alert('通信が切断しました。');
-  });
-
+    peer.once('open', id => (localId.textContent = id));
+  
+    // Register callee handler
+    peer.on('call', mediaConnection => {
+      mediaConnection.answer(localStream);
+  
+      mediaConnection.on('stream', async stream => {
+        // Render remote stream for callee
+        remoteVideo.srcObject = stream;
+        remoteVideo.playsInline = true;
+        await remoteVideo.play().catch(console.error);
+      });
+  
+      mediaConnection.once('close', () => {
+        remoteVideo.srcObject.getTracks().forEach(track => track.stop());
+        remoteVideo.srcObject = null;
+      });
+  
+      closeTrigger.addEventListener('click', () => mediaConnection.close(true));
+    });
+  
+    peer.on('error', console.error);
+  })();
+  
+  
+  
 })
