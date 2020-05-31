@@ -9,11 +9,12 @@ $(function(){
   });
   peer.on('open', () => {
     document.getElementById('my-id').textContent = peer.id;
+    
   });
 
   navigator.mediaDevices.getUserMedia({video: true, audio: true})
     .then( stream => {
-      flash.now[:alert] = 'メッセージを入力してください。'
+      alert('成功。')
       // 成功時にvideo要素にカメラ映像をセットし、再生
       const videoElm = document.getElementById('my-video')
       videoElm.srcObject = stream;
