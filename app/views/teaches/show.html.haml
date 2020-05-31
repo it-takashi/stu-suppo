@@ -1,5 +1,6 @@
 %head
-  %script{src: "https://cdn.webrtc.ecl.ntt.com/skyway-latest.js"}
+  %script{src: "//cdn.webrtc.ecl.ntt.com/skyway-latest.js"}
+
 %header
   = render "tweets/header"
 .author
@@ -27,7 +28,7 @@
   %p#my-id
   %textarea#their-id
   %button#make-call 発信
-  %video#their-video{autoplay: "", muted: "",playsinline: "", width: "400px"}
+  %video#their-video{autoplay: "", muted: "",playsinline: "", width: "800px"}
 
 .message-list
   = render partial: 'message', collection: @messages, as: :messages
