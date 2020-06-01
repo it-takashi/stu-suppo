@@ -4,7 +4,7 @@
 %header
   = render "tweets/header"
 .author
-  = link_to "#"do
+  = link_to "#", class: "link-image" do
     - if @teach.user.image.present?
       %p
         = image_tag @teach.user.image.url, class: 'author__image'

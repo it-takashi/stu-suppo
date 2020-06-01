@@ -6,10 +6,12 @@ header{
   // background-color:blueviolet;
   width: 100vw;
   height: 120px;
+  
   .hyoji{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    box-shadow: gray;
     .logo{
       width: 120px;
       // height: 120px;
@@ -62,11 +64,14 @@ header{
 }
 
 .main-tweet{
-  background-color: yellowgreen;
+  // background-color: yellowgreen;
   width: 100%;
   height: 100vh;
   overflow: scroll;
   padding-bottom: 50px;
+  background: #1FA2FF;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #A6FFCB, #12D8FA, #1FA2FF);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #A6FFCB, #12D8FA, #1FA2FF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
   .section{
     width: 500px;
@@ -78,7 +83,10 @@ header{
   }
   
   .tweet-box{
-    background-color: khaki;
+    
+
+    // border-top: solid 5px #5989cf;
+    // border-bottom: solid 5px #5989cf;
     height: 450px;
     width: 90%;
     display: flex;
@@ -88,13 +96,38 @@ header{
     margin:auto;
     padding-top: 50px;
     
+
+    .tweet-card {
+        position: relative;
+        padding: 0.5em 0.7em;
+        margin: 2em 0;
+        background: #e6f4ff;
+        color: #5c98d4;
+        font-weight: bold;
+        border-radius: 30px;
+    }
+    .tweet-card:after {
+        position: absolute;
+        content: '';
+        top: 100%;
+        left: 30px;
+        border: 15px solid transparent;
+        border-top: 15px solid #e6f4ff;
+        width: 0;
+        height: 0;
+    }
+    
     .tweet-card{
-      background-color:lightblue;
+      
+      // padding: 0.5em 1em;
+      // margin: 2em 0;
+      // background: -webkit-repeating-linear-gradient(-45deg, #f0f8ff, #f0f8ff 3px,#e9f4ff 3px, #e9f4ff 7px);
+      // background: repeating-linear-gradient(-45deg, #f0f8ff, #f0f8ff 3px,#e9f4ff 3px, #e9f4ff 7px);
+    
       width: 350px;
-      height: 400px;
+      height: 200px;
       margin-right: 50px;
       margin: 0 0 50px 58px;
-      border: solid 1px cornflowerblue;
       .box{
         display: flex;
           .profile{
@@ -160,7 +193,10 @@ header{
     }
   }
   .teach-box{
-    background-color: khaki;
+    // background: #43C6AC;  /* fallback for old browsers */
+    // background: -webkit-linear-gradient(to left, #F8FFAE, #43C6AC);  /* Chrome 10-25, Safari 5.1-6 */
+    // background: linear-gradient(to left, #F8FFAE, #43C6AC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
     height: 450px;
     width: 90%;
     display: flex;
@@ -170,13 +206,36 @@ header{
     margin:auto;
     padding-top: 50px;
     
+  .teach-card {
+      position: relative;
+      margin: 2em 0 2em 40px;
+      padding: 8px 15px;
+      background: #fff0c6;
+      border-radius: 30px;
+  }
+  .teach-card:before{font-family: FontAwesome;
+      content: "\f111";
+      position: absolute;
+      font-size: 15px;
+      left: -40px;
+      bottom: 0;
+      color: #fff0c6;
+  }
+  .teach-card:after{
+      font-family: FontAwesome;
+      content: "\f111";
+      position: absolute;
+      font-size: 23px;
+      left: -23px;
+      bottom: 0;
+      color: #fff0c6;
+  }
+
     .teach-card{
-      background-color:lightblue;
       width: 350px;
-      height: 400px;
+      height: 200px;
       margin-right: 50px;
       margin: 0 0 50px 58px;
-      border: solid 1px cornflowerblue;
       .box{
         display: flex;
           .profile{
@@ -210,7 +269,7 @@ header{
               line-height: 3px;
             }
           }
-          .teach{
+          .tweet{
             width: 300px;
             height: 115px;
             &__title{
@@ -247,12 +306,12 @@ header{
 
 // showのview
 .show-body{
-  background-color: lightcoral;
+  // background-color: lightcoral;
   width: 100%;
   height: 100%;
   .author{
-    background-color: blanchedalmond;
-    width: 1000px;
+    // background-color: blanchedalmond;
+    width: 80%;
     height: 90px;
     margin: auto;
     display: flex;
@@ -268,7 +327,7 @@ header{
     }
   }
   .tweetManage{
-    width: 1000px;
+    width: 80%;
     display: flex;
     justify-content: flex-end;
     margin: 10px auto 0 auto;
@@ -291,6 +350,7 @@ header{
       margin-left: 10px;
     }
   }
+  
   .tweet{
     &__title{
       padding-top: 20px;
@@ -299,7 +359,7 @@ header{
       font-weight: bold;
     }
     &__body{
-      width: 1000px;
+      width: 80%;
       margin: auto;
     }
     &__image{
@@ -312,7 +372,7 @@ header{
 }
 
 .form{
-  width: 1200px;
+  width: 80%;
   margin: 20px auto;
 
   #new_reply{
@@ -323,7 +383,7 @@ header{
     #reply_comment{
       width: 1000px;
     }
-    .form__message{
+    .form__reply{
       width: calc(100% - 115px );
       height: 50px;
       padding-left: 10px;
@@ -353,9 +413,9 @@ header{
 }
 
 .reply-list{
-  background-color:antiquewhite;
-  width: 1200px;
-  height: 400px;
+  // background-color:antiquewhite;
+  width: 80%;
+  height: 200px;
   overflow: scroll;
   margin: auto;
   margin-bottom: 50px;

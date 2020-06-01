@@ -6,7 +6,7 @@
 
 .show-body
   .author
-    = link_to "#"do
+    = link_to "#", class: "link-image"do
       - if @tweet.user.image.present?
         %p
           = image_tag @tweet.user.image.url, class: 'author__image'
@@ -36,7 +36,7 @@
 
 .form
   = form_for [@tweet, @reply] do |f|
-    = f.text_field :comment, class: 'form__message', placeholder: 'type a message'
+    = f.text_field :comment, class: 'form__reply', placeholder: 'type a message'
     .form__mask
       = f.label :image, class: 'form__mask__image' do
         = icon('fas', 'image', class: 'icon')

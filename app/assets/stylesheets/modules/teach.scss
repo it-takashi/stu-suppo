@@ -9,6 +9,25 @@
   &__image{
     width: 80px;
     height: 80px;
+    border-radius: 10%;
+    margin: 10px auto;
+    font-size: 20px;
+    line-height:40px ;
+    text-align: center;
+  }
+  &__no-image{
+    background-color:#CBCBC7;
+    width: 80px;
+    height: 80px;
+    border-radius: 10%;
+    margin: 10px auto;
+    font-size: 20px;
+    line-height:40px ;
+    text-align: center;
+  }
+  .link-image{
+    text-decoration: none;
+    color: black;
   }
   &__name{
     text-decoration: none;
@@ -125,11 +144,14 @@
 
 .p2p-media {
   display: flex;
-  align-items: center;
   justify-content: center;
+  width: 1152px;
+  margin: auto;
+  position: relative;
 
   .remote-stream {
     width: 50%;
+    margin-left: 300px;
     #js-remote-stream{
       width:100%;
     }
@@ -137,6 +159,10 @@
   
   .local-stream {
     width: 30%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
     #js-local-stream{
       width: 100%;
     }
