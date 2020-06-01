@@ -15,6 +15,7 @@ class TeachesController < ApplicationController
 
   def show
     @teach = Teach.find(params[:id])
+    # @id = @teach.id
     @message = Message.new
     @messages = @teach.messages.includes(:user)
   end

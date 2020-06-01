@@ -1,4 +1,5 @@
 $(function(){
+
   function buildHTML(message) {
     if ( message.image ){
       var html = 
@@ -40,7 +41,6 @@ $(function(){
     e.preventDefault();
     var formData = new FormData(this);
     var url = $(this).attr('action');
-    console.log(formData)
     
     $.ajax({
       url: url,
@@ -66,6 +66,35 @@ $(function(){
       $('.form__submit').prop('disabled', false);
       $('#new_message')[0].reset();
     });
-    
   })
+  var reloadMessages = function() {
+    var last_message_id = $('.message-list__box:last').data("message-id");
+    var id = $('.teach_id').val();
+    console.log(id)
+    console.log("takashi")
+    
+    $.ajax({
+      url: + id + "/api/messages",
+      type: 'GET',
+      dataType: 'json',
+      data: {id: last_message_id}
+    })
+    .done(function(messages) {
+      if (messages.length !== 0) {
+        var insertHTML = '';
+        $.each(messages, function(i, message) {
+          insertHTML += buildHTML(message)
+        });
+        $('.message-list').append(insertHTML);
+        $('.message-list').animate({ scrollTop: $('.message-list')[0].scrollHeight});
+      }
+    })
+    .fail(function() {
+      alert('error')
+    });
+  };
+  if (document.location.href.match(/\/teaches\/\d+/)) {
+    setInterval(reloadMessages, 7000);
+  }
+  
 });

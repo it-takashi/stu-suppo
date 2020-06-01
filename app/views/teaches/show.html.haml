@@ -61,3 +61,5 @@
   - if @teach.image.present?
     %p
       = image_tag @teach.image.url, class: 'teach__image'
+
+%input{name: "teach_id",type: "hidden",  value: @teach.id, class: 'teach_id'}
