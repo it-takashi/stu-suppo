@@ -1,6 +1,6 @@
 // showのview
 .author{
-  background-color: blanchedalmond;
+  // background-color: blanchedalmond;
   width: 1000px;
   height: 90px;
   margin: auto;
@@ -52,16 +52,16 @@
 }
 
 .message-list{
-  background-color:antiquewhite;
-  width: 1200px;
-  height: 400px;
+  // background-color:antiquewhite;
+  width: 80%;
+  height: 200px;
   overflow: scroll;
   margin: auto;
   margin-bottom: 50px;
 }
 
 .form{
-  width: 1200px;
+  width: 80%;
   margin: 20px auto;
 
   #new_message{
@@ -121,4 +121,35 @@
     height: 400px;
     margin: auto;
   }
+}
+
+.p2p-media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .remote-stream {
+    width: 50%;
+    #js-remote-stream{
+      width:100%;
+    }
+  }
+  
+  .local-stream {
+    width: 30%;
+    #js-local-stream{
+      width: 100%;
+    }
+  }
+}
+
+
+
+.tell{
+  width: 80%;
+  margin: auto;
+}
+
+#js-meta.meta{
+  display: none;
 }

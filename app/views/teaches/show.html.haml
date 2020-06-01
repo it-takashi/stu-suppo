@@ -25,20 +25,21 @@
 
 .container
   .p2p-media
-    .remote-stream
-      %video#js-remote-stream
     .local-stream
       %video#js-local-stream
-      %p
-        あなたの電話番号:
-        %span#js-local-id
-        %p.note
-          あなたの電話番号12桁の番号をメッセージを活用して教えて下さい
-      %input#js-remote-id{placeholder: "相手の電話番号を入力", type: "text"}/
-      %button#js-call-trigger 電話をする
-      %button#js-close-trigger 終了
-  %p#js-meta.meta
+    .remote-stream
+      %video#js-remote-stream
 
+
+.tell
+  %p あなたの電話番号:
+  %span#js-local-id
+  %p.tell__note
+    あなたの電話番号12桁の番号をメッセージを活用して教えて下さい
+  %input#js-remote-id{placeholder: "相手の電話番号を入力", type: "text"}/
+  %button#js-call-trigger 電話をする
+  %button#js-close-trigger 終了
+%p#js-meta.meta
 .form
   = form_for [@teach, @message] do |f|
     = f.text_field :comment, class: 'form__message', placeholder: 'type a message'
