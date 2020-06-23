@@ -1,0 +1,19 @@
+.field
+  .field-label
+    = form.label :title, "タイトル"
+  .field-input
+    = form.text_field :title
+.field-image 
+  .field-image-label
+    -if @callroom.image.present?
+      = image_tag @callroom.image.url, class: 'teach_image'
+    = form.label :image, "画像"
+    .field-input
+      = form.file_field :image, class: 'hidden'
+.field
+  .field-label
+    = form.label :body, "本文"
+  .field-input
+    = form.text_area :body  
+.actions
+  = form.submit "投稿する", class: 'btn'

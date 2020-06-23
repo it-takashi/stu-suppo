@@ -13,13 +13,13 @@
 ActiveRecord::Schema.define(version: 20200623065533) do
 
   create_table "callrooms", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "title",                                    null: false
-    t.text     "body",       limit: 65535,                 null: false
-    t.string   "image",                                    null: false
-    t.boolean  "release",                  default: false, null: false
+    t.string   "title",                                   null: false
+    t.text     "body",       limit: 65535,                null: false
+    t.string   "image"
+    t.boolean  "release",                  default: true, null: false
     t.integer  "user_id"
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
     t.index ["user_id"], name: "index_callrooms_on_user_id", using: :btree
   end
 
