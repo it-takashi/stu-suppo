@@ -1,0 +1,2 @@
+class CallroomsController < ApplicationController
+end
