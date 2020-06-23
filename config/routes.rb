@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users
   root "tweets#index"
-  resources :users, only: [:edit, :update]
+  resources :users, only: [:edit, :update] do
+    collection do
+      post 'update_attribute', to: 'users#update_attribute'
+    end
+  end
   
   resources :tweets do
     resources :replies, only:[:create, :edit, :update, :destroy]

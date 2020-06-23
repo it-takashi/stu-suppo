@@ -1,4 +1,3 @@
-
 .hyoji
   %h1.logo
     = link_to "#", class:"logo-link" do
@@ -9,14 +8,19 @@
     = link_to "#", class:"title-link" do
       study-support
   %ul.btn
-    = link_to edit_user_path(current_user), class:"btn__profile" do
-      %li
-        = current_user.name
-    = link_to destroy_user_session_path, method: :delete, class:"btn__logout" do
-      %li ログアウト
-    = link_to new_tweet_path, method: :get, class:"btn__tweet" do
-      %li アウトプット
-    = link_to new_teach_path, method: :get, class:"btn__teach" do
-      %li 教えて
-    = link_to "#", class:"btn__group" do
-      %li 勉強会
+    -if user_signed_in? 
+      = link_to edit_user_path(current_user), class:"btn__profile" do
+        %li
+          = current_user.name
+      = link_to destroy_user_session_path, method: :delete, class:"btn__logout" do
+        %li ログアウト
+      = link_to new_tweet_path, method: :get, class:"btn__tweet" do
+        %li アウトプット
+      = link_to new_teach_path, method: :get, class:"btn__teach" do
+        %li 教えて
+      - if current_user.called == false
+        = link_to update_attribute_users_path, method: :post, class:"btn__call" do
+          %li 教えるモード
+      - else current_user.called == 1
+        = link_to update_attribute_users_path, method: :post, class:"btn__call" do
+          %li 教えるモード解除

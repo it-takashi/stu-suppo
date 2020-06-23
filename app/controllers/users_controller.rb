@@ -11,6 +11,17 @@ class UsersController < ApplicationController
     end
   end
 
+  def update_attribute
+    if current_user.called == false
+      current_user.called = 1
+      current_user.save
+    else current_user.called == 1
+      current_user.called = 0
+      current_user.save
+    end
+    redirect_to root_path
+  end
+  
 end
 private
 def user_params
