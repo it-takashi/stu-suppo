@@ -15,5 +15,13 @@
     = form.label :body, "本文"
   .field-input
     = form.text_area :body  
+.field
+  .field-label
+    = form.radio_button :release,1
+    公開
+  .field-label
+    = form.radio_button :release, 0
+    非公開
+
 .actions
   = form.submit "投稿する", class: 'btn'

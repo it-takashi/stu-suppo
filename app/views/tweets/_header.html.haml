@@ -18,8 +18,25 @@
         %li アウトプット
       = link_to new_teach_path, method: :get, class:"btn__teach" do
         %li 教えて
-      = link_to new_callroom_path, method: :get, class:"btn__call" do
-        %li 教えるモード
+
+  
+      - if @callroom.present?
+        -# 電話ができるようにする。（編集モード）
+        - if @callroom.release == false
+          = link_to edit_callroom_path(@callroom.id), method: :get, class:"btn__call" do
+            %li 教えるモード
+          -# 電話ができないようにする。
+        - else @callroom.release == 1
+          = link_to update_attribute_callrooms_path, method: :post, class:"btn__call" do
+            %li 教えるモード解除
+        -# 新しく電話ができないようにする。
+      -else
+        = link_to new_callroom_path, method: :get, class:"btn__call" do
+          %li 教えるモード
+      
+
+
+          
       -# - if current_user.called == false
       -#   = link_to update_attribute_users_path, method: :post, class:"btn__call" do
       -#     %li 教えるモード

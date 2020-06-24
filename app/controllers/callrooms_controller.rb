@@ -1,13 +1,10 @@
 class CallroomsController < ApplicationController
-
   def new
     @callroom = Callroom.new
   end
 
   def create
     @callroom =  Callroom.create(callroom_params)
-    # @callroom.release = 1
-    # @callroom.save
     redirect_to root_path
   end
 
@@ -33,6 +30,14 @@ class CallroomsController < ApplicationController
     @callroom.destroy
     redirect_to root_path
   end
+
+  def update_attribute
+    callroom = Callroom.find_by(user_id:current_user.id)
+    callroom.release = false
+    callroom.save
+    redirect_to root_path  
+  end
+
 end
 
 private

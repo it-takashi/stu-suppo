@@ -1,19 +1,19 @@
 .tweet-card
   .box
     = link_to "#", class:"profile" do
-      - if user.image.present?
+      - if callroom.user.image.present?
         %p
-          = image_tag user.image.url, class: 'profile__image'
+          = image_tag callroom.user.image.url, class: 'profile__image'
       - else
         .profile__no-image
           No-
           %br
           image
       .profile__name
-        = user.name
+        = callroom.user.name
     .tweet
-      = link_to user_path(current_user.id), method: :get, class:"tweet__title" do
-        = user.subject
+      = link_to callroom_path(callroom.id), method: :get, class:"tweet__title" do
+        = callroom.title
       .tweet__tags
         .tweet__tags__tag
           
@@ -22,4 +22,4 @@
         .tweet__tags__tag
           
   .body
-    = user.introduction
+    = callroom.body

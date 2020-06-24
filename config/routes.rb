@@ -17,6 +17,10 @@ Rails.application.routes.draw do
     end
   
   end
-  resources :callrooms
+  resources :callrooms do
+    collection do
+      post 'update_attribute', to: 'callrooms#update_attribute'
+    end
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

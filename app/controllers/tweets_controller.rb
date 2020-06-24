@@ -3,7 +3,7 @@ class TweetsController < ApplicationController
   def index
     @tweets = Tweet.all.includes(:user)
     @teaches = Teach.all.includes(:user)
-    @users = User.where(called:1)
+    @callrooms = Callroom.where(release:1)
   end
 
   def new

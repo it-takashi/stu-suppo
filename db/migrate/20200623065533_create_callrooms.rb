@@ -6,7 +6,6 @@ class CreateCallrooms < ActiveRecord::Migration[5.0]
       t.string :image
       t.boolean :release, default: true, null: false
       t.references :user, foreign_key: true
-
       t.timestamps
     end
   end
