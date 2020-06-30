@@ -4,8 +4,12 @@ class CallroomsController < ApplicationController
   end
 
   def create
-    @callroom =  Callroom.create(callroom_params)
-    redirect_to callroom_path(@callroom.id)
+    callroom =  Callroom.create(callroom_params)
+    if callroom.release == false
+      redirect_to callroom_path(callroom.id),alert: "非公開にしました"
+    else
+      redirect_to callroom_path(callroom.id),notice: "公開にしました"
+    end
   end
 
   def show
@@ -39,9 +43,13 @@ class CallroomsController < ApplicationController
   end
 
   def update
-    @callroom = Callroom.find(params[:id])
-    @callroom.update(callroom_params)
-    redirect_to callroom_path(@callroom.id)
+    callroom = Callroom.find(params[:id])
+    callroom.update(callroom_params)
+    if callroom.release == false
+      redirect_to callroom_path(callroom.id),alert: "非公開にしました"
+    else
+      redirect_to callroom_path(callroom.id),notice: "公開にしました"
+    end
   end
 
   def destroy
@@ -52,9 +60,15 @@ class CallroomsController < ApplicationController
 
   def update_attribute
     callroom = Callroom.find_by(user_id:current_user.id)
-    callroom.release = false
-    callroom.save
-    redirect_to root_path  
+    if callroom.release == true 
+      callroom.release = false
+      callroom.save
+      redirect_to callroom_path(callroom.id), alert: "非公開にしました"
+    else callroom.release == false
+      callroom.release = 1
+      callroom.save
+      redirect_to callroom_path(callroom.id), notice: "公開にしました"
+    end
   end
 
 end
