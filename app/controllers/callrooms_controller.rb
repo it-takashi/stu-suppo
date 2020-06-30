@@ -17,6 +17,7 @@ class CallroomsController < ApplicationController
       # 公開がtureで生徒がいるときは、先生と生徒しか入ることができない
     if @callroom.release.present? && @callroom.student_id.present?
       if @callroom.user_id == current_user.id or @callroom.student_id ==  current_user.id
+        @student = User.find_by(id:@callroom.student_id)
       else
       redirect_to root_path
       end
@@ -30,6 +31,7 @@ class CallroomsController < ApplicationController
       unless @callroom.user_id == current_user.id
         @callroom.student_id = current_user.id
         @callroom.save
+        @student = User.find_by(id:@callroom.student_id)
       end
     end
     # @id = @callroom.id
@@ -70,7 +72,6 @@ class CallroomsController < ApplicationController
       redirect_to callroom_path(callroom.id), notice: "公開にしました"
     end
   end
-
 end
 
 private

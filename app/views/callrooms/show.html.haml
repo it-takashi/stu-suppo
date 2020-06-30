@@ -4,6 +4,7 @@
 %header
   = render "tweets/header"
 .author
+  .teacher 先生
   = link_to "#", class: "link-image" do
     - if @callroom.user.image.present?
       %p
@@ -15,6 +16,21 @@
         image
   = link_to "#", class: "author__name" do
     = @callroom.user.name
+  -if @student.present?
+    .student 生徒
+    = link_to "#", class: "link-image" do
+      - if @student.image.present?
+        %p
+          = image_tag @student.image.url, class: 'author__image'
+      - else
+        .author__no-image
+          No-
+          %br
+          image
+    = link_to "#", class: "author__name" do
+      = @student.name
+  -else @student.present?
+    .student 生徒はまだいません
   -if user_signed_in? && current_user.id == @callroom.user_id
     .teachManage
       = link_to "編集", edit_callroom_path(@callroom.id), class: "teachManage__edit"
