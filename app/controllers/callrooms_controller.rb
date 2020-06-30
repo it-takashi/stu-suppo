@@ -5,7 +5,7 @@ class CallroomsController < ApplicationController
 
   def create
     @callroom =  Callroom.create(callroom_params)
-    redirect_to root_path
+    redirect_to callroom_path(@callroom.id)
   end
 
   def show
@@ -16,13 +16,14 @@ class CallroomsController < ApplicationController
   end
 
   def edit
+    # 教えるモードでは、editページへ
     @callroom = Callroom.find(params[:id])
   end
 
   def update
     @callroom = Callroom.find(params[:id])
     @callroom.update(callroom_params)
-    redirect_to root_path
+    redirect_to callroom_path(@callroom.id)
   end
 
   def destroy
