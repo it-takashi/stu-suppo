@@ -8,12 +8,25 @@ class CallroomsController < ApplicationController
     redirect_to callroom_path(@callroom.id)
   end
 
-  def show  
+  def show
     @callroom = Callroom.find(params[:id])
-    binding.pry
-    unless @callroom.user_id == current_user.id
-      @callroom.student_id = current_user.id
-      @callroom.save
+      # 公開がtureで生徒がいるときは、先生と生徒しか入ることができない
+    if @callroom.release.present? && @callroom.student_id.present?
+      if @callroom.user_id == current_user.id or @callroom.student_id ==  current_user.id
+      else
+      redirect_to root_path
+      end
+      #非公開　releaseが0の場合生徒は入ることができない
+    elsif @callroom.release == false
+      unless @callroom.user_id == current_user.id
+        redirect_to root_path
+      end
+      # 生徒がいないときは、studentに生徒を登録する
+    else @callroom.student_id.nil?
+      unless @callroom.user_id == current_user.id
+        @callroom.student_id = current_user.id
+        @callroom.save
+      end
     end
     # @id = @callroom.id
     # @message = Message.new
