@@ -39,6 +39,13 @@ class CallroomsController < ApplicationController
     redirect_to root_path  
   end
 
+  def student_update
+    callroom = Callroom.find_by(params[:id])
+    callroom.student_id = current_user.id
+    callroom.save
+    redirect_to callroom_path(callroom.id)
+  end
+
 end
 
 private

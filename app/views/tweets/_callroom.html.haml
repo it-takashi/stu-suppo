@@ -12,8 +12,18 @@
       .profile__name
         = callroom.user.name
     .tweet
-      = link_to callroom_path(callroom.id), method: :get, class:"tweet__title" do
-        = callroom.title
+      -# 教える本人なら
+      - if user_signed_in? && current_user.id == callroom.user_id
+        = link_to callroom_path(callroom.id), method: :get, class:"tweet__title" do     
+          = callroom.title
+        -# 生徒なら
+      - elsif user_signed_in?
+        = link_to student_update_callrooms_path(callroom.id), method: :post, class:"tweet__title" do     
+          = callroom.title
+        -# 未ログインユーザー
+      - else
+        = link_to callroom_path(callroom.id), method: :get, class:"tweet__title" do     
+          = callroom.title
       .tweet__tags
         .tweet__tags__tag
           

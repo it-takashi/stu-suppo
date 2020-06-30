@@ -18,8 +18,10 @@ ActiveRecord::Schema.define(version: 20200623065533) do
     t.string   "image"
     t.boolean  "release",                  default: true, null: false
     t.integer  "user_id"
+    t.integer  "student_id"
     t.datetime "created_at",                              null: false
     t.datetime "updated_at",                              null: false
+    t.index ["student_id"], name: "index_callrooms_on_student_id", using: :btree
     t.index ["user_id"], name: "index_callrooms_on_user_id", using: :btree
   end
 

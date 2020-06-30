@@ -13,13 +13,14 @@ Rails.application.routes.draw do
   resources :teaches do
     resources :messages, only: [:create]
     namespace :api do
-        resources :messages, only: :index, defaults: { format: 'json' }
+      resources :messages, only: :index, defaults: { format: 'json' }
     end
-  
+    
   end
   resources :callrooms do
     collection do
       post 'update_attribute', to: 'callrooms#update_attribute'
+      post 'student-update', to: 'callrooms#student_update'
     end
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
