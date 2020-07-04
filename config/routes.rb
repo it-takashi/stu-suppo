@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   end
   
   resources :tweets do
-    resources :replies, only:[:create, :edit, :update, :destroy]
+    resources :replies, only:[:create, :edit, :update, :destroy] 
   end
   resources :teaches do
     resources :messages, only: [:create]
@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   resources :callrooms do
     collection do
       post 'update_attribute', to: 'callrooms#update_attribute'
+      get :call
     end
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

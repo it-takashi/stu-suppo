@@ -32,6 +32,8 @@ class CallroomsController < ApplicationController
         @callroom.student_id = current_user.id
         @callroom.save
         @student = User.find_by(id:@callroom.student_id)
+
+
       end
     end
     # @id = @callroom.id
@@ -70,6 +72,28 @@ class CallroomsController < ApplicationController
       callroom.release = 1
       callroom.save
       redirect_to callroom_path(callroom.id), notice: "公開にしました"
+    end
+  end
+
+  # def call
+  #   respond_to do |format|
+  #     format.html
+  #     format.json do
+  #       @student = current_user
+  #       @callroom = Callroom.find(params[:id])
+  #     end
+  #   end
+  # end
+
+  def call
+    respond_to do |format|
+      format.html
+      format.json do
+        @callroom = Callroom.find(params[:id])
+        @student = current_user
+          # 生徒がいないときは、studentに生徒を登録する
+        # redirect_to callroom_path(@callroom.id)
+      end
     end
   end
 end

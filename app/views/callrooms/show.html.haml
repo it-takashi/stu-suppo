@@ -29,7 +29,7 @@
           image
     = link_to "#", class: "author__name" do
       = @student.name
-  -else @student.present?
+  -else
     .student 生徒はまだいません
   -if user_signed_in? && current_user.id == @callroom.user_id
     .teachManage

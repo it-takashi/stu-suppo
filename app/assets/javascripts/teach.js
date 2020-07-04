@@ -71,7 +71,6 @@ $(function(){
     var last_message_id = $('.message-list__box:last').data("message-id");
     var id = $('.teach_id').val();
     console.log(id)
-    console.log("takashi")
     
     $.ajax({
       url: + id + "/api/messages",
