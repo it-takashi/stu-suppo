@@ -47,6 +47,9 @@ $(function(){
       var callroom = data.callroom
       console.log(student)
       console.log(callroom)
+      $(".featherlight").show(); 
+      $(".featherlight-inner").show(); 
+      $(".featherlight-content").show(); 
       var html = buildHTML(student);
       // $('.student-b
     })
