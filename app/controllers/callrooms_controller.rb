@@ -14,7 +14,7 @@ class CallroomsController < ApplicationController
 
   def show
     @callroom = Callroom.find(params[:id])
-      # 公開がtureで生徒がいるときは、先生と生徒しか入ることができない
+      # 公開がで生徒がいるときは、先生と生徒しか入ることができない
     if @callroom.release.present? && @callroom.student_id.present?
       if @callroom.user_id == current_user.id or @callroom.student_id ==  current_user.id
         @student = User.find_by(id:@callroom.student_id)
@@ -90,9 +90,16 @@ class CallroomsController < ApplicationController
       format.html
       format.json do
         @callroom = Callroom.find(params[:id])
-        @student = current_user
-          # 生徒がいないときは、studentに生徒を登録する
-        # redirect_to callroom_path(@callroom.id)
+        if @callroom.release == true && @callroom.waitingroom.nil?
+          @callroom.student_id = current_user.id
+          @callroom.waitingroom = 0
+          @callroom.save
+          @student = current_user
+        else @callroom.release == true && @callroom.waitingroom == 1 && @callroom.student_id == current_user.id
+          @student = current_user
+        # elsif @callroom.user_id == current_user.id
+        # else
+        end
       end
     end
   end

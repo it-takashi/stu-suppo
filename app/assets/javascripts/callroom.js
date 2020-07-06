@@ -8,7 +8,7 @@ $(function(){
   function buildCalled(student) {
     if ( student.image ){
       var html =   
-        `<div "student">生徒
+        `<div "student">生徒</div>
           <a href ="#" class "link-image" >
             <p>
               <img src= "student.image.url"  class='author__image'>
@@ -20,7 +20,7 @@ $(function(){
           return html;
     }else{
       var html =
-        `<div "student">生徒
+        `<div "student">生徒</div>
         <a href ="#" class "link-image" >
           <div class="author__no-image">
             No-
@@ -57,14 +57,15 @@ $(function(){
       <p>${callroom.user_name}さんに連絡しています！</p>
       <div>タイトル: ${callroom.title}</div>
       <div>本文: ${callroom.body}</div>`
-        return html;
-      }
+      return html;
     }
-    
-    $('.call').click(function(e){
-      e.preventDefault();
-      var id = $(this).val();      
-      console.log(id)
+  }
+  
+  $('.call').click(function(e){
+    e.preventDefault();
+    var id = $(this).val();      
+    console.log(id)
+    // console.log(current_user.id)
     
     $.ajax({
       url: "/callrooms/call",
@@ -82,17 +83,32 @@ $(function(){
       // 先生側に
       var html = buildCalled(student);
       // 生徒側に
-      var htmlCall = buildCall(callroom);
-      $('#modal_content').empty();
-      $('#modal_content').append(htmlCall);
-      modal.show();
+      if(callroom.student_id == student.id){
+        var htmlCall = buildCall(callroom);
+        $('#modal_content').empty();
+        $('#modal_content').append(htmlCall);
+        modal.show();
+      } 
+      else{
+        var html =
+          `<div>すでに電話しています。または、投稿者は、電話することができません。</div>`
+        console.log("通信失敗")
+        $('#modal_content').empty();
+        $('#modal_content').append(html);
+        modal.show();
+      }
 
       
       // $('.student-b
     })
 
     .fail(function(){
-      alert("メッセージ送信に失敗しました")
+      var html =
+        `<div>すでに電話しています。または、投稿者は、電話することができません。</div>`
+      console.log("通信失敗")
+      $('#modal_content').empty();
+      $('#modal_content').append(html);
+      modal.show();
     })
 
 
