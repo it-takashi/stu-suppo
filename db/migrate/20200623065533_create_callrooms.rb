@@ -7,6 +7,7 @@ class CreateCallrooms < ActiveRecord::Migration[5.0]
       t.boolean :release, default: true, null: false
       t.references :user, foreign_key: true
       t.references :student
+      t.boolean :waitingroom
       t.timestamps
     end
   end

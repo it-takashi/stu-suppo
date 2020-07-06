@@ -18,8 +18,6 @@
         %li アウトプット
       = link_to new_teach_path, method: :get, class:"btn__teach" do
         %li 教えて
-
-  
       - if @callroom.present?
         -# 電話ができるようにする。（編集モード）
         - if @callroom.release == false
@@ -34,6 +32,11 @@
         = link_to new_callroom_path, method: :get, class:"btn__call" do
           %li 教えるモード
       
+    -else
+      = link_to new_user_registration_path, method: :get, class:"btn__logout" do
+        %li 新規登録
+      = link_to  new_user_session_path, method: :get, class:"btn__tweet" do
+        %li ログイン
 
 
           
