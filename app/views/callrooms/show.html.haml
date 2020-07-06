@@ -35,10 +35,12 @@
     .teachManage
       = link_to "編集", edit_callroom_path(@callroom.id), class: "teachManage__edit"
       = link_to "削除", callroom_path(@callroom.id), method: :delete, class: "teachManage__destroy"
-      - if @callroom.release == false
+      - if @callroom.status == 0
         = link_to "公開", update_attribute_callrooms_path, method: :post, class: "teachManage__destroy"
-      - else @callroom.release == 1
+      - elsif @callroom.status == 1
         = link_to "非公開",update_attribute_callrooms_path, method: :post, class: "teachManage__destroy"
+      - else @callroom.status == 3
+        = link_to "通信を切りますか",update_attribute_callrooms_path, method: :post, class: "teachManage__destroy"
 
 %h1.show-title
   教えて電話解決！

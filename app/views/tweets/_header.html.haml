@@ -20,11 +20,11 @@
         %li 教えて
       - if @callroom.present?
         -# 電話ができるようにする。（編集モード）
-        - if @callroom.release == false
+        - if @callroom.status == 0
           = link_to edit_callroom_path(@callroom.id), method: :get, class:"btn__call" do
             %li 教えるモード
           -# 電話ができないようにする。
-        - else @callroom.release == 1
+        - else @callroom.status == 1
           = link_to update_attribute_callrooms_path, method: :post, class:"btn__call" do
             %li 教えるモード解除
         -# 新しく電話ができないようにする。
