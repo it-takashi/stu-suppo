@@ -10,4 +10,8 @@ end
 
 json.set! :callroom do
   json.id @callroom.id
+  json.title @callroom.title
+  json.body @callroom.body
+  json.user_name @callroom.user.name
+  json.user_imgage @callroom.user.image_url
 end

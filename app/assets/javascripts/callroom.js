@@ -1,6 +1,11 @@
 $(function(){
 
-  function buildHTML(student) {
+  var modal = $('#modal'),
+        modalContent = $('#modal_content'),
+        btnOpen = $("#btn_open"),
+        btnClose = $(".btn_close");
+
+  function buildCalled(student) {
     if ( student.image ){
       var html =   
         `<div "student">生徒
@@ -27,13 +32,39 @@ $(function(){
           ${student.name}
         </a>`
         return html;
+      }
     }
-  }
 
-  $('.call').click(function(e){
-    e.preventDefault();
-    var id = $(this).val();
-    console.log(id)
+  function buildCall(callroom) {
+    if ( callroom.user_imgage ){
+      var html =   
+        `<p class = link-image>
+          <img src= "callroom.user_image.url"  class='author__image'>
+        </p>
+        <p>${callroom.user_name}さんに連絡しています！
+        <div>タイトル: ${callroom.title}</div>
+        <div>本文: ${callroom.body}</div>`
+          return html;
+    }else{
+      var html =
+      `<p class = link-image>
+        <div class="author__no-image">
+            No-
+            <br>
+            image
+        </div>
+      </p>
+      <p>${callroom.user_name}さんに連絡しています！</p>
+      <div>タイトル: ${callroom.title}</div>
+      <div>本文: ${callroom.body}</div>`
+        return html;
+      }
+    }
+    
+    $('.call').click(function(e){
+      e.preventDefault();
+      var id = $(this).val();      
+      console.log(id)
     
     $.ajax({
       url: "/callrooms/call",
@@ -47,16 +78,31 @@ $(function(){
       var callroom = data.callroom
       console.log(student)
       console.log(callroom)
-      $(".featherlight").show(); 
-      $(".featherlight-inner").show(); 
-      $(".featherlight-content").show(); 
-      var html = buildHTML(student);
+      
+      // 先生側に
+      var html = buildCalled(student);
+      // 生徒側に
+      var htmlCall = buildCall(callroom);
+      $('#modal_content').empty();
+      $('#modal_content').append(htmlCall);
+      modal.show();
+
+      
       // $('.student-b
     })
 
     .fail(function(){
       alert("メッセージ送信に失敗しました")
     })
+
+
+    // モーダル以外、閉じるを押すとモーダルが消える
+
+    $(modal).on('click', function(event) {
+      if(!($(event.target).closest(modalContent).length)||($(event.target).closest(btnClose).length)){
+        modal.hide();
+      }
+    });
 
     
   }) 

@@ -84,3 +84,6 @@
       = image_tag @callroom.image.url, class: 'teach__image'
 
 %input{name: "callroom_id",type: "hidden",  value: @callroom.id, class: 'callroom_id'}
+
+#callmodal
+  #modal_content{ id:"#{@callroom.id}"}
