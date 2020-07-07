@@ -19,14 +19,16 @@ $(function(){
       </p>
       <p>${student.name}さんから連絡が来ています。</p>
       <P>紹介:${student.profile}</p>
-      <a href="/callrooms/call">承認する</a>`
+      <a href="/callrooms/call">承認する</a>
+      <a href=" /callrooms/update_attribute">拒否する</a>`
       return html;
     } else {
       var html =
       `<div class="author__no-image">No-<br/>image</div>
       <p>${student.name}さんから連絡が来ています。</>
       <P>紹介:${student.profile}</p>
-      <a href="/callrooms/call">承認する</a>`
+      <a href="/callrooms/call">承認する</a>
+      <a href="/callrooms/update_attribute">拒否する</a>`
       return html;
     }
   }

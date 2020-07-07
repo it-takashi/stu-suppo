@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   end
   resources :callrooms do
     collection do
-      post 'update_attribute', to: 'callrooms#update_attribute'
+      get 'update_attribute', to: 'callrooms#update_attribute'
       get :call
     end
   end

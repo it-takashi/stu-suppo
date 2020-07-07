@@ -14,31 +14,12 @@ class CallroomsController < ApplicationController
 
   def show
     @callroom = Callroom.find(params[:id])
-      # 公開がで生徒がいるときは、先生と生徒しか入ることができない
-    if @callroom.status.present? && @callroom.student_id.present?
-      if @callroom.user_id == current_user.id or @callroom.student_id ==  current_user.id
-        @student = User.find_by(id:@callroom.student_id)
-      else
+    # 公開がで生徒がいるときは、先生と生徒しか入ることができない
+    if @callroom.user_id == current_user.id or @callroom.status == 3 && @callroom.student_id == current_user.id
+      @student = User.find_by(id:@callroom.student_id)
+    else
       redirect_to root_path
-      end
-      #非公開　statusが0の場合生徒は入ることができない
-    elsif @callroom.status == 0
-      unless @callroom.user_id == current_user.id
-        redirect_to root_path
-      end
-      # 生徒がいないときは、studentに生徒を登録する
-    else @callroom.student_id.nil?
-      unless @callroom.user_id == current_user.id
-        @callroom.student_id = current_user.id
-        @callroom.save
-        @student = User.find_by(id:@callroom.student_id)
-
-
-      end
     end
-    # @id = @callroom.id
-    # @message = Message.new
-    # @messages = @callroom.messages.includes(:user)
   end
 
   def edit
@@ -64,14 +45,20 @@ class CallroomsController < ApplicationController
 
   def update_attribute
     callroom = Callroom.find_by(user_id:current_user.id)
-    if callroom.status == 1 or callroom.status == 2  or callroom.status == 3
+    if callroom.status == 1 or callroom.status == 3
       callroom.status = 0
+      callroom.student.delete
       callroom.save
       redirect_to callroom_path(callroom.id), alert: "非公開にしました"
-    else callroom.status == 0
+    elsif callroom.status == 0
       callroom.status = 1
       callroom.save
       redirect_to callroom_path(callroom.id), notice: "公開にしました"
+    else callroom.status == 2
+      callroom.status = 1
+      callroom.student_id = []
+      callroom.save
+      redirect_to callroom_path(callroom.id), notice: "連絡をキャセルしました。"
     end
   end
 
@@ -94,6 +81,7 @@ class CallroomsController < ApplicationController
           redirect_to callroom_path(@callroom.id)
         end
       format.json do
+        # 教えてもらうボタンを押すと動く
         @callroom = Callroom.find(params[:id])
         if @callroom.status == 1 && @callroom.student_id.nil?
           @callroom.student_id = current_user.id
