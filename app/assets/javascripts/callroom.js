@@ -5,6 +5,11 @@ $(function(){
         btnOpen = $("#btn_open"),
         btnClose = $(".btn_close");
 
+  var callmodal = $('#callmodal'),
+        modalContent = $('#modal_content'),
+        btnOpen = $("#btn_open"),
+        btnClose = $(".btn_close");
+
   function buildCalled(student) {
     if ( student.image ){
       var html =   
@@ -119,6 +124,11 @@ $(function(){
         modal.hide();
       }
     });
+    $(modal).on('click', function(event) {
+      if(!($(event.target).closest(modalContent).length)||($(event.target).closest(btnClose).length)){
+        modal.hide();
+      }
+    });
 
     
   }) 
@@ -221,5 +231,11 @@ $(function(){
   // if (document.location.href.match(/\/teaches\/\d+/)) {
   //   setInterval(reloadMessages, 7000);
   // }
+
+  $(callmodal).on('click', function(event) {
+    if(!($(event.target).closest(modalContent).length)||($(event.target).closest(btnClose).length)){
+      callmodal.hide();
+    }
+  });
   
 });

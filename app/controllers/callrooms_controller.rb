@@ -88,14 +88,19 @@ class CallroomsController < ApplicationController
   def call
     respond_to do |format|
       format.html
+        if @callroom.status == 2 && @callroom.student_id.present? && @callroom.user_id == current_user.id
+          @callroom.status = 3
+          @callroom.save
+          redirect_to callroom_path(@callroom.id)
+        end
       format.json do
         @callroom = Callroom.find(params[:id])
-        if @callroom.status == true && @callroom.waitingroom.nil?
+        if @callroom.status == 1 && @callroom.student_id.nil?
           @callroom.student_id = current_user.id
-          @callroom.waitingroom = 0
+          @callroom.status = 2
           @callroom.save
           @student = current_user
-        else @callroom.status == true && @callroom.waitingroom == 1 && @callroom.student_id == current_user.id
+        else @callroom.status == 2 && @callroom.student_id == current_user.id
           @student = current_user
         # elsif @callroom.user_id == current_user.id
         # else
