@@ -5,7 +5,7 @@ json.set! :student do
   json.profile @student.profile
   json.image @student.image_url
   json.subject @student.subject
-  json.rate @student.image_url
+  json.rate @student.rate
 end
 
 json.set! :callroom do

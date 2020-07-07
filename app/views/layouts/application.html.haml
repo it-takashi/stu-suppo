@@ -13,17 +13,30 @@
   %body
     = render 'layouts/notifications'
     = yield
-    - if  @callroom.present? && current_user.id == @callroom.user_id  && @callroom.status == 2
-      #callmodal
-        #modal_content{data: {called: {id: @callroom.user_id}}}
-          - if @student.image.present?
-            %p
-              = image_tag @student.image.url, class: 'author__image'
-          - else
-            .author__no-image
-              No-
-              %br
-              image
-          %p "#{@student.name}さんから連絡が来ています"
-          %p 紹介:#{@student.profile}
-          = link_to "承認する", call_callrooms_path, method: :get
+    #callmodal
+      #callmodal_content{data: {called: {id: @callroom.user_id}}}
+        -# - if @student.image.present?
+        -#   %p
+        -#     = image_tag @student.image.url, class: 'author__image'
+        -# - else
+        -#   .author__no-image
+        -#     No-
+        -#     %br
+        -#     image
+        -# %p "#{@student.name}さんから連絡が来ています"
+        -# %p 紹介:#{@student.profile}
+        -# = link_to "承認する", call_callrooms_path, method: :get
+    -# - if  @callroom.present? && current_user.id == @callroom.user_id  && @callroom.status == 2
+    -#   #callmodal
+    -#     #callmodal_content{data: {called: {id: @callroom.user_id}}}
+    -#       - if @student.image.present?
+    -#         %p
+    -#           = image_tag @student.image.url, class: 'author__image'
+    -#       - else
+    -#         .author__no-image
+    -#           No-
+    -#           %br
+    -#           image
+    -#       %p "#{@student.name}さんから連絡が来ています"
+    -#       %p 紹介:#{@student.profile}
+    -#       = link_to "承認する", call_callrooms_path, method: :get

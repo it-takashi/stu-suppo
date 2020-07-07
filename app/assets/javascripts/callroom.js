@@ -10,10 +10,31 @@ $(function(){
         btnOpen = $("#btn_open"),
         btnClose = $(".btn_close");
 
-  function buildCalled(student) {
+  // 先生側のモーダルウィンドウ
+  function buildCalled(student){
+    if (student.image){
+      var html =   
+      `<p>
+        <img src= "student.image.url"  class='author__image'>
+      </p>
+      <p>${student.name}さんから連絡が来ています。</p>
+      <P>紹介:${student.profile}</p>
+      <a href="/callrooms/call">承認する</a>`
+      return html;
+    } else {
+      var html =
+      `<div class="author__no-image">No-<br/>image</div>
+      <p>${student.name}さんから連絡が来ています。</>
+      <P>紹介:${student.profile}</p>
+      <a href="/callrooms/call">承認する</a>`
+      return html;
+    }
+  }
+
+  function buildCallroom(student) {
     if ( student.image ){
       var html =   
-        `<div "student">生徒</div>
+        `<p>生徒</p>
           <a href ="#" class "link-image" >
             <p>
               <img src= "student.image.url"  class='author__image'>
@@ -46,7 +67,7 @@ $(function(){
         `<p class = link-image>
           <img src= "callroom.user_image.url"  class='author__image'>
         </p>
-        <p>${callroom.user_name}さんに連絡しています！
+        <p>${callroom.user_name}さんに連絡しています！</p>
         <div>タイトル: ${callroom.title}</div>
         <div>本文: ${callroom.body}</div>`
           return html;
@@ -95,16 +116,12 @@ $(function(){
         modal.show();
       } 
       else{
-        var html =
-          `<div>すでに電話しています。または、投稿者は、電話することができません。</div>`
+        `<div>すでに電話しています。または、投稿者は、電話することができません。</div>`
         console.log("通信失敗")
         $('#modal_content').empty();
         $('#modal_content').append(html);
         modal.show();
       }
-
-      
-      // $('.student-b
     })
 
     .fail(function(){
@@ -115,6 +132,8 @@ $(function(){
       $('#modal_content').append(html);
       modal.show();
     })
+
+
 
 
     // モーダル以外、閉じるを押すとモーダルが消える
@@ -237,5 +256,30 @@ $(function(){
       callmodal.hide();
     }
   });
-  
+
+  // 自動更新
+  var reloadCalled =function(){
+    $.ajax({
+      //ルーティングで設定したパス
+      url: "/api/callrooms",
+      //ルーティングで設定した通りhttpメソッドをgetに指定
+      type: 'get',
+      dataType: 'json',
+      //dataオプションでリクエストに値を含める
+      // data: {id: called_id}
+    })
+
+    .done(function(data){
+      var callroom = data.callroom
+      if (callroom.status == 2 && $('#callmodal_content').length == 1){
+        var student = data.student
+        // 先生側に
+        var htmlCalled = buildCalled(student);
+        $('#callmodal_content').empty();
+        $('#callmodal_content').append(htmlCalled);
+        $('#callmodal').show();
+      }
+    })
+  }  
+  setInterval(reloadCalled, 7000);  
 });
