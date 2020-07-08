@@ -108,17 +108,14 @@ $(function(){
       console.log(student)
       console.log(callroom)
       
-      // 先生側に
-      var html = buildCalled(student);
-      // 生徒側に
       if(callroom.student_id == student.id){
         var htmlCall = buildCall(callroom);
         $('#modal_content').empty();
         $('#modal_content').append(htmlCall);
         modal.show();
-      } 
+      }
       else{
-        `<div>すでに電話しています。または、投稿者は、電話することができません。</div>`
+        `<div>すでに電話しています。</div>`
         console.log("通信失敗")
         $('#modal_content').empty();
         $('#modal_content').append(html);
@@ -259,7 +256,7 @@ $(function(){
     }
   });
 
-  // 自動更新
+  // 先生側自動更新
   var reloadCalled =function(){
     $.ajax({
       //ルーティングで設定したパス
@@ -275,7 +272,7 @@ $(function(){
       var callroom = data.callroom
       if (callroom.status == 2 && $('#callmodal_content').length == 1){
         var student = data.student
-        // 先生側に
+        // 先生側
         var htmlCalled = buildCalled(student);
         $('#callmodal_content').empty();
         $('#callmodal_content').append(htmlCalled);
@@ -283,5 +280,27 @@ $(function(){
       }
     })
   }  
+  // 生徒側自動更新
+  var reloadCall =function(){
+    $.ajax({
+
+      url: "/api/callrooms/new",
+      type: 'get',
+      dataType: 'json'
+    })
+
+    .done(function(callroom){
+      if(callroom.status == 3){
+        var html =
+          `<div>${callroom.user_name}さんに連絡が付きました。</div>
+          <a href="/callrooms/${callroom.id}">こちらへ</a>`
+        $('#modal_content').empty();
+        $('#modal_content').append(html);
+        modal.show();
+      }
+    })
+  } 
+
   setInterval(reloadCalled, 7000);  
+  setInterval(reloadCall, 7000);  
 });
