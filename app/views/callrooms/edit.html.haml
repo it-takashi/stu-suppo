@@ -1,0 +1,7 @@
+.wraper
+  %header
+    = render "tweets/header"
+  .container
+    = form_for(@callroom) do |form|
+      %h3 投稿する
+      = render partial: "form", locals:{ form: form }

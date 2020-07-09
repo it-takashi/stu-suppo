@@ -11,4 +11,5 @@ class User < ApplicationRecord
   has_many :teaches
   has_many :messages
   has_many :replies
+  has_one :callroom
 end

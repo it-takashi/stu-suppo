@@ -10,7 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200529043815) do
+ActiveRecord::Schema.define(version: 20200623065533) do
+
+  create_table "callrooms", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "title",                                null: false
+    t.text     "body",       limit: 65535,             null: false
+    t.string   "image"
+    t.integer  "status",                   default: 1, null: false
+    t.integer  "user_id"
+    t.integer  "student_id"
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.index ["student_id"], name: "index_callrooms_on_student_id", using: :btree
+    t.index ["user_id"], name: "index_callrooms_on_user_id", using: :btree
+  end
 
   create_table "messages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "comment"
@@ -74,6 +87,7 @@ ActiveRecord::Schema.define(version: 20200529043815) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "callrooms", "users"
   add_foreign_key "messages", "teaches"
   add_foreign_key "messages", "users"
   add_foreign_key "replies", "tweets"

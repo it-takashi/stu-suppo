@@ -1,0 +1,33 @@
+.tweet-card
+  .box
+    = link_to "#", class:"profile" do
+      - if callroom.user.image.present?
+        %p
+          = image_tag callroom.user.image.url, class: 'profile__image'
+      - else
+        .profile__no-image
+          No-
+          %br
+          image
+      .profile__name
+        = callroom.user.name
+    .tweet
+      -# ログインユーザー
+      - if user_signed_in?
+        = link_to callroom_path(callroom.id), method: :get, class:"tweet__title" do
+          = callroom.title
+        %button{type: "button",class:"call",value:callroom.id} 教えてもらう
+
+        -# 未ログインユーザー
+      - else
+        = link_to new_user_session_path, method: :get, class:"tweet__title" do     
+          = callroom.title
+      .tweet__tags
+        .tweet__tags__tag
+          
+        .tweet__tags__tag
+          
+        .tweet__tags__tag
+          
+  .body
+    = callroom.body

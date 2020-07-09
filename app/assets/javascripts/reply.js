@@ -1,4 +1,5 @@
 $(function(){
+
   function buildHTML(reply) {
     if ( reply.image ){
       var html = 
