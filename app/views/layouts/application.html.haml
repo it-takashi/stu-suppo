@@ -14,7 +14,7 @@
     = render 'layouts/notifications'
     = yield
     #callmodal
-      #callmodal_content{data: {called: {id: @callroom.user_id}}}
+      #callmodal_content
         -# - if @student.image.present?
         -#   %p
         -#     = image_tag @student.image.url, class: 'author__image'

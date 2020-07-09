@@ -45,32 +45,28 @@ class CallroomsController < ApplicationController
 
   def update_attribute
     callroom = Callroom.find_by(user_id:current_user.id)
-    if callroom.status == 1 or callroom.status == 3
+    if callroom.status == 1
       callroom.status = 0
-      callroom.student.delete
+      callroom.student_id = []
       callroom.save
       redirect_to callroom_path(callroom.id), alert: "非公開にしました"
     elsif callroom.status == 0
       callroom.status = 1
       callroom.save
       redirect_to callroom_path(callroom.id), notice: "公開にしました"
-    else callroom.status == 2
+    elsif callroom.status == 2 
       callroom.status = 1
       callroom.student_id = []
       callroom.save
       redirect_to callroom_path(callroom.id), notice: "連絡をキャセルしました。"
+    else callroom.status == 3
+      student = User.find_by(id:callroom.student_id)
+      callroom.status = 1
+      callroom.student_id = []
+      callroom.save
+      redirect_to callroom_path(callroom.id), notice: "#{student.name}さんとの通信を終了しました。ただいま公開中です"
     end
   end
-
-  # def call
-  #   respond_to do |format|
-  #     format.html
-  #     format.json do
-  #       @student = current_user
-  #       @callroom = Callroom.find(params[:id])
-  #     end
-  #   end
-  # end
 
   def call
     respond_to do |format|
@@ -90,12 +86,11 @@ class CallroomsController < ApplicationController
           @student = current_user
         else @callroom.status == 2 && @callroom.student_id == current_user.id
           @student = current_user
-        # elsif @callroom.user_id == current_user.id
-        # else
         end
       end
     end
   end
+
 end
 
 private

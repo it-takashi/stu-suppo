@@ -169,8 +169,6 @@
   }
 }
 
-
-
 .tell{
   width: 80%;
   margin: auto;
@@ -178,4 +176,31 @@
 
 #js-meta.meta{
   display: none;
+}
+  
+.infomation{
+  color:#fff;
+  text-align: center;
+  background: linear-gradient(191deg, #f7b4b4, #f58484);
+  background-size: 400% 400%;
+
+  -webkit-animation: AnimationName 14s ease infinite;
+  -moz-animation: AnimationName 14s ease infinite;
+  animation: AnimationName 14s ease infinite;
+}
+
+@-webkit-keyframes AnimationName {
+  0%{background-position:34% 0%}
+  50%{background-position:67% 100%}
+  100%{background-position:34% 0%}
+}
+@-moz-keyframes AnimationName {
+  0%{background-position:34% 0%}
+  50%{background-position:67% 100%}
+  100%{background-position:34% 0%}
+}
+@keyframes AnimationName {
+  0%{background-position:34% 0%}
+  50%{background-position:67% 100%}
+  100%{background-position:34% 0%}
 }

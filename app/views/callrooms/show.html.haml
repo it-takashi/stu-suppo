@@ -36,15 +36,19 @@
       = link_to "編集", edit_callroom_path(@callroom.id), class: "teachManage__edit"
       = link_to "削除", callroom_path(@callroom.id), method: :delete, class: "teachManage__destroy"
       - if @callroom.status == 0
-        = link_to "公開", update_attribute_callrooms_path, method: :post, class: "teachManage__destroy"
+        = link_to "公開", update_attribute_callrooms_path, method: :get, class: "teachManage__destroy"
       - elsif @callroom.status == 1
-        = link_to "非公開",update_attribute_callrooms_path, method: :post, class: "teachManage__destroy"
+        = link_to "非公開",update_attribute_callrooms_path, method: :get, class: "teachManage__destroy"
       - else @callroom.status == 3
-        = link_to "通信を切りますか",update_attribute_callrooms_path, method: :post, class: "teachManage__destroy"
+        = link_to "通信を切りますか",update_attribute_callrooms_path, method: :get, class: "teachManage__destroy"
 
 %h1.show-title
   教えて電話解決！
-
+-# - binding.pry
+- if @callroom.user_id == current_user.id && @callroom.status == 3
+  %p.infomation #{@student.name}さんと通信中
+- elsif  @callroom.status == 3 && @callroom.student_id == current_user.id
+  %p.infomation #{@callroom.user.name}さんと通信中
 .container
   .p2p-media
     .local-stream
@@ -60,7 +64,7 @@
     あなたの電話番号12桁の番号をメッセージを活用して教えて下さい
   %input#js-remote-id{placeholder: "相手の電話番号を入力", type: "text"}/
   %button#js-call-trigger 電話をする
-  %button#js-close-trigger 終了
+  %button#js-close-trigger 通信終了
 %p#js-meta.meta
 -# .form
 -#   = form_for [@teach, @message] do |f|

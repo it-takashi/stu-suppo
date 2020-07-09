@@ -36,14 +36,17 @@ $(function(){
         key: window.__SKYWAY_KEY__,
         debug: 3,
       }));
-    
+      
       // Register caller handler
+      // 発信者の処理
       callTrigger.addEventListener('click', () => {
         // Note that you need to ensure the peer has connected to signaling server
         // before using methods of peer instance.
         if (!peer.open) {
           return;
         }
+
+        
     
         const mediaConnection = peer.call(remoteId.value, localStream);
     
@@ -51,20 +54,26 @@ $(function(){
           // Render remote stream for caller
           remoteVideo.srcObject = stream;
           remoteVideo.playsInline = true;
+          console.log("電話したぜ")
+
           await remoteVideo.play().catch(console.error);
         });
-    
         mediaConnection.once('close', () => {
           remoteVideo.srcObject.getTracks().forEach(track => track.stop());
           remoteVideo.srcObject = null;
+          console.log("発信者通話終了")
         });
     
-        closeTrigger.addEventListener('click', () => mediaConnection.close(true));
+        closeTrigger.addEventListener('click', () =>{
+          mediaConnection.close(true)
+        }
+        );
       });
     
       peer.once('open', id => (localId.textContent = id));
     
       // Register callee handler
+      // 受信者の処理
       peer.on('call', mediaConnection => {
         mediaConnection.answer(localStream);
     
@@ -74,19 +83,28 @@ $(function(){
           remoteVideo.playsInline = true;
           await remoteVideo.play().catch(console.error);
         });
-    
+        
         mediaConnection.once('close', () => {
           remoteVideo.srcObject.getTracks().forEach(track => track.stop());
           remoteVideo.srcObject = null;
+          console.log("受信者通話終了")
         });
-    
-        closeTrigger.addEventListener('click', () => mediaConnection.close(true));
+        
+        closeTrigger.addEventListener('click', () =>{ mediaConnection.close(true)
+        })
       });
-    
+      
       peer.on('error', console.error);
     })();
+
+    // $(window).on('beforeunload', function(e) {
+    //   e.preventDefault();
+    //   return 'aa';
+    // });
+    
+    // $(window).on('beforeunload', function() {
+    //   return "ページを閉じようとしています。入力した情報が失われますがよろしいですか？";
+    // });
+
   }
-  
-  
-  
 })

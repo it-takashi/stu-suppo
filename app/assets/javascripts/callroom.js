@@ -283,7 +283,6 @@ $(function(){
   // 生徒側自動更新
   var reloadCall =function(){
     $.ajax({
-
       url: "/api/callrooms/new",
       type: 'get',
       dataType: 'json'
@@ -302,5 +301,7 @@ $(function(){
   } 
 
   setInterval(reloadCalled, 7000);  
-  setInterval(reloadCall, 7000);  
+  setInterval(reloadCall, 7000);
 });
+
+
