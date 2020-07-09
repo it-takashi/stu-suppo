@@ -70,13 +70,16 @@ class CallroomsController < ApplicationController
 
   def call
     respond_to do |format|
-      format.html
+      format.html do
+        # @callroom = Callroom.find(params[:id])
         if @callroom.status == 2 && @callroom.student_id.present? && @callroom.user_id == current_user.id
           @callroom.status = 3
           @callroom.save
           redirect_to callroom_path(@callroom.id)
         end
+      end
       format.json do
+        # binding.pry
         # 教えてもらうボタンを押すと動く
         @callroom = Callroom.find(params[:id])
         if @callroom.status == 1 && @callroom.student_id.nil?

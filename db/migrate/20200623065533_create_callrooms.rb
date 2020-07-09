@@ -4,10 +4,9 @@ class CreateCallrooms < ActiveRecord::Migration[5.0]
       t.string :title,              null: false
       t.text :body,                 null: false
       t.string :image
-      t.integer :status, default: true, null: false
+      t.integer :status,  null: false
       t.references :user, foreign_key: true
       t.references :student
-
       t.timestamps
     end
   end

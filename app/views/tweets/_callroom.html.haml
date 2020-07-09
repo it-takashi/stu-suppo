@@ -14,14 +14,11 @@
     .tweet
       -# ログインユーザー
       - if user_signed_in?
-        = link_to callroom_path(callroom.id), method: :get, class:"tweet__title" do
-          = callroom.title
+        .tweet__title #{callroom.title}
         %button{type: "button",class:"call",value:callroom.id} 教えてもらう
-
         -# 未ログインユーザー
       - else
-        = link_to new_user_session_path, method: :get, class:"tweet__title" do     
-          = callroom.title
+        .tweet__title #{callroom.title}
       .tweet__tags
         .tweet__tags__tag
           

@@ -124,12 +124,12 @@ $(function(){
     })
 
     .fail(function(){
-      var html =
+      // var html =
         `<div>すでに電話しています。または、投稿者は、電話することができません。</div>`
       console.log("通信失敗")
-      $('#modal_content').empty();
-      $('#modal_content').append(html);
-      modal.show();
+      // $('#modal_content').empty();
+      // $('#modal_content').append(html);
+      // modal.show();
     })
 
 
