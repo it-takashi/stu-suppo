@@ -270,7 +270,8 @@ $(function(){
 
     .done(function(data){
       var callroom = data.callroom
-      if (callroom.status == 2 && $('#callmodal_content').length == 1){
+      // callroomがあるかどうか確認しstatusが2かつcallmodelの要素が1であることを確認する
+      if (typeof callroom != "undefined" && callroom.status == 2 && $('#callmodal_content').length == 1){
         var student = data.student
         // 先生側
         var htmlCalled = buildCalled(student);
@@ -279,6 +280,7 @@ $(function(){
         $('#callmodal').show();
       }
     })
+
   }  
   // 生徒側自動更新
   var reloadCall =function(){
@@ -289,7 +291,9 @@ $(function(){
     })
 
     .done(function(callroom){
-      if(callroom.status == 3){
+      console.log(callroom)
+      if(document.location.href.match(/\/callrooms\/\d+/)){
+      }else if(callroom.status == 3){
         var html =
           `<div>${callroom.user_name}さんに連絡が付きました。</div>
           <a href="/callrooms/${callroom.id}">こちらへ</a>`
@@ -300,8 +304,6 @@ $(function(){
     })
   } 
 
-  setInterval(reloadCalled, 7000);  
+  setInterval(reloadCalled, 7000);
   setInterval(reloadCall, 7000);
 });
-
-

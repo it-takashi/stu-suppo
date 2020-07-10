@@ -10,12 +10,14 @@ if @student.present?
   end
 end
 
-json.set! :callroom do
-  json.id @callroom.id
-  json.title @callroom.title
-  json.student_id @callroom.student_id
-  json.body @callroom.body
-  json.status @callroom.status
-  json.user_name @callroom.user.name
-  json.user_imgage @callroom.user.image_url
+if @callroom.present?
+  json.set! :callroom do
+    json.id @callroom.id
+    json.title @callroom.title
+    json.student_id @callroom.student_id
+    json.body @callroom.body
+    json.status @callroom.status
+    json.user_name @callroom.user.name
+    json.user_imgage @callroom.user.image_url
+  end
 end
