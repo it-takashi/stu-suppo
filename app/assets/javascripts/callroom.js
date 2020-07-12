@@ -124,12 +124,7 @@ $(function(){
     })
 
     .fail(function(){
-      // var html =
-        `<div>すでに電話しています。または、投稿者は、電話することができません。</div>`
       console.log("通信失敗")
-      // $('#modal_content').empty();
-      // $('#modal_content').append(html);
-      // modal.show();
     })
 
 
@@ -291,7 +286,7 @@ $(function(){
     })
 
     .done(function(callroom){
-      console.log(callroom)
+      // console.log(callroom)
       if(document.location.href.match(/\/callrooms\/\d+/)){
       }else if(callroom.status == 3){
         var html =
@@ -300,7 +295,7 @@ $(function(){
         $('#modal_content').empty();
         $('#modal_content').append(html);
         modal.show();
-      }
+      } 
     })
   } 
 
