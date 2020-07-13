@@ -17,6 +17,7 @@ input[type="text"] {
 
 dl .field-label, .field-image-label{
     color: #998484;
+    margin-right: 20px;
 }
 dl .field-image-label{
     display: flex;
@@ -68,6 +69,6 @@ input[type="submit"]:hover {
     opacity: 0.8;
 }
 
-#tweet_image{
+#tweet_image, #callroom_image{
     display: none;
 }
