@@ -1,9 +1,5 @@
 %header
   = render "header"
-
-%h1.show-title
-  皆の学び
-
 .show-body
   .author
     = link_to "#", class: "link-image"do
@@ -11,37 +7,41 @@
         %p
           = image_tag @tweet.user.image.url, class: 'author__image'
       - else
-        .author__no-image
-          No-
-          %br
-          image
+        %P
+          = image_tag(src= "/no-image.png", class: "author__image")
     = link_to "#", class: "author__name" do
       = @tweet.user.name
-  -if user_signed_in? && current_user.id == @tweet.user_id
-    .tweetManage
-      = link_to "編集", edit_tweet_path(@tweet.id), class: "tweetManage__edit"
-      = link_to "削除", tweet_path(@tweet.id), method: :delete, class: "tweetManage__destroy"
+    
+    .author__created_at
+      = @tweet.created_at.strftime("%Y年%m月%d日")
+
+    -if user_signed_in? && current_user.id == @tweet.user_id
+      .manage
+        = link_to edit_tweet_path(@tweet.id), class: "manage__edit" do
+          = icon('far', 'edit')
+          編集
+        = link_to  tweet_path(@tweet.id), method: :delete, class: "manage__destroy" do
+          = icon("fa", "trash-alt")
+          削除
   .tweet
-    .tweet__title
+    %h1.show-title
       = @tweet.title
-    .tweet__tags
-      .tweet__tags__tag
-      .tweet__tags__tag
-      .tweet__tags__tag
-    .tweet__body
-      = @tweet.body
     - if @tweet.image.present?
       %p
         = image_tag @tweet.image.url, class: 'tweet__image'
 
-.form
-  = form_for [@tweet, @reply] do |f|
-    = f.text_field :comment, class: 'form__reply', placeholder: 'type a message'
-    .form__mask
-      = f.label :image, class: 'form__mask__image' do
-        = icon('fas', 'image', class: 'icon')
-        = f.file_field :image, class: 'hidden'
-    = f.submit 'Send', class: 'form__submit'
+    .tweet__body
+      = safe_join(@tweet.body.split("\n"), tag(:br))
 
-.reply-list
-  = render partial: 'reply', collection: @replies, as: :replies
+  .show-form
+    = form_for [@tweet, @reply] do |f|
+      = f.text_field :comment, class: 'form__reply', placeholder: 'コメント'
+      .form__mask
+        = f.label :image, class: 'form__mask__image' do
+          = icon('fas', 'image', class: 'icon')
+          = f.file_field :image, class: 'hidden'
+      = f.submit 'コメントする', class: 'form__submit'
+    %p.small Enterキーで投稿します。
+    .comment <コメント一覧>
+    .reply-list
+      = render partial: 'reply', collection: @replies, as: :replies
