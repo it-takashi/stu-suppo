@@ -1,12 +1,13 @@
-%h1.section
-  Output
-.tweet-box
-  = render @tweets  
-%h1.section
-  Help 
-.teach-box
-  = render partial: 'teach', collection: @teaches, as: :teaches
-%h1.section
-  Call 
-.tweet-box
-  = render partial: 'callroom', collection: @callrooms, as: :callroom
+%ul.section-box
+  %li.section
+    Output
+  .index-box
+    = render @tweets  
+  %li.section
+    Help 
+  .teach-box
+    = render partial: 'teach', collection: @teaches, as: :teaches
+  %li.section
+    Call 
+  .index-box
+    = render partial: 'callroom', collection: @callrooms, as: :callroom

@@ -1,25 +1,26 @@
-.tweet-card
-  .box
-    = link_to "#", class:"profile" do
-      - if tweet.user.image.present?
-        %p
-          = image_tag tweet.user.image.url, class: 'profile__image'
-      - else
-        .profile__no-image
-          No-
-          %br
-          image
-      .profile__name
+= link_to tweet_path(tweet.id),method: :get , class:"index-card" do
+  .image-box
+    - if tweet.image.present?
+      = image_tag tweet.image.url,method: :get , class: 'index-image'
+    - else 
+      = image_tag(src= "/study.webp", class: "index-image")
+
+  .post-box
+    %h3.title
+      = truncate(tweet.title, length: 10)
+    %h5.body
+      = truncate(tweet.body, length: 116)
+
+  .profile-box
+    %object
+      = link_to user_path(tweet.user.id),method: :get, class: "profile-image-a"  do
+        - if tweet.user.image.present? 
+          = image_tag tweet.user.image.url, class: "profile-image"
+        - else 
+          = image_tag(src= "/no-image.png", class: "profile-image")
+    %object
+      = link_to user_path(tweet.user.id),method: :get  ,class: "profile-name" do
         = tweet.user.name
-    .tweet
-      = link_to tweet_path(tweet.id), method: :get, class:"tweet__title" do
-        = tweet.title
-      .tweet__tags
-        .tweet__tags__tag
-          
-        .tweet__tags__tag
-          
-        .tweet__tags__tag
-          
-  .body
-    = tweet.body
+    %object
+      = link_to user_path(tweet.user.id),method: :get  ,class: "post-created_at" do
+        = tweet.created_at.strftime("%Y年%m月%d日")

@@ -59,9 +59,11 @@ $(function(){
     }
   }
   
+  // indexのcallをクリックすると
   $('.call').click(function(e){
     e.preventDefault();
-    var id = $(this).val();      
+    var id = $(this).data("call_id");    
+    // var id = $(this).val();      
     console.log(id)
     // console.log(current_user.id)
     
@@ -75,8 +77,6 @@ $(function(){
     .done(function(data){
       var student = data.student
       var callroom = data.callroom
-      console.log(student)
-      console.log(callroom)
       
       if(callroom.student_id == student.id){
         var htmlCall = buildCall(callroom);
