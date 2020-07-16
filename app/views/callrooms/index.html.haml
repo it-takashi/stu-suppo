@@ -1,0 +1,9 @@
+.wraper
+  %header
+    = render "tweets/header"
+  .index-body
+    .section
+      Call
+    .index-box
+      = render partial: 'tweets/callroom', collection: @callrooms, as: :callroom
+    = paginate(@callrooms)

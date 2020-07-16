@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  root "tweets#index"
+  root "tweets#top_page"
   resources :users, only: [:edit, :update] do
     collection do
       post 'update_attribute', to: 'users#update_attribute'
@@ -8,7 +8,10 @@ Rails.application.routes.draw do
   end
   
   resources :tweets do
-    resources :replies, only:[:create, :edit, :update, :destroy] 
+    resources :replies, only:[:create, :edit, :update, :destroy]
+    collection do
+      get 'top_page', to: 'tweets#top_page'
+    end
   end
   resources :teaches do
     resources :messages, only: [:create]

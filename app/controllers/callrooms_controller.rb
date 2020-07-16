@@ -1,4 +1,8 @@
 class CallroomsController < ApplicationController
+  def index
+    @callrooms = Callroom.where(status:1, student_id:nil).includes(:user).order("created_at DESC").page(params[:page]).per(12)
+  end
+
   def new
     @callroom = Callroom.new
   end

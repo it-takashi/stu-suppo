@@ -2,12 +2,12 @@
   %li.section
     Output
   .index-box
-    = render @tweets  
-  %li.section
-    Help 
-  .teach-box
-    = render partial: 'teach', collection: @teaches, as: :teaches
+    = render @tweets
+  = link_to tweets_path, method: :get, class:"see_more" do
+    もっと見る
   %li.section
     Call 
   .index-box
     = render partial: 'callroom', collection: @callrooms, as: :callroom
+  = link_to callrooms_path, method: :get, class:"see_more" do
+    もっと見る

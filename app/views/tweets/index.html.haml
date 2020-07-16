@@ -2,4 +2,8 @@
   %header
     = render "header"
   .index-body
-    = render "main_tweet"
+    .section
+      Output
+    .index-box
+      = render @tweets
+    = paginate(@tweets)
