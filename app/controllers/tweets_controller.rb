@@ -1,9 +1,9 @@
 class TweetsController < ApplicationController
 
   def index
-    @tweets = Tweet.all.includes(:user)
+    @tweets = Tweet.all.includes(:user).order("created_at DESC").limit(6)
     @teaches = Teach.all.includes(:user)
-    @callrooms = Callroom.where(status:1, student_id:nil)
+    @callrooms = Callroom.where(status:1, student_id:nil).includes(:user).order("created_at DESC").limit(6)
   end
 
   def new
