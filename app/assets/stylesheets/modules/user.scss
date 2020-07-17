@@ -164,3 +164,43 @@
     font-size: 13px;
   }
 }
+
+
+// ユーザーshow
+.user-show-body{
+  background-color: rgb(245, 245, 245);
+  margin: auto;
+  padding-top: 72px;
+  padding-bottom: 72px;
+  margin-top: 8px;
+  
+  // ユーザー情報
+  .UserMainContainer{
+    width: 80%;
+    margin: 24px auto;
+    display: flex;
+    justify-content: space-between;
+
+    // User-table関連
+    .BaseContainerUserInfomation{
+      width: 30%;
+      height: 700px;
+      padding: 16px;
+      background-color: #fff;
+      .author{
+        width: 100%;
+        height: 72px;
+        margin-bottom: 16px;
+        
+        &__image{
+          width: 72px;
+          height: 72px;
+          border-radius: 50%;
+          
+        }
+      }
+    }
+    
+
+  }
+}

@@ -7,9 +7,13 @@
       = form.text_field :title,placeholder: "題名を入力してくだい"
   .field-image 
     .field-image-label
-      = form.label :image, "画像"
-      -if @tweet.image.present?
-        = image_tag @tweet.image.url, class: 'tweet_image'
+      = form.label :image, class:"form_image" do
+        画像
+        .preview-box
+          -if @tweet.image.present?
+            = image_tag @tweet.image.url, class: 'tweet_image'
+          - else
+            = image_tag(src= "/no-image.png", class: "tweet_image")
     -# .field-input
     = form.file_field :image, class: 'hidden'
   .field

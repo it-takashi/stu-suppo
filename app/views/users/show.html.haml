@@ -1,0 +1,56 @@
+%header
+  = render "/tweets/header"
+.user-show-body
+  .UserMainContainer
+    .BaseContainerUserInfomation
+      .author
+        - if @user.image.present?
+          = image_tag @user.image.url, class: 'author__image'
+        - else
+          = image_tag(src= "/no-image.png", class: "author__image")
+    .BaseContainer_user-post
+  -#     = link_to "#", class: "author__name" do
+  -#       = @user.name
+
+  -#     -if user_signed_in? && current_user.id == @user_id
+  -#       .manage
+  -#         = link_to edit_tweet_path(@user.id), class: "manage__edit" do
+  -#           = icon('far', 'edit')
+  -#           編集
+  -#         = link_to  tweet_path(@user.id), method: :delete, class: "manage__destroy" do
+  -#           = icon("fa", "trash-alt")
+  -#           削除
+  -# .tweet
+  -#   %h1.show-title
+  -#     = @user.name
+  -#   %h1.show-title
+  -#     = @user.subject
+  -#   - if @user.image.present?
+  -#     %p
+  -#       = image_tag @user.image.url, class: 'tweet__image'
+
+  -#   .tweet__body
+  -#     = safe_join(@user.introduction.split("\n"), tag(:br))
+
+  -# .tweet
+  -#   %h1.show-title
+  -#     = @user.title
+  -#   - if @user.image.present?
+  -#     %p
+  -#       = image_tag @user.image.url, class: 'tweet__image'
+
+  -#   .tweet__body
+  -#     = safe_join(@user.body.split("\n"), tag(:br))
+
+  -# .show-form
+  -#   = form_for [@user, @reply] do |f|
+  -#     = f.text_field :comment, class: 'form__reply', placeholder: 'コメント'
+  -#     .form__mask
+  -#       = f.label :image, class: 'form__mask__image' do
+  -#         = icon('fas', 'image', class: 'icon')
+  -#         = f.file_field :image, class: 'hidden'
+  -#     = f.submit 'コメントする', class: 'form__submit'
+  -#   %p.small Enterキーで投稿します。
+  -#   .comment <コメント一覧>
+  -#   .reply-list
+  -#     = render partial: 'reply', collection: @replies, as: :replies

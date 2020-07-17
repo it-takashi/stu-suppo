@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   root "tweets#top_page"
-  resources :users, only: [:edit, :update] do
+  resources :users, only: [:edit, :update,:show] do
     collection do
       post 'update_attribute', to: 'users#update_attribute'
     end
