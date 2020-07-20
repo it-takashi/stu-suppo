@@ -24,6 +24,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @tweets = Tweet.where(user_id: params[:id]).includes(:user).order("created_at DESC").limit(6)
+    @user_callroom = Callroom.find_by(user_id: params[:id])
   end
   
 end

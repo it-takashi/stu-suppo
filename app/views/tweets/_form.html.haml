@@ -14,7 +14,6 @@
             = image_tag @tweet.image.url, class: 'tweet_image'
           - else
             = image_tag(src= "/no-image.png", class: "tweet_image")
-    -# .field-input
     = form.file_field :image, class: 'hidden'
   .field
     .field-label

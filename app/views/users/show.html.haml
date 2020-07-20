@@ -8,10 +8,51 @@
           = image_tag @user.image.url, class: 'author__image'
         - else
           = image_tag(src= "/no-image.png", class: "author__image")
-    .BaseContainer_user-post
-  -#     = link_to "#", class: "author__name" do
-  -#       = @user.name
+      .account_name
+        = @user.name
+      .user_introduction
+        - if @user.introduction.present?
+          = safe_join(@user.introduction.split("\n"), tag(:br))
+        - elsif @user.id ==  current_user.id
+          自己紹介：未設定
+      .user_favorite_subject
+        - if @user.introduction.present?
+          好きな教科：
+          = (safe_join(@user.subject.split("\n"), tag(:br)))
+        - elsif @user.id ==  current_user.id
+          好きな教科：未設定
+      - if current_user.id == @user.id
+        .user_edit_button
+          = link_to "プロフィールを編集する", edit_user_path(@user.id), class:"user_edit_button__link"
+    .BaseContainer_user_post
+      .user_post_header
+        .user_post_header__mark
+        .user_post_header__info 記事一覧
+      %ul.userpost_tab
+        %li{class:"userpost_tab_tweets active"}
+          = link_to "アウトプット", "#tweets"
+        %li.userpost_tab_callroom
+          = link_to "電話用", "#callroom"
 
+      %div{class:"tabContents active", id:"tweets"}
+        最近の投稿
+        .index-box
+          = render partial: '/tweets/tweet', collection: @tweets, as: :tweet
+      %div{class:"tabContents", id:"callroom"}
+        電話用
+        - if @user_callroom.present?
+          - if @user_callroom.status == 0
+            現在　非公開
+          - elsif @user_callroom.status == 1
+            現在　公開中
+          - elsif @user_callroom.status == 2 or @user_callroom.status == 3
+            現在　通信中
+          .index-box
+            = render partial: '/tweets/callroom', locals:{callroom: @user_callroom} 
+        - else 
+          現在　設定していません
+
+  
   -#     -if user_signed_in? && current_user.id == @user_id
   -#       .manage
   -#         = link_to edit_tweet_path(@user.id), class: "manage__edit" do
