@@ -21,7 +21,7 @@
           = (safe_join(@user.subject.split("\n"), tag(:br)))
         - elsif @user.id ==  current_user.id
           好きな教科：未設定
-      - if current_user.id == @user.id
+      - if user_signed_in? &&current_user.id == @user.id
         .user_edit_button
           = link_to "プロフィールを編集する", edit_user_path(@user.id), class:"user_edit_button__link"
     .BaseContainer_user_post

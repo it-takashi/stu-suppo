@@ -12,6 +12,7 @@ $(function(){
 
   // 先生側のモーダルウィンドウ
   function buildCalled(student){
+    console.log(student)
     if (student.image){
       var html =   
       `<p>
@@ -26,7 +27,7 @@ $(function(){
       var html =
       `<div class="author__no-image">No-<br/>image</div>
       <p>${student.name}さんから連絡が来ています。</>
-      <P>紹介:${student.profile}</p>
+      <P>紹介:${student.introduction}</p>
       <a href="/callrooms/call">承認する</a>
       <a href="/callrooms/update_attribute">拒否する</a>`
       return html;
@@ -269,6 +270,6 @@ $(function(){
     })
   } 
 
-  // setInterval(reloadCalled, 7000);
-  // setInterval(reloadCall, 7000);
+  setInterval(reloadCalled, 7000);
+  setInterval(reloadCall, 7000);
 });
