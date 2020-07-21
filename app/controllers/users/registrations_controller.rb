@@ -10,9 +10,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def create
-    @user = User.create(user_params)
-    sign_in(:user, @user)
-    redirect_to root_path
+    @user = User.new(user_params)
+    if @user.valid?
+      @user.save(user_params)
+      sign_in(:user, @user)
+      redirect_to root_path, notice:"アカウント登録が完了しました。"
+    else
+      render :new and return
+    end
   end
 
   # POST /resource
