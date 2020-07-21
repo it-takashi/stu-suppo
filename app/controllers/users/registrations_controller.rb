@@ -7,12 +7,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # GET /resource/sign_up
   def new
     @user = User.new
-    
   end
 
   def create
     @user = User.create(user_params)
-    super
+    sign_in(:user, @user)
+    redirect_to root_path
   end
 
   # POST /resource

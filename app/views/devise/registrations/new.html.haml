@@ -1,10 +1,13 @@
-%dl
-  %h2 Create Account
-  %h5 新規アカウントの作成
-  = render "devise/shared/links"
-  .account-page__inner--right.user-form
-    = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-      = devise_error_messages!
+
+= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+  .user-sign_up-login-box
+    = devise_error_messages!
+    %dl
+      %h2 Create Account
+      %h5 新規アカウントの作成
+      .ben
+        = render "devise/shared/links"
+        = link_to "トップページに戻る",root_path, method: :get, class: 'new-user_login_btn'
       .field
         .field-label
           = f.label :name, "名前"
@@ -26,24 +29,25 @@
           = f.text_field :email, placeholder: "メールアドレスを入力してください", autofocus: true
       .field
         .field-label
-          = f.label :password, "パスワード (英数字8文字以上)"
+          = f.label :password, "パスワード"
+          %span.must※
         .field-input
-          = f.password_field :password, placeholder: "パスワードを入力してください", autocomplete: "off"
+          = f.password_field :password, placeholder: "パスワード(英数字8文字以上)", autocomplete: "off"
       .field
         .field-label
-          = f.label :password_confirmation
+          = f.label :password_confirmation, "パスワード（確認用）"
+          %span.must※
         .field-input
           = f.password_field :password_confirmation, autocomplete: "off"
       .field
         .field-label
-          = f.label :introduction, "自己紹介文（電話するときに表示されます）"
+          = f.label :introduction, "自己紹介文"
         .field-input
           = f.text_area :introduction, placeholder: "自己紹介文（電話するときに表示されます）", autofocus: true
       .field
         .field-label
           = f.label :subject, "好きな教科"
-          %span.must※
         .field-input
           = f.text_field :subject,placeholder: "好きな教科（数学、情報処理など）", autofocus: true
-      .actions
-        = f.submit "投稿する", class: 'btn'
+    .actions
+      = f.submit "投稿する", class: 'btn'

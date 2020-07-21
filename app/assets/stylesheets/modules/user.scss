@@ -1,3 +1,67 @@
+
+// 新規登録、ログインボタン
+.ben{
+  display: flex;
+}
+.new-user_login_btn{
+
+  margin-top: 20px;
+  margin-left: 20px;
+  color: #fff;
+  background-color: #ccc;
+  font-size: 14px;
+  display: inline-block;
+  height: 50px;
+  padding: 0 30px;
+  line-height: 50px;
+  letter-spacing: 1px;
+  text-align: center;
+  border: none;
+  border-radius: 2px;
+}
+
+  .new-user_login_btn:hover {
+    opacity: 0.8;
+    text-decoration: none;
+    color: #fff;
+}
+// sign_up新規登録ページ
+.user-sign_up-login-box {
+  width: 60%;
+  margin: auto;
+  
+  h2 {
+    padding: 20px 20px 0 20px;
+    margin-bottom: 10px;
+    letter-spacing: 3px;
+    font-size: 40px;
+    font-weight: 200;
+
+    &:after {
+      content: '';
+      display: block;
+      width: 290px;
+      margin-top: 5px;
+      border-bottom: 1px solid #38aef0;
+    }
+  }
+
+  h5 {
+    margin-left: 20px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    font-weight: 200;
+  }
+
+  dl .field-label, .field-image-label{
+  width: 210px;
+  }
+  .tweet_image{
+    margin-left: 214.8px;
+  }
+
+}
+
 .account-page {
   .account-page__inner {
     width: 980px;
