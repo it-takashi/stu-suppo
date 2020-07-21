@@ -193,11 +193,6 @@ $(function(){
       peer.on('error', console.error);
     })();
 
-  // $(modal).on('click', function(event) {
-  //   if(!($(event.target).closest(modalContent).length)||($(event.target).closest(btnClose).length)){
-  //     modal.hide();
-  //   }
-  // });
 
   }
 })

@@ -28,8 +28,10 @@ Rails.application.routes.draw do
       get :call
     end
   end
+
   namespace :api do
     resources :callrooms, only: [:index, :new], defaults: { format: 'json' }
+    resources :users, only: [:index, :new], defaults: { format: 'json' }
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

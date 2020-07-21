@@ -28,8 +28,9 @@ class UsersController < ApplicationController
     @user_callroom = Callroom.find_by(user_id: params[:id])
   end
   
-end
-private
-def user_params
-  params.require(:user).permit(:name, :image, :introduction, :profile, :subject, :email)
+  private
+  def user_params
+    params.require(:user).permit(:name, :image, :introduction, :subject, :email)
+  end
+  
 end
