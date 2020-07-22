@@ -8,11 +8,13 @@ class CallroomsController < ApplicationController
   end
 
   def create
-    callroom =  Callroom.create(callroom_params)
-    if callroom.status == 0
-      redirect_to callroom_path(callroom.id),alert: "非公開にしました"
+    @callroom = Callroom.new(callroom_params)
+    if @callroom.save && @callroom.status == 0
+      redirect_to callroom_path(@callroom.id),alert: "非公開にしました"
+    elsif @callroom.save && @callroom.status == 1
+      redirect_to callroom_path(@callroom.id),notice: "公開にしました"
     else
-      redirect_to callroom_path(callroom.id),notice: "公開にしました"
+      render :new
     end
   end
 
@@ -32,12 +34,13 @@ class CallroomsController < ApplicationController
   end
 
   def update
-    callroom = Callroom.find(params[:id])
-    callroom.update(callroom_params)
-    if callroom.status == false
-      redirect_to callroom_path(callroom.id),alert: "非公開にしました"
+    @callroom = Callroom.find(params[:id])
+    if @callroom.update(callroom_params) && @callroom.status == 0
+      redirect_to callroom_path(@callroom.id),alert: "非公開にしました"
+    elsif @callroom.update(callroom_params) && @callroom.status == 1
+      redirect_to callroom_path(@callroom.id),notice: "公開にしました"
     else
-      redirect_to callroom_path(callroom.id),notice: "公開にしました"
+      render :edit
     end
   end
 

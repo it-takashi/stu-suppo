@@ -11,16 +11,16 @@ class UsersController < ApplicationController
     end
   end
 
-  def update_attribute
-    if current_user.called == false
-      current_user.called = 1
-      current_user.save
-    else current_user.called == 1
-      current_user.called = 0
-      current_user.save
-    end
-    redirect_to root_path
-  end
+  # def update_attribute
+  #   if current_user.called == false
+  #     current_user.called = 1
+  #     current_user.save
+  #   else current_user.called == 1
+  #     current_user.called = 0
+  #     current_user.save
+  #   end
+  #   redirect_to root_path
+  # end
 
   def show
     @user = User.find(params[:id])
@@ -32,5 +32,5 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :image, :introduction, :subject, :email)
   end
-  
+
 end
