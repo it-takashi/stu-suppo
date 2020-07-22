@@ -74,12 +74,12 @@ class CallroomsController < ApplicationController
           redirect_to callroom_path(callroom.id), notice: "#{student.name}さんとの通信を終了しました。ただいま公開中です"
         end
       end
-      # show画面の通信終了ボタン
+      # show画面の通信終了(video終了)ボタン
       format.json do
         @callroom = Callroom.find(params[:id])
         @student = User.find_by(id:@callroom.student_id)
         @current_user = User.find_by(id:current_user.id)
-        if @callroom.user_id = current_user.id
+        if @callroom.user_id == current_user.id
           @callroom.status = 1
           @callroom.student_id = []
           @callroom.save

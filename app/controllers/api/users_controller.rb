@@ -12,17 +12,5 @@ class Api::UsersController < ApplicationController
       @user = User.find_by(name: params[:name])
     end
   end
-
-  # 新規登録及び編集時のUser.emailの一意制の確認
-  def new
-    # emailがかぶっていないか検索
-    unless user_signed_in?
-      @user = User.find_by(email: params[:email])
-      return @user
-    end
-    # 編集時に自分のemailを抜かしてがemailがかぶっていないか検索
-    unless current_user.email == params[:email]
-      @user = User.find_by(email: params[:email])
-    end
-  end
+  
 end

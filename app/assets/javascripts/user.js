@@ -10,8 +10,8 @@ $(function(){
   // sign_up editページ
 
   // ユーザー名の一意性チェック
-  $("#user_name").change(function () {
-
+  $("#user_name").keyup(function () {
+    $('.error_user_name').empty();
     var name = $("#user_name").val()
     console.log(name)
 
@@ -27,40 +27,11 @@ $(function(){
       console.log(user)
       console.log(user.name)
       if (typeof user.name != "undefined"){
-        alert('すでにその名前user.nameが存在します。');
-        return false;
-      }
-      else if ( name.length > 10) {
-        alert('本文を10文字以内で入力してください。');
-        return false;
+        var html = `<div class="error">すでにその名前は存在します。</div>
+        `
+        $(".error_user_name") .append(html);
       }
     })
   });
-
-
-  // emailの一意性チェック(newページeditのみ確認)
-  if(document.location.href.match(/\/users\/\d+\/edit|\/users\/sign_up|\/users$/)){
-    
-    $("#user_email").change(function () {
-  
-      var email = $("#user_email").val()
-      $.ajax({
-        url: "/api/users/new",
-        type: 'get',
-        dataType: 'json',
-        data: {email:email}
-      })
-  
-      .done(function(user){
-        // userがあるかどうか確認しあればすでにその名前があることを伝える
-        console.log(user.email)
-        if (typeof user.email != "undefined"){
-          alert('すでにそのemailは存在します。');
-        return false;
-        }
-      })
-    });
-  }
-
 
 })

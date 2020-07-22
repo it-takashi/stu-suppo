@@ -12,6 +12,7 @@
         .field-label
           = f.label :name, "名前"
           %span.must※
+          .error_user_name
         .field-input
           = f.text_field :name,placeholder: "名前を入力してくだい", autofocus: true
       .field-image 
@@ -50,4 +51,4 @@
         .field-input
           = f.text_field :subject,placeholder: "好きな教科（数学、情報処理など）", autofocus: true
     .actions
-      = f.submit "投稿する", class: 'btn'
+      = f.submit "登録する", class: 'btn' ,id:"new_user"
