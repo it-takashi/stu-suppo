@@ -93,8 +93,8 @@ class CallroomsController < ApplicationController
 
   def call
     respond_to do |format|
+      # 先生側　着信後の処理
       format.html do
-        # @callroom = Callroom.find(params[:id])
         if @callroom.status == 2 && @callroom.student_id.present? && @callroom.user_id == current_user.id
           @callroom.status = 3
           @callroom.save
@@ -102,7 +102,7 @@ class CallroomsController < ApplicationController
         end
       end
       format.json do
-        # tweet.indexの教えてもらうボタンを押すと動く
+        # 生徒側記事をクリックすると動く
         @callroom = Callroom.find(params[:id])
         if @callroom.status == 1 && @callroom.student_id.nil?
           @callroom.student_id = current_user.id

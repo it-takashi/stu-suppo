@@ -1,15 +1,31 @@
 .index-card
-  .image-box{ class: "call", "data-call_id": "#{callroom.id}" }
-    - if callroom.image.present?
-      = image_tag callroom.image.url,method: :get , class: 'index-image'
-    - else 
-      = image_tag(src= "/teacher.png", class: "index-image")
+  -# 投稿者
+  - if callroom.user_id == current_user.id
+    = link_to callroom_path(callroom.id),class:"image-box" do
+      - if callroom.image.present?
+        = image_tag callroom.image.url,method: :get , class: 'index-image'
+      - else 
+        = image_tag(src= "/teacher.png", class: "index-image")
 
-  .post-box{ class: "call", "data-call_id": "#{callroom.id}" }
-    %h3.title
-      = truncate(callroom.title, length: 10)
-    %h5.body
-      = truncate(callroom.body, length: 116)
+    = link_to callroom_path(callroom.id),class:"post-box" do
+      %h3.title
+        = truncate(callroom.title, length: 10)
+      %h5.body
+        = truncate(callroom.body, length: 116)
+
+    -# 閲覧者
+  - else
+    .image-box{ class: "call", "data-call_id": "#{callroom.id}" }
+      - if callroom.image.present?
+        = image_tag callroom.image.url,method: :get , class: 'index-image'
+      - else 
+        = image_tag(src= "/teacher.png", class: "index-image")
+
+    .post-box{ class: "call", "data-call_id": "#{callroom.id}" }
+      %h3.title
+        = truncate(callroom.title, length: 10)
+      %h5.body
+        = truncate(callroom.body, length: 116)
 
   .profile-box
     = link_to user_path(callroom.user.id),method: :get, class: "profile-image-a"  do

@@ -388,6 +388,16 @@
         }
       }
       
+      a.image-box{
+        display: block;
+      }
+
+      a.post-box{
+        display: block;
+        color: black;
+        text-decoration: none;
+      }
+
       .post-box{
         width: 80%;
         height: 120px;
