@@ -1,0 +1,52 @@
+// showのフォームのみ
+.show-body{
+  h1.show-callroom-title{
+    text-align: center;
+    font-weight: bold;
+  }
+
+}
+.show-form{
+  @include show-default;
+  height: auto;
+  margin: 16px auto;
+  padding:16px ;
+
+  #new_message{
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    #message_comment{
+      width: 100%;
+      padding: 16px;
+    }
+
+    .comment__submit{
+      margin: 0;
+      width: 150px;
+      padding: 10px;
+      text-align: center;
+      align-items: center;
+    }
+    
+    
+    .form__mask{
+      // position: absolute;
+      position: relative;
+      height: 50px;
+      right: 30px;
+      .icon{
+        // position: absolute;
+        // right: 30px;
+        line-height: 50px;
+        cursor: pointer;
+      }
+      
+    }
+    .hidden{
+      display: none;
+    }
+  }
+}

@@ -5,7 +5,6 @@ class CreateReplies < ActiveRecord::Migration[5.0]
       t.string :image
       t.references :tweet, foreign_key: true
       t.references :user, foreign_key: true
-
       t.timestamps
     end
   end

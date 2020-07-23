@@ -1,6 +1,6 @@
 .index-card
   -# 投稿者
-  - if callroom.user_id == current_user.id
+  - if user_signed_in? && callroom.user_id == current_user.id
     = link_to callroom_path(callroom.id),class:"image-box" do
       - if callroom.image.present?
         = image_tag callroom.image.url,method: :get , class: 'index-image'

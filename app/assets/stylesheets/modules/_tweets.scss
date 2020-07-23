@@ -346,8 +346,12 @@ header{
       padding: 16px;
     }
 
-    .form__submit{
-      display: none;
+    .comment__submit{
+      margin: 0;
+      width: 150px;
+      padding: 10px;
+      text-align: center;
+      align-items: center;
     }
     
     .form__mask{

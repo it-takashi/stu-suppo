@@ -1,0 +1,24 @@
+.reply-list__box{data: {message: {id: messages.id}}}
+  .comment-author
+    -# ユーザーの写真
+    = link_to user_path(messages.user_id), class: "link-image"do
+      - if messages.user.image.present?
+        %p
+          = image_tag messages.user.image.url, class: 'author__image'
+      - else
+        %P
+          = image_tag(src= "/no-image.png", class: "author__image")
+
+    -# 投稿者
+    = link_to user_path(messages.user_id), class: "author__name" do
+      = messages.user.name
+      
+    -# コメント
+    - if messages.comment.present?
+      %p.reply-list__box__comment
+        = messages.comment
+    = image_tag messages.image.url, class: 'lower-reply__image' if messages.image.present?
+
+    -# 投稿日時
+    .author__created_at
+      = messages.created_at.strftime("%Y年%m月%d日%H時%M分")

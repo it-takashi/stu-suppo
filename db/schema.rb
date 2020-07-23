@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200623065533) do
+ActiveRecord::Schema.define(version: 20200723082234) do
 
   create_table "callrooms", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "title",                    null: false
     t.text     "body",       limit: 65535, null: false
     t.string   "image"
-    t.integer  "status"
+    t.integer  "status",                   null: false
     t.integer  "user_id"
     t.integer  "student_id"
     t.datetime "created_at",               null: false
@@ -26,13 +26,13 @@ ActiveRecord::Schema.define(version: 20200623065533) do
   end
 
   create_table "messages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "comment"
     t.string   "image"
-    t.integer  "teach_id"
+    t.string   "comment"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["teach_id"], name: "index_messages_on_teach_id", using: :btree
+    t.integer  "callroom_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["callroom_id"], name: "index_messages_on_callroom_id", using: :btree
     t.index ["user_id"], name: "index_messages_on_user_id", using: :btree
   end
 
@@ -88,7 +88,7 @@ ActiveRecord::Schema.define(version: 20200623065533) do
   end
 
   add_foreign_key "callrooms", "users"
-  add_foreign_key "messages", "teaches"
+  add_foreign_key "messages", "callrooms"
   add_foreign_key "messages", "users"
   add_foreign_key "replies", "tweets"
   add_foreign_key "replies", "users"
