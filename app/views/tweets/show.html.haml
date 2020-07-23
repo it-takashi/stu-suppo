@@ -41,7 +41,7 @@
           = icon('fas', 'image', class: 'icon')
           = f.file_field :image, class: 'hidden'
       = f.submit 'コメントする', class: 'comment__submit'
-    %p.small Enterキーで投稿します。
+    %p.small Enterキーでも投稿します。
     .comment <コメント一覧>
     .reply-list
       = render partial: 'reply', collection: @replies, as: :replies
