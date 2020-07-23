@@ -1,57 +1,23 @@
-.index-card{ class: "call", "data-call_id": "#{callroom.id}" }
-  .image-box
+.index-card
+  .image-box{ class: "call", "data-call_id": "#{callroom.id}" }
     - if callroom.image.present?
       = image_tag callroom.image.url,method: :get , class: 'index-image'
     - else 
       = image_tag(src= "/teacher.png", class: "index-image")
 
-  .post-box
+  .post-box{ class: "call", "data-call_id": "#{callroom.id}" }
     %h3.title
       = truncate(callroom.title, length: 10)
     %h5.body
       = truncate(callroom.body, length: 116)
 
   .profile-box
-    %object
-      = link_to user_path(callroom.user.id),method: :get, class: "profile-image-a"  do
-        - if callroom.user.image.present? 
-          = image_tag callroom.user.image.url, class: "profile-image"
-        - else 
-          = image_tag(src= "/no-image.png", class: "profile-image")
-    %object
-      = link_to user_path(callroom.user.id),method: :get  ,class: "profile-name" do
-        = callroom.user.name
-    %object
-      = link_to user_path(callroom.user.id),method: :get  ,class: "post-created_at" do
-        = callroom.created_at.strftime("%Y年%m月%d日")
-
--# .tweet-card
--#   .box
--#     = link_to "#", class:"profile" do
--#       - if callroom.user.image.present?
--#         %p
--#           = image_tag callroom.user.image.url, class: 'profile__image'
--#       - else
--#         .profile__no-image
--#           No-
--#           %br
--#           image
--#       .profile__name
--#         = callroom.user.name
--#     .tweet
--#       -# ログインユーザー
--#       - if user_signed_in?
--#         .tweet__title #{callroom.title}
--#         %button{type: "button",class:"call",value:callroom.id} 教えてもらう
--#         -# 未ログインユーザー
--#       - else
--#         .tweet__title #{callroom.title}
--#       .tweet__tags
--#         .tweet__tags__tag
-          
--#         .tweet__tags__tag
-          
--#         .tweet__tags__tag
-          
--#   .body
--#     = callroom.body
+    = link_to user_path(callroom.user.id),method: :get, class: "profile-image-a"  do
+      - if callroom.user.image.present? 
+        = image_tag callroom.user.image.url, class: "profile-image"
+      - else 
+        = image_tag(src= "/no-image.png", class: "profile-image")
+    = link_to user_path(callroom.user.id),method: :get  ,class: "profile-name" do
+      = callroom.user.name
+    = link_to user_path(callroom.user.id),method: :get  ,class: "post-created_at" do
+      = callroom.created_at.strftime("%Y年%m月%d日")

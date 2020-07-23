@@ -1,13 +1,12 @@
 %ul.section-box
   %li.section
-    Output
+    = link_to "Output", tweets_path, method: :get, class:"title_logo"
   .index-box
     = render @tweets
-  = link_to tweets_path, method: :get, class:"see_more" do
-    もっと見る
+  = link_to "もっと見る", tweets_path, method: :get, class:"btn btn--orange btn--cubic btn--shadow"
+
   %li.section
-    Call 
+    = link_to "Call", callrooms_path, method: :get, class:"title_logo"
   .index-box
     = render partial: 'callroom', collection: @callrooms, as: :callroom
-  = link_to callrooms_path, method: :get, class:"see_more" do
-    もっと見る
+  = link_to "もっと見る", callrooms_path, method: :get, class:"btn btn--orange btn--cubic btn--shadow"
