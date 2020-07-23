@@ -2,14 +2,14 @@
   = render "header"
 .show-body
   .author
-    = link_to "#", class: "link-image"do
+    = link_to user_path(@tweet.user_id), class: "link-image"do
       - if @tweet.user.image.present?
         %p
           = image_tag @tweet.user.image.url, class: 'author__image'
       - else
         %P
           = image_tag(src= "/no-image.png", class: "author__image")
-    = link_to "#", class: "author__name" do
+    = link_to user_path(@tweet.user_id), class: "author__name" do
       = @tweet.user.name
     
     .author__created_at
