@@ -1,12 +1,12 @@
-%h1.section
-  Output
-.tweet-box
-  = render @tweets  
-%h1.section
-  Help 
-.teach-box
-  = render partial: 'teach', collection: @teaches, as: :teaches
-%h1.section
-  Call 
-.tweet-box
-  = render partial: 'callroom', collection: @callrooms, as: :callroom
+%ul.section-box
+  %li.section
+    = link_to "Output", tweets_path, method: :get, class:"title_logo"
+  .index-box
+    = render @tweets
+  = link_to "もっと見る", tweets_path, method: :get, class:"btn btn--orange btn--cubic btn--shadow"
+
+  %li.section
+    = link_to "Call", callrooms_path, method: :get, class:"title_logo"
+  .index-box
+    = render partial: 'callroom', collection: @callrooms, as: :callroom
+  = link_to "もっと見る", callrooms_path, method: :get, class:"btn btn--orange btn--cubic btn--shadow"

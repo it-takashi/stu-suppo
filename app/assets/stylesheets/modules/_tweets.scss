@@ -1,11 +1,22 @@
 * {
   box-sizing: border-box;
 }
+@mixin show-default{
+  background-color: #fff;
+  width: 50%;
+  box-shadow: 0 0 10px rgba($black,0.2);
+  border-radius: 10px;
+}
 
 header{
   // background-color:blueviolet;
   width: 100vw;
-  height: 120px;
+  height: 130px;
+  // @include box-shadow(0 10px 6px -6px #888);
+  // margin-bottom:10px ;
+  // box-shadow: 0 32px 30px -30px rgba(53, 47, 47, 0.15);
+  box-shadow: 0 10px 6px -6px #888;
+
   
   .hyoji{
     display: flex;
@@ -24,7 +35,6 @@ header{
         color: black;
       }
     }
-    
 
     .title-link{
       width: 600px;
@@ -63,304 +73,252 @@ header{
   }
 }
 
-.main-tweet{
-  // background-color: yellowgreen;
+
+
+.index-body{
   width: 100%;
-  height: 100vh;
-  overflow: scroll;
-  padding-bottom: 50px;
-  background: #1FA2FF;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #A6FFCB, #12D8FA, #1FA2FF);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #A6FFCB, #12D8FA, #1FA2FF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background-color: rgb(245, 245, 245);
+  padding-top: 72px;
+  padding-bottom: 72px;
+  margin-top: 8px;
+
+  // .section-box{
+    
+  // }
 
   .section{
-    width: 500px;
-    height: auto;
     font-size: 40px;
-    margin-left: 59.545px;
-    padding: 50px 0 0 0;
+    max-width:150px;
+    margin: auto;
+    text-align: center;
+    padding: 16px;
     font-family: 'Concert One', cursive;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba($black,0.2);
+    border-radius: 10px;
+    .title_logo{
+      color: black;
+      text-decoration: none;
+    }
+  }
+
+  .index-card:hover {
+    opacity: 0.6;
   }
   
-  .tweet-box{
-    
-
-    // border-top: solid 5px #5989cf;
-    // border-bottom: solid 5px #5989cf;
-    height: 450px;
-    width: 90%;
+  .index-box{
+    width: 75%;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    overflow: scroll;
-    margin:auto;
-    padding-top: 50px;
+    margin:50px auto 0 auto;
     
-
-    .tweet-card {
-        position: relative;
-        padding: 0.5em 0.7em;
-        margin: 2em 0;
-        background: #e6f4ff;
-        color: #5c98d4;
-        font-weight: bold;
-        border-radius: 30px;
-    }
-    .tweet-card:after {
-        position: absolute;
-        content: '';
-        top: 100%;
-        left: 30px;
-        border: 15px solid transparent;
-        border-top: 15px solid #e6f4ff;
-        width: 0;
-        height: 0;
-    }
     
-    .tweet-card{
+    .index-card{
+      width: 30%;
+      height: 400px;
+      margin: 0 30px 50px 0;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba($black,0.2);
+      border-radius: 10px;
+      text-decoration: none;
+      color: black;
       
-      // padding: 0.5em 1em;
-      // margin: 2em 0;
-      // background: -webkit-repeating-linear-gradient(-45deg, #f0f8ff, #f0f8ff 3px,#e9f4ff 3px, #e9f4ff 7px);
-      // background: repeating-linear-gradient(-45deg, #f0f8ff, #f0f8ff 3px,#e9f4ff 3px, #e9f4ff 7px);
-    
-      width: 350px;
-      height: 200px;
-      margin-right: 50px;
-      margin: 0 0 50px 58px;
-      .box{
-        display: flex;
-          .profile{
-            background-color: honeydew;
-            width: 100px;
-            height: 115px;
-            text-decoration: none;
-            color: black;
-            &__image{
-              display: block;
-              width: 80px;
-              height: 80px;
-              border-radius: 10%;
-              margin: 10px auto;
-            }
-            &__no-image{
-              background-color:#CBCBC7;
-              width: 80px;
-              height: 80px;
-              border-radius: 10%;
-              margin: 10px auto;
-              font-size: 20px;
-              line-height:40px ;
-              text-align: center;
-            }
-            &__name{
-              width: 100px;
-              text-align: center;
-              margin: auto;
-              line-height: 3px;
-            }
-          }
-          .tweet{
-            width: 300px;
-            height: 100px;
-            &__title{
-              width: 100%;
-              height: 60px;
-              font-size: 20px;
-              flex-wrap: wrap;
-              text-decoration: none;
-              color: black;
-            }
-            &__tags{
-              width: 100%;
-              height: 40px;
-              display: flex;
-              flex-wrap: wrap;
-              &__tag{
-                background-color: cornflowerblue;
-                line-height: 16px;
-                margin:0 0 4px 10px;
-                border-radius:20%;
-                height: 16px;
-              }
-            }
-          }
-        }
-        .body{
+      .image-box{
+        width: 80%;
+        margin: 20px auto;
+        .index-image{
           width: 100%;
-          height: calc(100% - 115px);
+          height: 194px;
         }
+      }
+      a.image-box{
+        display: block;
+      }
+
+      .post-box{
+        width: 80%;
+        height: 120px;
+        margin: auto;
+        h3.title{
+          font-size: 18px;
+          font-weight: bold;
+        }
+        h5.body{
+          font-size: 13px;
+          word-wrap: break-word
+        }
+      }
+
+      a.post-box{
+        display: block;
+        color: black;
+        text-decoration: none;
+      }
+
+      .profile-box{
+        width: 80%;
+        height: 35px;
+        margin: 5px auto 0 auto;
+        display: flex;
+        position: relative;
+
+        .profile-image-a{
+          text-decoration: none;
+        }
+        .profile-image{
+          width: 30px;
+          height: 30px;
+          transition: all 0.6s ease 0s;
+          text-decoration: none;
+        }
+
+        .profile-image:hover {
+          cursor: pointer;
+          transform: scale(1.1, 1.1);
+        }
+
+        .profile-name{
+          color:#C0C0C0;
+          text-decoration: none;
+          position: absolute;
+          bottom: 0;
+          left: 30px;
+          padding-left: 5px;
+        }
+        .post-created_at{
+          position: absolute;
+          color:#C0C0C0;
+          text-decoration: none;
+          right: 0;
+          bottom: 0;
+        }
+        
+      }
     }
   }
-  .teach-box{
-    // background: #43C6AC;  /* fallback for old browsers */
-    // background: -webkit-linear-gradient(to left, #F8FFAE, #43C6AC);  /* Chrome 10-25, Safari 5.1-6 */
-    // background: linear-gradient(to left, #F8FFAE, #43C6AC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
-    height: 450px;
-    width: 90%;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    overflow: scroll;
-    margin:auto;
-    padding-top: 50px;
-    
-  .teach-card {
-      position: relative;
-      margin: 2em 0 2em 40px;
-      padding: 8px 15px;
-      background: #fff0c6;
-      border-radius: 30px;
+  a.btn--orange {
+    display: block;
+    width: 150px;
+    margin: 0 auto 80px auto;
+    color: #fff;
+    background-color: #eb6100;
+    border-bottom: 5px solid #b84c00;
   }
-  .teach-card:before{font-family: FontAwesome;
-      content: "\f111";
-      position: absolute;
-      font-size: 15px;
-      left: -40px;
-      bottom: 0;
-      color: #fff0c6;
+  a.btn--orange:hover {
+    margin-top: 3px;
+    color: #fff;
+    background: #f56500;
+    border-bottom: 2px solid #b84c00;
   }
-  .teach-card:after{
-      font-family: FontAwesome;
-      content: "\f111";
-      position: absolute;
-      font-size: 23px;
-      left: -23px;
-      bottom: 0;
-      color: #fff0c6;
-  }
-
-    .teach-card{
-      width: 350px;
-      height: 200px;
-      margin-right: 50px;
-      margin: 0 0 50px 58px;
-      .box{
-        display: flex;
-          .profile{
-            background-color: honeydew;
-            width: 100px;
-            height: 115px;
-            text-decoration: none;
-            color: black;
-            &__image{
-              display: block;
-              width: 80px;
-              height: 80px;
-              border-radius: 10%;
-              margin: 10px auto;
-            }
-            &__no-image{
-              background-color:#CBCBC7;
-              width: 80px;
-              height: 80px;
-              border-radius: 10%;
-              margin: 10px auto;
-              font-size: 20px;
-              line-height:40px ;
-              text-align: center;
-            }
-            
-            &__name{
-              width: 100px;
-              text-align: center;
-              margin: auto;
-              line-height: 3px;
-            }
-          }
-          .tweet{
-            width: 300px;
-            height: 115px;
-            &__title{
-              width: 100%;
-              height: 60px;
-              font-size: 20px;
-              flex-wrap: wrap;
-              text-decoration: none;
-              color: black;
-            }
-            &__tags{
-              width: 100%;
-              height: 40px;
-              display: flex;
-              flex-wrap: wrap;
-              &__tag{
-                background-color: cornflowerblue;
-                line-height: 16px;
-                margin:0 0 4px 10px;
-                border-radius:20%;
-                height: 16px;
-              }
-            }
-          }
-        }
-        .body{
-          width: 100%;
-          height: calc(100% - 115px);
-        }
-    }
+  a.btn--shadow {
+    -webkit-box-shadow: 0 3px 5px rgba(0, 0, 0, .3);
+    box-shadow: 0 3px 5px rgba(0, 0, 0, .3);
   }
 
 }
 
+.pagination{
+  justify-content: center;
+}
+  .pagination>li>a {          
+    color: #696969;   /*文字の色を変える*/
+    margin: auto;
+    text-align: center;
+  }
+  
+  /* 表示しているページ番号のデザイン */
+  .pagination>.active>a {     
+    background: #93c9ff;
+    margin: center;
+  }
+  
+  /*ホバー時のデザイン*/
+  .pagination>li>a:hover {        
+    margin: center;
+  }
+
 // showのview
 .show-body{
   // background-color: lightcoral;
-  width: 100%;
-  height: 100%;
+  background-color: rgb(245, 245, 245);
+  margin: auto;
+  padding-top: 72px;
+  padding-bottom: 72px;
+  margin-top: 8px;
+
+  // 著者
   .author{
-    // background-color: blanchedalmond;
-    width: 80%;
-    height: 90px;
-    margin: auto;
+    @include show-default;
+    height: 50px;
+    margin: 0px auto 16px auto;
     display: flex;
     align-items: flex-end;
-    &__image{
-      width: 80px;
-      height: 80px;
+
+    p{
+      padding: 5px 3px 5px 20px;
+      margin: 0;
+      .author__image{
+        width: 40px;
+        height: 40px;
+        margin: 0;
+        }
     }
+    
     &__name{
       text-decoration: none;
       color: black;
       padding-left: 5px;
     }
-  }
-  .tweetManage{
-    width: 80%;
-    display: flex;
-    justify-content: flex-end;
-    margin: 10px auto 0 auto;
-    &__edit{
-      display: block;
-      border-radius: 5px;
-      color: #ffffff;
-      background-color:#55c500;
-      padding: 0 10px;
-      text-decoration: none;
-      margin-right: 10px;
+
+    &__created_at{
+      padding-left: 5px;
+      color: #998484;
     }
-    &__destroy{
-      display: block;
-      border-radius: 5px;
-      color: #ffffff;
-      background-color:#55c500;
-      padding: 0 10px;
-      text-decoration: none;
-      margin-left: 10px;
+
+
+    .manage{
+      // width: 80%;
+      display: flex;
+      justify-content: flex-end;
+      margin: 0 10px 0 auto;
+      // margin: 10px auto 0 auto;
+      &__edit{
+        display: block;
+        color: #998484;
+        padding: 0 10px;
+        text-decoration: none;
+        margin-right: 10px;
+      }
+      &__destroy{
+        display: block;
+        color: #998484;
+        padding: 0 10px;
+        text-decoration: none;
+        margin-left: 10px;
+      }
     }
+
   }
   
   .tweet{
-    &__title{
-      padding-top: 20px;
-      text-align: center;
-      font-size: 40px;
+
+    h1.show-title{
+      @include show-default;
+      margin: 0px auto 16px auto;
+      height: auto;
+      padding-left: 20px;
+      font-size: 30px;
+      line-height: 60px;
       font-weight: bold;
+      word-wrap: break-word;
     }
     &__body{
-      width: 80%;
+      @include show-default;
+      padding:16px;
       margin: auto;
+      word-wrap: break-word;
     }
     &__image{
       display: block;
@@ -371,58 +329,176 @@ header{
   }
 }
 
-.form{
-  width: 80%;
-  margin: 20px auto;
+.show-form{
+  @include show-default;
+  height: auto;
+  margin: 16px auto;
+  padding:16px ;
 
   #new_reply{
-    width: 1000px;
+    margin: auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
     #reply_comment{
-      width: 1000px;
+      width: 100%;
+      padding: 16px;
     }
-    .form__reply{
-      width: calc(100% - 115px );
-      height: 50px;
-      padding-left: 10px;
+
+    .form__submit{
+      display: none;
     }
+    
     .form__mask{
+      // position: absolute;
       position: relative;
       height: 50px;
+      right: 30px;
       .icon{
-        position: absolute;
-        right: 10px;
+        // position: absolute;
+        // right: 30px;
         line-height: 50px;
         cursor: pointer;
       }
-      .hidden{
-        display: none;
-      }
+      
     }
-    .form__submit{
-      height: 100%;
-      width: 100px;
-      margin-left: 15px;
-      background-color: #28aef0;
-      color: #fafafa;
-      cursor: pointer;
+    .hidden{
+      display: none;
     }
   }
 }
 
+
+
+// コメント機能 自分
 .reply-list{
-  // background-color:antiquewhite;
-  width: 80%;
   height: 200px;
   overflow: scroll;
   margin: auto;
   margin-bottom: 50px;
+
+  .comment-author{
+    height: auto;
+    margin: 0px auto 16px auto;
+    display: flex;
+    align-items: flex-end;
+    p{
+      padding: 5px 3px 5px 20px;
+      margin: 0;
+      .author__image{
+        width: 40px;
+        height: 40px;
+        margin: 0;
+        }
+    }
+
+    .reply-list__box__comment {
+      height: auto;
+      display: inline-block;
+      position: relative; 
+      margin: 5px 0 0 5px;
+      padding: 17px 13px;
+      border-radius: 12px;
+      background: #d7ebfe;
+      max-width:350px;
+      word-wrap:break-word;
+      margin-right:10px ;
+    }
+    
+    .reply-list__box__comment:after {
+      content: "";
+      display: inline-block;
+      position: absolute;
+      top: 18px; 
+      left: -24px;
+      border: 12px solid transparent;
+      border-right: 12px solid #d7ebfe;
+      word-wrap:break-word;
+    }
+    
+    .reply-list__box__comment p {
+      margin: 0;
+      padding: 0;
+      word-wrap:break-word;
+    }
+    
+    .lower-reply__image{
+      width: 300px;
+      height: 300px;
+    }
+
+    .author__created_at{
+      margin: 0 0 0 auto;
+      padding-right:30px ;
+    }
+
+  }
 }
 
-// form
-.tweet_image{
-  width: 400px;
-  height: 400px;
+
+
+// コメント機能 相手
+.reply-list{
+  height: 200px;
+  overflow: scroll;
+  margin: auto;
+  margin-bottom: 50px;
+
+  .comment-author{
+    height: auto;
+    margin: 0px auto 16px auto;
+    display: flex;
+    align-items: flex-end;
+    p{
+      padding: 5px 3px 5px 20px;
+      margin: 0;
+      .author__image{
+        width: 40px;
+        height: 40px;
+        margin: 0;
+        }
+    }
+
+    .reply-list__box__comment {
+      height: auto;
+      display: inline-block;
+      position: relative; 
+      margin: 5px 0 0 5px;
+      padding: 17px 13px;
+      border-radius: 12px;
+      background: #d7ebfe;
+      max-width:350px;
+      word-wrap:break-word;
+      margin-right:10px ;
+    }
+    
+    .reply-list__box__comment:after {
+      content: "";
+      display: inline-block;
+      position: absolute;
+      top: 18px; 
+      left: -24px;
+      border: 12px solid transparent;
+      border-right: 12px solid #d7ebfe;
+      word-wrap:break-word;
+    }
+    
+    .reply-list__box__comment p {
+      margin: 0;
+      padding: 0;
+      word-wrap:break-word;
+    }
+    
+    .lower-reply__image{
+      width: 300px;
+      height: 300px;
+    }
+
+    .author__created_at{
+      margin: 0 0 0 auto;
+      padding-right:30px ;
+    }
+
+  }
 }

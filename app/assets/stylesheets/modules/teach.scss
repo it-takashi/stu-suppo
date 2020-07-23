@@ -1,74 +1,5 @@
 // showのview
-.author{
-  // background-color: blanchedalmond;
-  width: 1000px;
-  height: 90px;
-  margin: auto;
-  display: flex;
-  align-items: flex-end;
-  &__image{
-    width: 80px;
-    height: 80px;
-    border-radius: 10%;
-    margin: 10px auto;
-    font-size: 20px;
-    line-height:40px ;
-    text-align: center;
-  }
-  &__no-image{
-    background-color:#CBCBC7;
-    width: 80px;
-    height: 80px;
-    border-radius: 10%;
-    margin: 10px auto;
-    font-size: 20px;
-    line-height:40px ;
-    text-align: center;
-  }
-  .link-image{
-    text-decoration: none;
-    color: black;
-  }
-  &__name{
-    text-decoration: none;
-    color: black;
-    padding-left: 5px;
-  }
-}
 
-.teachManage{
-  width: 1000px;
-  display: flex;
-  justify-content: flex-end;
-  margin: 10px auto 0 auto;
-  &__edit{
-    display: block;
-    border-radius: 5px;
-    color: #ffffff;
-    background-color:#55c500;
-    padding: 0 10px;
-    text-decoration: none;
-    margin-right: 10px;
-  }
-  &__destroy{
-    display: block;
-    border-radius: 5px;
-    color: #ffffff;
-    background-color:#55c500;
-    padding: 0 10px;
-    text-decoration: none;
-    margin-left: 10px;
-  }
-}
-
-.show-title{
-  display: block;
-  height: 60px;
-  width: 500px;
-  font-size: 40px;
-  font-weight: bold;
-  margin: auto;
-}
 
 .message-list{
   // background-color:antiquewhite;
@@ -120,58 +51,45 @@
   }
 }
 
-.teach{
-  width: 1000px;
-  height: 400px;
-  margin: auto;
-  &__title{
-    padding-top: 20px;
-    text-align: center;
-    font-size: 20px;
-    font-weight: bold;
-  }
-  &__body{
-    width: 1000px;
+.container{
+  width: 50%;
+  .p2p-media {
+    display: flex;
+    justify-content: center;
     margin: auto;
-  }
-  &__image{
-    display: block;
-    width: 400px;
-    height: 400px;
-    margin: auto;
-  }
-}
-
-.p2p-media {
-  display: flex;
-  justify-content: center;
-  width: 1152px;
-  margin: auto;
-  position: relative;
-
-  .remote-stream {
-    width: 50%;
-    margin-left: 300px;
-    #js-remote-stream{
-      width:100%;
-    }
-  }
+    position: relative;
   
-  .local-stream {
-    width: 30%;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-
-    #js-local-stream{
-      width: 100%;
+    .remote-stream {
+      width: 70%;
+      margin-left: 300px;
+      #js-remote-stream{
+        width:100%;
+      }
+    }
+    
+    .local-stream {
+      width: 30%;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+  
+      #js-local-stream{
+        width: 100%;
+      }
     }
   }
 }
 
 .tell{
-  width: 80%;
-  margin: auto;
+  @include show-default;
+  margin: 10px auto;
+  padding: 16px;
+  &__number{
+    display: flex;
+  }
+  #js-remote-id{
+    width: 50%;
+  }
 }
 
 #js-meta.meta{

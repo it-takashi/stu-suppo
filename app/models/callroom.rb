@@ -1,9 +1,9 @@
 class Callroom < ApplicationRecord
   mount_uploader :image, ImageUploader
 
-  belongs_to :user
   validates :title, presence: true
   validates :body, presence: true
-  
+
+  belongs_to :user
   # has_many :messages, dependent: :destroy
 end

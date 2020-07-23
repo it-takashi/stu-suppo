@@ -1,27 +1,33 @@
-.field
-  .field-label
-    = form.label :title, "タイトル"
-  .field-input
-    = form.text_field :title
-.field-image 
-  .field-image-label
-    -if @callroom.image.present?
-      = image_tag @callroom.image.url, class: 'teach_image'
-    = form.label :image, "画像"
+%dl
+  .field
+    .field-label
+      = form.label :title, "題名"
+      %span.must※
     .field-input
-      = form.file_field :image, class: 'hidden'
-.field
-  .field-label
-    = form.label :body, "本文"
-  .field-input
-    = form.text_area :body  
-.field
-  .field-label
-    = form.radio_button :status,1
-    公開
-  .field-label
-    = form.radio_button :status, 0
-    非公開
+      = form.text_field :title,placeholder: "題名を入力してくだい"
+  .field-image 
+    .field-image-label
+      = form.label :image, class:"form_image" do
+        画像
+        .preview-box
+          -if @callroom.image.present?
+            = image_tag @callroom.image.url, class: 'tweet_image'
+          - else
+            = image_tag(src= "/no-image.png", class: "tweet_image")
+    = form.file_field :image, class: 'hidden'
+  .field
+    .field-label
+      = form.label :body, "本文"
+      %span.must※
+    .field-input
+      = form.text_area :body, placeholder:"自己紹介や得意な科目、教え方について書こう" 
+  .field
+    .field-label
+      = form.radio_button :status,1
+      公開
+    .field-label
+      = form.radio_button :status, 0
+      非公開
 
 .actions
   = form.submit "投稿する", class: 'btn'

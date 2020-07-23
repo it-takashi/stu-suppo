@@ -12,6 +12,7 @@ $(function(){
 
   // 先生側のモーダルウィンドウ
   function buildCalled(student){
+    console.log(student)
     if (student.image){
       var html =   
       `<p>
@@ -26,42 +27,12 @@ $(function(){
       var html =
       `<div class="author__no-image">No-<br/>image</div>
       <p>${student.name}さんから連絡が来ています。</>
-      <P>紹介:${student.profile}</p>
+      <P>紹介:${student.introduction}</p>
       <a href="/callrooms/call">承認する</a>
       <a href="/callrooms/update_attribute">拒否する</a>`
       return html;
     }
   }
-
-  function buildCallroom(student) {
-    if ( student.image ){
-      var html =   
-        `<p>生徒</p>
-          <a href ="#" class "link-image" >
-            <p>
-              <img src= "student.image.url"  class='author__image'>
-            </p>
-          </a>
-          <a href ="#" class "author__name" >
-          ${student.name}
-          </a>`
-          return html;
-    }else{
-      var html =
-        `<div "student">生徒</div>
-        <a href ="#" class "link-image" >
-          <div class="author__no-image">
-            No-
-            <br>
-            image
-          </div>
-        </a>
-        <a href ="#" class "author__name" >
-          ${student.name}
-        </a>`
-        return html;
-      }
-    }
 
   function buildCall(callroom) {
     if ( callroom.user_imgage ){
@@ -89,9 +60,11 @@ $(function(){
     }
   }
   
+  // indexのcallをクリックすると
   $('.call').click(function(e){
     e.preventDefault();
-    var id = $(this).val();      
+    var id = $(this).data("call_id");    
+    // var id = $(this).val();      
     console.log(id)
     // console.log(current_user.id)
     
@@ -105,8 +78,6 @@ $(function(){
     .done(function(data){
       var student = data.student
       var callroom = data.callroom
-      console.log(student)
-      console.log(callroom)
       
       if(callroom.student_id == student.id){
         var htmlCall = buildCall(callroom);
@@ -299,6 +270,6 @@ $(function(){
     })
   } 
 
-  setInterval(reloadCalled, 7000);
-  setInterval(reloadCall, 7000);
+  // setInterval(reloadCalled, 7000);
+  // setInterval(reloadCall, 7000);
 });

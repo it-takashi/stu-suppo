@@ -1,14 +1,20 @@
 class CallroomsController < ApplicationController
+  def index
+    @callrooms = Callroom.where(status:1, student_id:nil).includes(:user).order("created_at DESC").page(params[:page]).per(12)
+  end
+
   def new
     @callroom = Callroom.new
   end
 
   def create
-    callroom =  Callroom.create(callroom_params)
-    if callroom.status == 0
-      redirect_to callroom_path(callroom.id),alert: "非公開にしました"
+    @callroom = Callroom.new(callroom_params)
+    if @callroom.save && @callroom.status == 0
+      redirect_to callroom_path(@callroom.id),alert: "非公開にしました"
+    elsif @callroom.save && @callroom.status == 1
+      redirect_to callroom_path(@callroom.id),notice: "公開にしました"
     else
-      redirect_to callroom_path(callroom.id),notice: "公開にしました"
+      render :new
     end
   end
 
@@ -28,12 +34,13 @@ class CallroomsController < ApplicationController
   end
 
   def update
-    callroom = Callroom.find(params[:id])
-    callroom.update(callroom_params)
-    if callroom.status == false
-      redirect_to callroom_path(callroom.id),alert: "非公開にしました"
+    @callroom = Callroom.find(params[:id])
+    if @callroom.update(callroom_params) && @callroom.status == 0
+      redirect_to callroom_path(@callroom.id),alert: "非公開にしました"
+    elsif @callroom.update(callroom_params) && @callroom.status == 1
+      redirect_to callroom_path(@callroom.id),notice: "公開にしました"
     else
-      redirect_to callroom_path(callroom.id),notice: "公開にしました"
+      render :edit
     end
   end
 
@@ -70,12 +77,12 @@ class CallroomsController < ApplicationController
           redirect_to callroom_path(callroom.id), notice: "#{student.name}さんとの通信を終了しました。ただいま公開中です"
         end
       end
-      # show画面の通信終了ボタン
+      # show画面の通信終了(video終了)ボタン
       format.json do
         @callroom = Callroom.find(params[:id])
         @student = User.find_by(id:@callroom.student_id)
         @current_user = User.find_by(id:current_user.id)
-        if @callroom.user_id = current_user.id
+        if @callroom.user_id == current_user.id
           @callroom.status = 1
           @callroom.student_id = []
           @callroom.save
@@ -86,8 +93,8 @@ class CallroomsController < ApplicationController
 
   def call
     respond_to do |format|
+      # 先生側　着信後の処理
       format.html do
-        # @callroom = Callroom.find(params[:id])
         if @callroom.status == 2 && @callroom.student_id.present? && @callroom.user_id == current_user.id
           @callroom.status = 3
           @callroom.save
@@ -95,7 +102,7 @@ class CallroomsController < ApplicationController
         end
       end
       format.json do
-        # tweet.indexの教えてもらうボタンを押すと動く
+        # 生徒側記事をクリックすると動く
         @callroom = Callroom.find(params[:id])
         if @callroom.status == 1 && @callroom.student_id.nil?
           @callroom.student_id = current_user.id

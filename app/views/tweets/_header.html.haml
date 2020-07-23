@@ -1,31 +1,29 @@
 .hyoji
   %h1.logo
-    = link_to "#", class:"logo-link" do
+    = link_to root_path, class:"logo-link" do
       stu
       %br
       　suppo
   .title
-    = link_to "#", class:"title-link" do
+    = link_to root_path, class:"title-link" do
       study-support
   %ul.btn
     -if user_signed_in? 
-      = link_to edit_user_path(current_user), class:"btn__profile" do
+      = link_to user_path(current_user), class:"btn__profile" do
         %li
           = current_user.name
       = link_to destroy_user_session_path, method: :delete, class:"btn__logout" do
         %li ログアウト
       = link_to new_tweet_path, method: :get, class:"btn__tweet" do
         %li アウトプット
-      = link_to new_teach_path, method: :get, class:"btn__teach" do
-        %li 教えて
       - if @callroom.present?
         -# 電話ができるようにする。（編集モード）
         - if @callroom.status == 0
-          = link_to edit_callroom_path(@callroom.id), method: :get, class:"btn__call" do
+          = link_to edit_callroom_path(@callroom.id), method: :get, class:"btn__teach" do
             %li 教えるモード
           -# 電話ができないようにする。
         - else @callroom.status == 1
-          = link_to update_attribute_callrooms_path, method: :get, class:"btn__call" do
+          = link_to update_attribute_callrooms_path, method: :get, class:"btn__teach" do
             %li 教えるモード解除
         -# 新しく電話ができないようにする。
       -else
@@ -37,10 +35,3 @@
         %li 新規登録
       = link_to  new_user_session_path, method: :get, class:"btn__tweet" do
         %li ログイン
-        
-      -# - if current_user.called == false
-      -#   = link_to update_attribute_users_path, method: :post, class:"btn__call" do
-      -#     %li 教えるモード
-      -# - else current_user.called == 1
-      -#   = link_to update_attribute_users_path, method: :post, class:"btn__call" do
-      -#     %li 教えるモード解除

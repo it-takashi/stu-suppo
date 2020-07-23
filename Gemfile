@@ -64,3 +64,7 @@ gem 'pry-rails'
 gem 'bootstrap', '~> 4.1.1'
 # リッチエディターのTinyMCE
 gem 'tinymce-rails'
+gem 'kaminari'
+gem 'kaminari-bootstrap', '~> 3.0.1'
+# 日本語化
+gem "rails-i18n"

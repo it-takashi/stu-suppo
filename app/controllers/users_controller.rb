@@ -11,19 +11,26 @@ class UsersController < ApplicationController
     end
   end
 
-  def update_attribute
-    if current_user.called == false
-      current_user.called = 1
-      current_user.save
-    else current_user.called == 1
-      current_user.called = 0
-      current_user.save
-    end
-    redirect_to root_path
+  # def update_attribute
+  #   if current_user.called == false
+  #     current_user.called = 1
+  #     current_user.save
+  #   else current_user.called == 1
+  #     current_user.called = 0
+  #     current_user.save
+  #   end
+  #   redirect_to root_path
+  # end
+
+  def show
+    @user = User.find(params[:id])
+    @tweets = Tweet.where(user_id: params[:id]).includes(:user).order("created_at DESC").limit(6)
+    @user_callroom = Callroom.find_by(user_id: params[:id])
   end
   
-end
-private
-def user_params
-  params.require(:user).permit(:name, :image, :introduction, :profile, :subject, :email)
+  private
+  def user_params
+    params.require(:user).permit(:name, :image, :introduction, :subject, :email)
+  end
+
 end

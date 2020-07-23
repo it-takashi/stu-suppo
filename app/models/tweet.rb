@@ -1,7 +1,9 @@
 class Tweet < ApplicationRecord
-  THUMBNAIL_SIZE = [100, 100]
   mount_uploader :image, ImageUploader
+
+  validates :title, presence: true
+  validates :body, presence: true
+
   belongs_to :user
   has_many :replies, dependent: :destroy
-  validates :body, presence: true
 end
