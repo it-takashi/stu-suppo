@@ -3,7 +3,10 @@
     .account-page__inner--left.account-page__header
       %h2 Log in
       %h5 登録しているユーザーでログイン
-      = render "devise/shared/links"
+      .ben
+        = render "devise/shared/links"
+        = link_to "ゲストログイン", users_guest_sign_in_path, method: :post, class:'new-user_login_btn guest_user_btn'
+        = link_to "トップページに戻る",root_path, method: :get, class: 'new-user_login_btn'
     .account-page__inner--right.user-form
       = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
         .field

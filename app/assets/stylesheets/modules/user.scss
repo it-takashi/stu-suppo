@@ -4,7 +4,6 @@
   display: flex;
 }
 .new-user_login_btn{
-
   margin-top: 20px;
   margin-left: 20px;
   color: #fff;
@@ -19,11 +18,13 @@
   border: none;
   border-radius: 2px;
 }
-
-  .new-user_login_btn:hover {
-    opacity: 0.8;
-    text-decoration: none;
-    color: #fff;
+.new-user_login_btn:hover {
+  opacity: 0.8;
+  text-decoration: none;
+  color: #fff;
+  }
+.guest_user_btn{
+  background-color: #eb6100;
 }
       
 
@@ -79,7 +80,7 @@
     border-radius: 5px;
   }
   .new-user_login_btn{
-    margin: 0;
+    margin: 0 20px 0 0;
   }
 
   .account-page__header {

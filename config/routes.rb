@@ -1,12 +1,15 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: {
-    registrations: 'users/registrations',
+    registrations: 'users/registrations'
   }
   root "tweets#top_page"
   resources :users, only: [:edit, :update,:show] do
     collection do
       post 'update_attribute', to: 'users#update_attribute'
     end
+  end
+  devise_scope :user do
+    post 'users/guest_sign_in', to: 'users/sessions#new_guest'
   end
   
   resources :tweets do

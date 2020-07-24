@@ -20,6 +20,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
   end
 
+
   # POST /resource
   # def create
   #   super
