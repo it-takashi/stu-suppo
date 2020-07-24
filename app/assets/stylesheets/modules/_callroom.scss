@@ -1,56 +1,4 @@
-// showのview
-
-
-.message-list{
-  // background-color:antiquewhite;
-  width: 80%;
-  height: 200px;
-  overflow: scroll;
-  margin: auto;
-  margin-bottom: 50px;
-}
-
-.form{
-  width: 80%;
-  margin: 20px auto;
-
-  #new_message{
-    width: 1000px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    #message_comment{
-      width: 1000px;
-    }
-    .form__message{
-      width: calc(100% - 115px );
-      height: 50px;
-      padding-left: 10px;
-    }
-    .form__mask{
-      position: relative;
-      height: 50px;
-      .icon{
-        position: absolute;
-        right: 10px;
-        line-height: 50px;
-        cursor: pointer;
-      }
-      .hidden{
-        display: none;
-      }
-    }
-    .form__submit{
-      height: 100%;
-      width: 100px;
-      margin-left: 15px;
-      background-color: #28aef0;
-      color: #fafafa;
-      cursor: pointer;
-    }
-  }
-}
-
+// show
 .container{
   width: 50%;
   .p2p-media {
@@ -121,4 +69,53 @@
   0%{background-position:34% 0%}
   50%{background-position:67% 100%}
   100%{background-position:34% 0%}
+}
+// フォーム
+.show-body{
+  h1.show-callroom-title{
+    text-align: center;
+    font-weight: bold;
+  }
+
+}
+.show-form{
+  @include show-default;
+  height: auto;
+  margin: 16px auto;
+  padding:16px ;
+
+  #new_message{
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    #message_comment{
+      width: 100%;
+      padding: 16px;
+    }
+
+    .comment__submit{
+      margin: 0;
+      width: 150px;
+      padding: 10px;
+      text-align: center;
+      align-items: center;
+    }
+    
+    
+    .form__mask{
+      position: relative;
+      height: 50px;
+      right: 30px;
+      .icon{
+        line-height: 50px;
+        cursor: pointer;
+      }
+      
+    }
+    .hidden{
+      display: none;
+    }
+  }
 }

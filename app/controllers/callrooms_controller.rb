@@ -23,6 +23,8 @@ class CallroomsController < ApplicationController
     # 公開がで生徒がいるときは、先生と生徒しか入ることができない
     if @callroom.user_id == current_user.id or @callroom.status == 3 && @callroom.student_id == current_user.id
       @student = User.find_by(id:@callroom.student_id)
+      @message = Message.new
+      @messages = @callroom.messages.includes(:user)
     else
       redirect_to root_path
     end

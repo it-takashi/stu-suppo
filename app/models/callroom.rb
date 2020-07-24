@@ -5,5 +5,5 @@ class Callroom < ApplicationRecord
   validates :body, presence: true
 
   belongs_to :user
-  # has_many :messages, dependent: :destroy
+  has_many :messages, dependent: :destroy
 end

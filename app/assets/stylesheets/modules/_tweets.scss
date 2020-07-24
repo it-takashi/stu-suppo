@@ -9,12 +9,8 @@
 }
 
 header{
-  // background-color:blueviolet;
   width: 100vw;
   height: 130px;
-  // @include box-shadow(0 10px 6px -6px #888);
-  // margin-bottom:10px ;
-  // box-shadow: 0 32px 30px -30px rgba(53, 47, 47, 0.15);
   box-shadow: 0 10px 6px -6px #888;
 
   
@@ -25,7 +21,6 @@ header{
     box-shadow: gray;
     .logo{
       width: 120px;
-      // height: 120px;
       .logo-link{
         line-height: 30px;
         font-size: 30px;
@@ -241,7 +236,6 @@ header{
 
 // showのview
 .show-body{
-  // background-color: lightcoral;
   background-color: rgb(245, 245, 245);
   margin: auto;
   padding-top: 72px;
@@ -279,11 +273,9 @@ header{
 
 
     .manage{
-      // width: 80%;
       display: flex;
       justify-content: flex-end;
       margin: 0 10px 0 auto;
-      // margin: 10px auto 0 auto;
       &__edit{
         display: block;
         color: #998484;
@@ -346,8 +338,12 @@ header{
       padding: 16px;
     }
 
-    .form__submit{
-      display: none;
+    .comment__submit{
+      margin: 0;
+      width: 150px;
+      padding: 10px;
+      text-align: center;
+      align-items: center;
     }
     
     .form__mask{

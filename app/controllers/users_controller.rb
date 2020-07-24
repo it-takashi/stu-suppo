@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+  before_action :check_guest, only:[:edit]
+
   def edit
   end
   
@@ -31,6 +33,14 @@ class UsersController < ApplicationController
   private
   def user_params
     params.require(:user).permit(:name, :image, :introduction, :subject, :email)
+  end
+
+
+  def check_guest
+    email = current_user&.email || params[:user][:email].downcase
+    if current_user.email == 'guest@example.com'
+      redirect_to root_path, alert: 'ゲストユーザーは編集できません。'
+    end
   end
 
 end

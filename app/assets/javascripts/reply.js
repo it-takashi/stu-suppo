@@ -1,41 +1,85 @@
 $(function(){
 
   function buildHTML(reply) {
-    if ( reply.image ){
+    if ( reply.user_image && reply.image){
       var html = 
-      `<div class='reply-list__box', data-reply-id=${reply.id}>
-      <div class='reply-list__box__comment-info'>
-      <div class='reply-list__box__comment-info__name'>
-      ${reply.user_name}
-      </div>
-      <div class='reply-list__box__comment-info__day'>
-      ${reply.created_at}
-      </div>
-      </div>
-      <div class='reply-list__box__comment'>
-      <p>${reply.comment}</p>
-      <img class="lower-reply__image" src=${reply.image} >
-      </div>
-      </div>`
-      return html;
-    }else {
+        `<div class='reply-list__box', data-reply-id=${reply.id}>
+          <div class='comment-author'>
+            <a href="/users/${reply.user_id}" class= "link-image">
+              <p><img src=${reply.user_image} class="author__image"></p>
+            </a>
+            <a href="/users/${reply.user_id}" class= "author__name">
+              ${reply.user_name}
+            </a>
+            <p class="reply-list__box__comment">${reply.comment}</p>
+            <img class="lower-reply__image" src=${reply.image} >
+            <div class= "author__created_at">
+            ${reply.created_at}
+            </div>
+          </div> 
+        </div>`
+      return html
+    } 
+    // ユーザー写真があり、メッセージに画像がない
+    else if ( reply.user_image){
       var html = 
-      `<div class='reply-list__box', data-reply-id=${reply.id}>
-      <div class='reply-list__box__comment-info'>
-      <div class='reply-list__box__comment-info__name'>
-      ${reply.user_name}
-      </div>
-      <div class='reply-list__box__comment-info__day'>
-      ${reply.created_at}
-      </div>
-      </div>
-      <div class='reply-list__box__comment'>
-      <p>${reply.comment}</p>
-      </div>
-      </div>`
-      return html;
+        `<div class='reply-list__box', data-reply-id=${reply.id}>
+          <div class='comment-author'>
+            <a href="/users/${reply.user_id}" class= "link-image">
+              <p><img src=${reply.user_image} class="author__image"></p>
+            </a>
+            <a href="/users/${reply.user_id}" class= "author__name">
+              ${reply.user_name}
+            </a>
+            <p class="reply-list__box__comment">${reply.comment}</p>
+            <div class= "author__created_at">
+            ${reply.created_at}
+            </div>
+          </div>
+        </div>`
+      return html
+    }
+    // ユーザー画像がなし、メッセージが画像
+    else if (reply.image){
+      var html =
+        `<div class='reply-list__box', data-reply-id=${reply.id}>
+          <div class='comment-author'>
+            <a href="/users/${reply.user_id}" class= "link-image">
+              <p><img src="/no-image.png" class="author__image"></p>
+            </a>
+            <a href="/users/${reply.user_id}" class= "author__name">
+              ${reply.user_name}
+            </a>
+            <p class="reply-list__box__comment">${reply.comment}</p>
+            <img class="lower-reply__image" src=${reply.image} >
+            <div class= "author__created_at">
+            ${reply.created_at}
+            </div>
+          </div>
+        </div>`
+        return html
+    }
+    // ユーザー画像がなし、メッセージが画像なし
+    else{
+      var html =
+        `<div class='reply-list__box', data-reply-id=${reply.id}>
+          <div class='comment-author'>
+            <a href="/users/${reply.user_id}" class= "link-image">
+              <p><img src="/no-image.png" class="author__image"></p>
+            </a>
+            <a href="/users/${reply.user_id}" class= "author__name">
+              ${reply.user_name}
+            </a>
+            <p class="reply-list__box__comment">${reply.comment}</p>
+            <div class= "author__created_at">
+            ${reply.created_at}
+            </div>
+          </div>
+        </div>`
+      return html
     }
   }
+
   
   $('#new_reply').on('submit', function(e){
     e.preventDefault();

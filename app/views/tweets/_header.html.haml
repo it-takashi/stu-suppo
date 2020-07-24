@@ -27,11 +27,13 @@
             %li 教えるモード解除
         -# 新しく電話ができないようにする。
       -else
-        = link_to new_callroom_path, method: :get, class:"btn__call" do
+        = link_to new_callroom_path, method: :get, class:"btn__teach" do
           %li 教えるモード
       
     -else
       = link_to new_user_registration_path, method: :get, class:"btn__logout" do
         %li 新規登録
+      = link_to users_guest_sign_in_path, method: :post, class:"btn__tweet" do
+        %li ゲストログイン（閲覧用）
       = link_to  new_user_session_path, method: :get, class:"btn__tweet" do
         %li ログイン
