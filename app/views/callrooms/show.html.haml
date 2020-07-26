@@ -97,20 +97,17 @@
   #student_close_content
     / 口コミ入力フォーム
     = form_for [@callroom, @review] do |f|
-      / エラーメッセージ
-      -# = render 'layouts/error_messages', model: f.object
-      / 商品コードの送信
-      -# = f.hidden_field :@callroom_id, { value: @callroom.id}
       / 評価
       %small.close-alert
         *#{@callroom.user.name}さんとの連絡が終了しました。
       %h5.review-title
-        *#{@callroom.user.name}さんへ
+        #{@callroom.user.name}さんへ
         %br
-        　　　　勉強の感想や評価を書こう
+        　　勉強の感想や手紙または、評価を書こう。
       #star.form-group.row
-        = f.label :rate,'評価 ', class:'col-md-3 col-form-label',autoforcus: true
-        = f.hidden_field :rate, id: :review_star
+        = f.label :rate,'評価 ', class:'col-md-3 col-form-label', id:"rate-error"
+
+
 
       / 評価javascript
       :javascript
@@ -121,7 +118,6 @@
           starHalf: '#{asset_path('star-half.png')}',
           scoreName: 'review[rate]',
           half: true,
-          required: true
         });
 
       .form-group.row

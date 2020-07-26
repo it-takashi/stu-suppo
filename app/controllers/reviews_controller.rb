@@ -9,7 +9,7 @@ class ReviewsController < ApplicationController
       review = @callroom.reviews.includes(:user)
       flash.now[:alert] = 'レートを入力してください。'
       # render text: "mojiretsu"
-      render template: "tweet/new",
+      redirect_to root_path
     end
   end
 

@@ -20,8 +20,8 @@
 }
 
 
+// 電話後のreviewのモーダル
 #new_review{
-  // padding: 20px;
   small.close-alert{
     margin-left: 25px;
   }
@@ -55,6 +55,11 @@
       display: block;;
       margin: auto;
     }
+  }
+
+  .error{
+    color: red;
+    margin: 0 16px 0 0 ;
   }
 
 }
