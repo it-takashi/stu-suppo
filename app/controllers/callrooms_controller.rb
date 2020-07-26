@@ -25,6 +25,7 @@ class CallroomsController < ApplicationController
       @student = User.find_by(id:@callroom.student_id)
       @message = Message.new
       @messages = @callroom.messages.includes(:user)
+      @review = Review.new
     else
       redirect_to root_path
     end

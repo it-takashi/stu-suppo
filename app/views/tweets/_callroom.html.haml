@@ -35,5 +35,18 @@
         = image_tag(src= "/no-image.png", class: "profile-image")
     = link_to user_path(callroom.user.id),method: :get  ,class: "profile-name" do
       = callroom.user.name
+    -# rate
+    %div{ class:"rate", id:"star-rate-#{callroom.id}"} 教えた人数#{callroom.reviews.count}件 &nbsp
     = link_to user_path(callroom.user.id),method: :get  ,class: "post-created_at" do
       = callroom.created_at.strftime("%Y年%m月%d日")
+  :javascript
+    $('#star-rate-#{callroom.id}').raty({
+    size: 36,
+    starOff: "#{asset_path('star-off.png')}",
+    starOn: "#{asset_path('star-on.png')}",
+    starHalf: "#{asset_path('star-half.png')}",
+    half: true,
+    readOnly: true,
+    //平均点を算出し、round関数で切り上げ
+    score: "#{callroom.reviews.average(:rate).to_f.round(1)}",
+    });
