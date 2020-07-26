@@ -93,35 +93,40 @@
 
 %input{name: "callroom_id",type: "hidden",  value: @callroom.id, class: 'callroom_id'}
 
-  / 口コミ入力フォーム
-  = form_for [@callroom, @review] do |f|
-    / エラーメッセージ
-    -# = render 'layouts/error_messages', model: f.object
-    / 商品コードの送信
-    = f.hidden_field :@callroom_id, { value: @callroom.id}
-    / 評価
-    #star.form-group.row
-      = f.label :rate,'評価 ', class:'col-md-3 col-form-label'
-      = f.hidden_field :rate, id: :review_star
-    / 評価javascript
-    :javascript
-      $('#star').raty({
-        size     : 36,
-        starOff:  '#{asset_path('star-off.png')}',
-        starOn : '#{asset_path('star-on.png')}',
-        starHalf: '#{asset_path('star-half.png')}',
-        scoreName: 'review[rate]',
-        half: true,
-      });
-    / 口コミ
-    .form-group.row
-      = f.label :comment, '口コミ内容 ', class:'col-md-3 col-form-label'
-      .col-md-9
-        = f.text_area :comment, class: "form-control", rows: "8", |
-                  placeholder:'口コミ内容がなくても、タイトルと評価のみで投稿できます。       |
-          まずは投稿してみましょう！投稿してから編集もできますよ！'                           |
-    / 確認ボタン
-    .form-group.row.justify-content-end
-      .col-md-9
+#student_close_modal
+  #student_close_content
+    / 口コミ入力フォーム
+    = form_for [@callroom, @review] do |f|
+      / エラーメッセージ
+      -# = render 'layouts/error_messages', model: f.object
+      / 商品コードの送信
+      -# = f.hidden_field :@callroom_id, { value: @callroom.id}
+      / 評価
+      %small.close-alert
+        *#{@callroom.user.name}さんとの連絡が終了しました。
+      %h5.review-title
+        *#{@callroom.user.name}さんへ
+        %br
+        　　　　勉強の感想や評価を書こう
+      #star.form-group.row
+        = f.label :rate,'評価 ', class:'col-md-3 col-form-label',autoforcus: true
+        = f.hidden_field :rate, id: :review_star
+
+      / 評価javascript
+      :javascript
+        $('#star').raty({
+          size     : 36,
+          starOff:  '#{asset_path('star-off.png')}',
+          starOn : '#{asset_path('star-on.png')}',
+          starHalf: '#{asset_path('star-half.png')}',
+          scoreName: 'review[rate]',
+          half: true,
+          required: true
+        });
+
+      .form-group.row
+        = f.label :comment, 'コメント ', class:'col-md-3 col-form-label'
+        .col-md-9
+          = f.text_area :comment, class: "form-control", rows: "8", placeholder:'コメントがなくても、評価のみで投稿できます。'
+      .review-submit
         = f.submit '投稿する', class:"btn btn-success"
-  / /口コミ入力フォーム

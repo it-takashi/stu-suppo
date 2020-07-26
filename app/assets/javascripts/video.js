@@ -100,13 +100,7 @@ $(function(){
               // 生徒のモーダル
               else{
                 var html =
-                `<div>${callroom.user_name}さんとの連絡が終了しました。</div>`
-                $('#callmodal_content').empty();
-                $('#callmodal_content').append(html);
-                callmodal.show();
-                setTimeout(function(){
-                  window.location.href = "/tweets/";
-                }, 5000);
+                $("#student_close_modal").show();
               }
             })
             .fail(function(){
@@ -168,14 +162,7 @@ $(function(){
               }
               // 生徒のモーダル
               else{
-                var html =
-                `<div>${callroom.user_name}さんとの連絡が終了しました。</div>`
-                $('#callmodal_content').empty();
-                $('#callmodal_content').append(html);
-                callmodal.show();
-                setTimeout(function(){
-                  window.location.href = "/tweets/";
-                }, 5000);
+                $("#student_close_modal").show();
               }
             })
             .fail(function(){

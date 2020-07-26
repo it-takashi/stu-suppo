@@ -2,12 +2,14 @@ class ReviewsController < ApplicationController
   before_action :set_callroom3
   def create
     review = @callroom.reviews.new(review_params)
+    # binding.pry
     if review.save
       redirect_to root_path
     else
       review = @callroom.reviews.includes(:user)
       flash.now[:alert] = 'レートを入力してください。'
-      # render template: 'callroom/show', layout: 'html'
+      # render text: "mojiretsu"
+      render template: "tweet/new",
     end
   end
 

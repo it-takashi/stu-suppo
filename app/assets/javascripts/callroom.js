@@ -171,6 +171,6 @@ $(function(){
     })
   } 
 
-  setInterval(reloadCalled, 7000);
-  setInterval(reloadCall, 7000);
+  // setInterval(reloadCalled, 7000);
+  // setInterval(reloadCall, 7000);
 });
