@@ -23,4 +23,5 @@
         = tweet.user.name
     %object
       = link_to user_path(tweet.user.id),method: :get  ,class: "post-created_at" do
-        = tweet.created_at.strftime("%Y年%m月%d日")
+        %small
+          = tweet.created_at.strftime("%Y年%m月%d日")
