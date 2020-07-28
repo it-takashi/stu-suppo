@@ -1,14 +1,10 @@
 $(function(){
 
   var modal = $('#modal'),
-        modalContent = $('#modal_content'),
-        btnOpen = $("#btn_open"),
-        btnClose = $(".btn_close");
+        modalContent = $('#modal_content')
 
   var callmodal = $('#callmodal'),
-        modalContent = $('#modal_content'),
-        btnOpen = $("#btn_open"),
-        btnClose = $(".btn_close");
+        modalContent = $('#modal_content')
 
   // 先生側のモーダルウィンドウ
   function buildCalled(student){
@@ -34,105 +30,113 @@ $(function(){
     }
   }
 
+  // 連絡待ち
   function buildCall(callroom) {
     if ( callroom.user_imgage ){
-      var html =   
-        `<p class = link-image>
-          <img src= "callroom.user_image.url"  class='author__image'>
-        </p>
-        <p>${callroom.user_name}さんに連絡しています！</p>
-        <div>タイトル: ${callroom.title}</div>
-        <div>本文: ${callroom.body}</div>`
-          return html;
-    }else{
       var html =
-      `<p class = link-image>
-        <div class="author__no-image">
-            No-
-            <br>
-            image
-        </div>
+      `<p class = modal-profile-image-a>
+        <img src= callroom.user_image.url class='modal-profile-image'>
       </p>
       <p>${callroom.user_name}さんに連絡しています！</p>
-      <div>タイトル: ${callroom.title}</div>
-      <div>本文: ${callroom.body}</div>`
+      <div class = "cancelcall btn-flat-vertical-border", data-cancecall_id=${callroom.id}>キャンセル</div>`
+      return html;
+    }else{
+      var html =
+      `<p class = modal-profile-image-a>
+        <img src= "/no-image.png" class='modal-profile-image'>
+      </p>
+      <p>${callroom.user_name}さんに連絡しています！</p>
+      <div class = "cancelcall btn-flat-vertical-border", data-cancecall_id=${callroom.id}>キャンセル</div>`
       return html;
     }
   }
   
-  // indexのcallをクリックすると
+  // indexのcall-showをクリックcallroom.idに紐づく詳細情報がモーダルに出る。
+  $('.callroom-show').click(function(e){
+    e.preventDefault();
+    var id = $(this).data("show_id");          
+    $('#modal-' + id).show();
+    $(".escape").click(function(){
+      $(this).parents(".call_info_modal").fadeOut();
+    });
+  })
+  
+  // 電話するボタンを押すとstdeunt.idやstatusが変わる。
   $('.call').click(function(e){
     e.preventDefault();
-    var id = $(this).data("call_id");    
-    // var id = $(this).val();      
+    $(modalContent).empty();
+    var id = $(this).data("call_id");          
     console.log(id)
-    $('#' + id).show();
-    // console.log(current_user.id)
     
-    // $.ajax({
-    //   url: "/callrooms/call",
-    //   type: "GET",
-    //   data: {id:id}, 
-    //   dataType: 'json'
-    // })
-    // $.ajax({
-    //   url: "/callrooms/call",
-    //   type: "GET",
-    //   data: {id:id}, 
-    //   dataType: 'json'
-    // })
+    $.ajax({
+      url: "/callrooms/call",
+      type: "GET",
+      data: {id:id}, 
+      dataType: 'json'
+    })
     
-    // .done(function(data){
-    //   var student = data.student
-    //   var callroom = data.callroom
+    .done(function(data){
+      var student = data.student
+      var callroom = data.callroom
       
-    //   if(callroom.student_id == student.id){
-    //     // var htmlCall = buildCall(callroom);
-    //     // $('#modal_content').empty();
-    //     // $('#modal_content').append(htmlCall);
-    //     // modal.show();
-    //     // $('#call_info_modal').empty();
-    //     // $('#call_info_modal_content').append(htmlCall);
-    //     $('#' + callroom.id).show();
-    //   }
-    //   else{
-    //     `<div>すでに電話しています。</div>`
-    //     console.log("通信失敗")
-    //     $('#modal_content').empty();
-    //     $('#modal_content').append(html);
-    //     modal.show();
-    //   }
-    // })
-
-    // .fail(function(){
-    //   console.log("通信失敗")
-    // })
-
-
-
-
-    // モーダル以外、閉じるを押すとモーダルが消える
-
-    $(".call_info_modal").on('click', function(event) {
-      if(!($(event.target).closest(modalContent).length)||($(event.target).closest(btnClose).length)){
-        $(".call_info_modal").hide();
+      if(callroom.student_id == student.id){
+        var htmlCall = buildCall(callroom);
+        $('.call_info_modal').hide();
+        $('#modal_content').append(htmlCall);
+        modal.show();
+        
+        
+        // 通話キャンセル処理
+        $('.cancelcall').on('click', function(e){
+          e.preventDefault();
+          var id = $(this).data("cancecall_id");
+          console.log(id)
+          
+          $.ajax({
+            url: "/callrooms/cancelcall",
+            type: "POST",
+            data: {id:id}, 
+            dataType: 'json'
+          })
+          .done(function(callroom){
+            $(modal).hide();
+            $(modalContent).empty();
+            console.log(callroom.user_name)
+            var html = 
+            `<div class = "escape">&times;</div>
+            <p>${callroom.user_name}との連絡を取りやめました。</p>`
+            $(modalContent).append(html);
+            $(modal).show();
+            
+            $(".escape").on('click', function () {
+              $(modal).fadeOut();
+            });
+          })
+        })
       }
-    });
-    $(modal).on('click', function(event) {
-      if(!($(event.target).closest(modalContent).length)||($(event.target).closest(btnClose).length)){
-        modal.hide();
+      else{
+        `<div>すでに電話しています。</p>`
+        console.log("通信失敗")
+        $('#modal_content').empty();
+        $('#modal_content').append(html);
+        modal.show();
       }
-    });
-
+      
+    })
     
-  }) 
-
+    .fail(function(){
+      console.log("通信失敗")
+    })
+  })
+  
   $(callmodal).on('click', function(event) {
     if(!($(event.target).closest(modalContent).length)||($(event.target).closest(btnClose).length)){
       callmodal.hide();
     }
   });
-
+  
+  
+  
   // 先生側自動更新
   var reloadCalled =function(){
     $.ajax({
@@ -144,7 +148,7 @@ $(function(){
       //dataオプションでリクエストに値を含める
       // data: {id: called_id}
     })
-
+    
     .done(function(data){
       var callroom = data.callroom
       // callroomがあるかどうか確認しstatusが2かつcallmodelの要素が1であることを確認する
@@ -157,7 +161,7 @@ $(function(){
         $('#callmodal').show();
       }
     })
-
+    
   }  
   // 生徒側自動更新
   var reloadCall =function(){
@@ -166,21 +170,24 @@ $(function(){
       type: 'get',
       dataType: 'json'
     })
-
+    
     .done(function(callroom){
       // console.log(callroom)
       if(document.location.href.match(/\/callrooms\/\d+/)){
       }else if(callroom.status == 3){
         var html =
-          `<div>${callroom.user_name}さんに連絡が付きました。</div>
-          <a href="/callrooms/${callroom.id}">こちらへ</a>`
+        `<div>${callroom.user_name}さんに連絡が付きました。</div>
+        <a href="/callrooms/${callroom.id}">こちらへ</a>`
         $('#modal_content').empty();
         $('#modal_content').append(html);
         modal.show();
       } 
     })
   } 
-
+  // ✗ボタンによるモーダル終了
+  $(document).on("click", ".escape", function () {
+    (modal).fadeOut;
+});
   // setInterval(reloadCalled, 7000);
   // setInterval(reloadCall, 7000);
 });

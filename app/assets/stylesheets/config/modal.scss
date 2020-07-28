@@ -19,8 +19,15 @@
   animation:animatetop 0.4s;
 }
 
+.escape{
+  width: 15px;
+  margin: 0 20px 0 auto;
+  font-size: 30px;
+  color: #C0C0C0;
+  cursor: pointer;
+}
 
-// 電話後のreviewのモーダル
+// 電話後の評価を聞くreviewのモーダル
 #new_review{
   small.close-alert{
     margin-left: 25px;
@@ -215,4 +222,17 @@
   background: #668ad8;
   color: #FFF;
   cursor: pointer;
+}
+
+.modal-profile-image-a{
+  text-align: center;
+  .modal-profile-image{
+    width: 80px;
+    height: 80px;
+  }
+}
+
+// 生徒用通話キャンセルボタン
+.cancelcall{
+  margin-bottom: 25px;
 }

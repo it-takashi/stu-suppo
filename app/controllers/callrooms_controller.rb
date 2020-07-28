@@ -85,18 +85,23 @@ class CallroomsController < ApplicationController
         @callroom = Callroom.find(params[:id])
         @student = User.find_by(id:@callroom.student_id)
         @current_user = User.find_by(id:current_user.id)
-        if @callroom.user_id == current_user.id
-          @callroom.status = 1
-          @callroom.student_id = []
-          @callroom.save
-        end
+
+        @callroom.user_id == current_user.id
+        @callroom.status = 1
+        @callroom.student_id = []
+        @callroom.save
+        # if @callroom.user_id == current_user.id
+        #   @callroom.status = 1
+        #   @callroom.student_id = []
+        #   @callroom.save
+        # end
       end
     end
   end
 
   def call
     respond_to do |format|
-      # 先生側　着信後の処理
+      # 先生側　着信モーダル後の承認するボタンを押すとstatusが3になる。
       format.html do
         if @callroom.status == 2 && @callroom.student_id.present? && @callroom.user_id == current_user.id
           @callroom.status = 3
@@ -119,6 +124,16 @@ class CallroomsController < ApplicationController
     end
   end
 
+  # 生徒側から連絡のキャンセル
+  def cancelcall
+    @callroom = Callroom.find(params[:id])
+    if @callroom.status == 2 && @callroom.student_id == current_user.id
+      @callroom.status = 1
+      @callroom.student_id = []
+      @callroom.save
+    end
+  end
+  
 end
 
 private

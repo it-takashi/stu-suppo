@@ -29,6 +29,7 @@ Rails.application.routes.draw do
     collection do
       get 'update_attribute', to: 'callrooms#update_attribute'
       get :call
+      post :cancelcall,defaults: { format: 'json' }
     end
     
     resources :reviews, only: [:create]
