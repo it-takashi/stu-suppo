@@ -66,46 +66,56 @@ $(function(){
     var id = $(this).data("call_id");    
     // var id = $(this).val();      
     console.log(id)
+    $('#' + id).show();
     // console.log(current_user.id)
     
-    $.ajax({
-      url: "/callrooms/call",
-      type: "GET",
-      data: {id:id}, 
-      dataType: 'json'
-    })
-
-    .done(function(data){
-      var student = data.student
-      var callroom = data.callroom
+    // $.ajax({
+    //   url: "/callrooms/call",
+    //   type: "GET",
+    //   data: {id:id}, 
+    //   dataType: 'json'
+    // })
+    // $.ajax({
+    //   url: "/callrooms/call",
+    //   type: "GET",
+    //   data: {id:id}, 
+    //   dataType: 'json'
+    // })
+    
+    // .done(function(data){
+    //   var student = data.student
+    //   var callroom = data.callroom
       
-      if(callroom.student_id == student.id){
-        var htmlCall = buildCall(callroom);
-        $('#modal_content').empty();
-        $('#modal_content').append(htmlCall);
-        modal.show();
-      }
-      else{
-        `<div>すでに電話しています。</div>`
-        console.log("通信失敗")
-        $('#modal_content').empty();
-        $('#modal_content').append(html);
-        modal.show();
-      }
-    })
+    //   if(callroom.student_id == student.id){
+    //     // var htmlCall = buildCall(callroom);
+    //     // $('#modal_content').empty();
+    //     // $('#modal_content').append(htmlCall);
+    //     // modal.show();
+    //     // $('#call_info_modal').empty();
+    //     // $('#call_info_modal_content').append(htmlCall);
+    //     $('#' + callroom.id).show();
+    //   }
+    //   else{
+    //     `<div>すでに電話しています。</div>`
+    //     console.log("通信失敗")
+    //     $('#modal_content').empty();
+    //     $('#modal_content').append(html);
+    //     modal.show();
+    //   }
+    // })
 
-    .fail(function(){
-      console.log("通信失敗")
-    })
+    // .fail(function(){
+    //   console.log("通信失敗")
+    // })
 
 
 
 
     // モーダル以外、閉じるを押すとモーダルが消える
 
-    $(modal).on('click', function(event) {
+    $(".call_info_modal").on('click', function(event) {
       if(!($(event.target).closest(modalContent).length)||($(event.target).closest(btnClose).length)){
-        modal.hide();
+        $(".call_info_modal").hide();
       }
     });
     $(modal).on('click', function(event) {

@@ -93,11 +93,11 @@
 
 %input{name: "callroom_id",type: "hidden",  value: @callroom.id, class: 'callroom_id'}
 
+
+/ review入力フォーム
 #student_close_modal
   #student_close_content
-    / 口コミ入力フォーム
     = form_for [@callroom, @review] do |f|
-      / 評価
       %small.close-alert
         *#{@callroom.user.name}さんとの連絡が終了しました。
       %h5.review-title
@@ -106,9 +106,6 @@
         　　勉強の感想や手紙または、評価を書こう。
       #star.form-group.row
         = f.label :rate,'評価 ', class:'col-md-3 col-form-label', id:"rate-error"
-
-
-
       / 評価javascript
       :javascript
         $('#star').raty({

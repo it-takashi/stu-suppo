@@ -2,7 +2,7 @@ class TweetsController < ApplicationController
 
   def top_page
     @tweets = Tweet.all.includes(:user).order("created_at DESC").limit(6)
-    @callrooms = Callroom.where(status:1, student_id:nil).includes(:user).order("created_at DESC").limit(6)
+    @callrooms = Callroom.where(status:1, student_id:nil).includes(:user).includes(:reviews).order("created_at DESC").limit(6)
   end
 
   def index

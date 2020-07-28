@@ -1,4 +1,4 @@
-#callmodal,#modal, #student_close_modal{
+#callmodal,#modal, #student_close_modal, .call_info_modal{
   display: none;
   position: fixed;
   z-index: 1;
@@ -10,7 +10,7 @@
   background-color: rgba(0,0,0,0.7);
 }
 
-#modal_content,#callmodal_content, #student_close_content{
+#modal_content,#callmodal_content, #student_close_content, #call_info_modal_content{
   width:500px;
   background:#fff;
   margin:15% auto;
@@ -61,11 +61,158 @@
     color: red;
     margin: 0 16px 0 0 ;
   }
-
 }
+
 
 
 @keyframes animatetop{
   from{top:-300px;opacity:0}
   to{top:0;opacity:1}
+}
+
+// 生徒用先生詳細モーダル
+#call_info_modal_content{
+  width:700px;
+  padding: 16px;
+  .modal-profile-box{
+    width: 600px;
+    margin:auto;
+    position: relative;
+    .modal-profile-image-a{
+      text-decoration: none;
+      text-align: center;
+      .modal-profile-image{
+        width: 80px;
+        height: 80px;
+      }
+    }
+    .modal-profile-name{
+      text-align: center;
+      text-decoration: none;
+      color: black;
+      vertical-align:bottom;
+      margin-right: 10px;
+    }
+    .modal-post-created_at{
+      text-align: center;
+      text-decoration: none;
+      color: black;
+      vertical-align:bottom;
+    }
+  }
+  .modal-image-box{
+    width: 400px;
+    height: 400px;
+    margin: 20px auto;
+    .modal-index-image{
+      // display: block;
+      text-decoration: none;
+      width: 400px;
+      height: 400px;
+    }
+  }
+  .modal-post-box{
+    h3.modal-title{
+      width: 600px;
+      margin: 0 auto 0 auto;
+      height: auto;
+      padding-left: 20px;
+      font-size: 30px;
+      line-height: 60px;
+      font-weight: bold;
+      word-wrap: break-word;
+    }
+    h5.modal-body{
+      width: 600px;
+      margin: 0 auto 0 auto;
+      height: auto;
+      word-wrap: break-word;
+    }
+  }
+
+  .modal-review{
+    margin: auto;
+    width: 600px;
+    height: auto;
+    position: relative;
+    .review-average{
+      position: relative;
+
+    }
+    .rate{
+      margin-bottom: 10px;
+    }
+  }
+  .modal-review-card{
+    width: 600px;
+    height: auto;
+    margin: auto;
+    .balloon_l{
+      margin: 30px 0;
+      display:flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      .faceicon img{
+        width: 80px; /*任意のサイズ*/
+        height: auto;
+        margin-right:25px;
+      }
+    }
+    .says {
+      min-width: 180px;
+      max-width:500px; /*最大幅は任意*/
+      display: flex;
+      flex-wrap: wrap;
+      position: relative;
+      padding: 17px 13px 15px 18px;
+      border-radius: 12px;
+      background: #99dddd;/*色は任意*/
+      box-sizing:border-box;
+      margin:0 !important;
+      line-height:1.5;
+      word-break: break-all
+    }
+    .modal-rate{
+      position: absolute;
+      top:10px;
+      left:20px;
+    }
+    .says p{
+      margin:18px 0 0 !important;
+      // word-wrap: normal;
+    }
+    .says p:first-child{
+      margin-top:0 !important;
+    }
+    .says:after {
+      content: "";
+      position: absolute;
+      border: 10px solid transparent;
+    }
+    .balloon_l .says:after {
+      left: -26px;
+      border-right: 22px solid #99dddd;
+    }
+  }
+}
+
+.btn-flat-vertical-border {
+  position: absolute;
+  display: inline-block;
+  font-weight: bold;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  border-left: solid 4px #668ad8;
+  border-right: solid 4px #668ad8;
+  color: #668ad8;
+  background: #e1f3ff;
+  transition: .4s;
+  right: 10px;
+  bottom: 0px;
+}
+
+.btn-flat-vertical-border:hover {
+  background: #668ad8;
+  color: #FFF;
+  cursor: pointer;
 }

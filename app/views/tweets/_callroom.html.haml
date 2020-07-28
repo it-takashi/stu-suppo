@@ -35,18 +35,54 @@
         = image_tag(src= "/no-image.png", class: "profile-image")
     = link_to user_path(callroom.user.id),method: :get  ,class: "profile-name" do
       = callroom.user.name
-    -# rate
-    %div{ class:"rate", id:"star-rate-#{callroom.id}"} 教えた人数#{callroom.reviews.count}件 &nbsp
     = link_to user_path(callroom.user.id),method: :get  ,class: "post-created_at" do
       = callroom.created_at.strftime("%Y年%m月%d日")
-  :javascript
-    $('#star-rate-#{callroom.id}').raty({
-    size: 36,
-    starOff: "#{asset_path('star-off.png')}",
-    starOn: "#{asset_path('star-on.png')}",
-    starHalf: "#{asset_path('star-half.png')}",
-    half: true,
-    readOnly: true,
-    //平均点を算出し、round関数で切り上げ
-    score: "#{callroom.reviews.average(:rate).to_f.round(1)}",
-    });
+
+
+// 生徒用先生詳細モーダル
+%div{class:"call_info_modal" ,id:"#{callroom.id}"}
+  #call_info_modal_content
+    .modal-profile-box
+      = link_to user_path(callroom.user.id),method: :get, class: "modal-profile-image-a"  do
+        - if callroom.user.image.present? 
+          = image_tag callroom.user.image.url, class: "modal-profile-image"
+        - else 
+          = image_tag(src= "/no-image.png", class: "modal-profile-image")
+      = link_to user_path(callroom.user.id),method: :get  ,class: "modal-profile-name" do
+        #{callroom.user.name}さん
+      = link_to user_path(callroom.user.id),method: :get  ,class: "modal-post-created_at" do
+        = callroom.created_at.strftime("%Y年%m月%d日")
+      .btn-flat-vertical-border.call
+        #{callroom.user.id}さんに電話する
+    .modal-image-box{ class: "call", "data-call_id": "#{callroom.id}" }
+      - if callroom.image.present?
+        = image_tag callroom.image.url,method: :get , class: 'modal-index-image'
+      - else 
+        = image_tag(src= "/teacher.png", class: "modal-index-image")
+    .modal-post-box{ class: "call", "data-call_id": "#{callroom.id}" }
+      %h3.modal-title
+        = callroom.title
+      %h5.modal-body
+        = safe_join(callroom.body.split("\n"), tag(:br))
+    -if callroom.reviews.present?
+      .modal-review
+        .review-average
+          %div{ class:"rate", id:"modal-star-rate-#{callroom.id}"} 教えた人数#{callroom.reviews.count}人 &nbsp 平均:&nbsp#{callroom.reviews.average(:rate).to_f.round(2)} &nbsp/5&nbsp
+          .btn-flat-vertical-border.call
+            #{callroom.user.id}さんに電話する
+        .modal-review-box
+          ＜コメント一覧＞
+          = render partial: '/tweets/review', collection: callroom.reviews, as: :review
+    
+:javascript
+  $('#modal-star-rate-#{callroom.id}').raty({
+  size: 36,
+  starOff: "#{asset_path('star-off.png')}",
+  starOn: "#{asset_path('star-on.png')}",
+  starHalf: "#{asset_path('star-half.png')}",
+  half: true,
+  readOnly: true,
+  //平均点を算出し、round関数で切り上げ
+  score: "#{callroom.reviews.average(:rate).to_f.round(2)}",
+  
+  });
