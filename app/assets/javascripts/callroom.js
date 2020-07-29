@@ -242,6 +242,6 @@ $(function(){
   $(document).on("click", ".escape", function () {
     (modal).fadeOut;
   });
-  // setInterval(reloadCalled, 3000);
+  setInterval(reloadCalled, 3000);
   setInterval(reloadCall, 5000);
 });

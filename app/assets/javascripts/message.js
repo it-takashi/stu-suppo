@@ -109,15 +109,13 @@ $(function(){
   })
 
   .always(function() {
-    $('.form__submit').prop('disabled', false);
+    $('.comment__submit ').prop('disabled', false);
     $('#new_message')[0].reset();
   });
   })
   var reloadMessages = function() {
   var last_message_id = $('.reply-list__box:last').data("message-id");
   var id = $('.callroom_id').val();
-  console.log(id)
-  console.log(last_message_id)
 
   $.ajax({
     url: + id + "/api/messages",
