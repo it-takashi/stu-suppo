@@ -1,0 +1,264 @@
+// showのview
+.show-body{
+  background-color: rgb(245, 245, 245);
+  margin: auto;
+  padding-top: 72px;
+  padding-bottom: 72px;
+  margin-top: 8px;
+
+  // 著者
+  .author{
+    @include show-default;
+    height: 50px;
+    margin: 0px auto 16px auto;
+    display: flex;
+    align-items: flex-end;
+
+    p{
+      padding: 5px 3px 5px 20px;
+      margin: 0;
+      .author__image{
+        width: 40px;
+        height: 40px;
+        margin: 0;
+        }
+    }
+    
+    &__name{
+      text-decoration: none;
+      color: black;
+      padding-left: 5px;
+    }
+
+    &__created_at{
+      padding-left: 5px;
+      color: #998484;
+    }
+
+
+    .manage{
+      display: flex;
+      justify-content: flex-end;
+      margin: 0 10px 0 auto;
+      &__edit{
+        display: block;
+        color: #998484;
+        padding: 0 10px;
+        text-decoration: none;
+        margin-right: 10px;
+      }
+      &__destroy{
+        display: block;
+        color: #998484;
+        padding: 0 10px;
+        text-decoration: none;
+        margin-left: 10px;
+      }
+    }
+
+  }
+  
+  .tweet{
+
+    h1.show-title{
+      @include show-default;
+      margin: 0px auto 16px auto;
+      height: auto;
+      padding-left: 20px;
+      font-size: 30px;
+      line-height: 60px;
+      font-weight: bold;
+      word-wrap: break-word;
+    }
+    &__body{
+      @include show-default;
+      padding:16px;
+      margin: auto;
+      word-wrap: break-word;
+    }
+    &__image{
+      display: block;
+      width: 400px;
+      height: 400px;
+      margin: auto;
+    }
+  }
+}
+
+.show-form{
+  @include show-default;
+  height: auto;
+  margin: 16px auto;
+  padding:16px ;
+
+  #new_reply{
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    #reply_comment{
+      width: 100%;
+      padding: 16px;
+    }
+
+    .comment__submit{
+      margin: 0;
+      width: 150px;
+      padding: 10px;
+      text-align: center;
+      align-items: center;
+    }
+    
+    .form__mask{
+      // position: absolute;
+      position: relative;
+      height: 50px;
+      right: 30px;
+      .icon{
+        // position: absolute;
+        // right: 30px;
+        line-height: 50px;
+        cursor: pointer;
+      }
+      
+    }
+    .hidden{
+      display: none;
+    }
+  }
+}
+
+
+
+// コメント機能 自分
+.reply-list{
+  height: 200px;
+  overflow: scroll;
+  margin: auto;
+  margin-bottom: 50px;
+
+  .comment-author{
+    height: auto;
+    margin: 0px auto 16px auto;
+    display: flex;
+    align-items: flex-end;
+    p{
+      padding: 5px 3px 5px 20px;
+      margin: 0;
+      .author__image{
+        width: 40px;
+        height: 40px;
+        margin: 0;
+        }
+    }
+
+    .reply-list__box__comment {
+      height: auto;
+      display: inline-block;
+      position: relative; 
+      margin: 5px 0 0 5px;
+      padding: 17px 13px;
+      border-radius: 12px;
+      background: #d7ebfe;
+      max-width:350px;
+      word-wrap:break-word;
+      margin-right:10px ;
+    }
+    
+    .reply-list__box__comment:after {
+      content: "";
+      display: inline-block;
+      position: absolute;
+      top: 18px; 
+      left: -24px;
+      border: 12px solid transparent;
+      border-right: 12px solid #d7ebfe;
+      word-wrap:break-word;
+    }
+    
+    .reply-list__box__comment p {
+      margin: 0;
+      padding: 0;
+      word-wrap:break-word;
+    }
+    
+    .lower-reply__image{
+      width: 300px;
+      height: 300px;
+    }
+
+    .author__created_at{
+      margin: 0 0 0 auto;
+      padding-right:30px ;
+    }
+
+  }
+}
+
+
+
+// コメント機能 相手
+.reply-list{
+  height: 200px;
+  overflow: scroll;
+  margin: auto;
+  margin-bottom: 50px;
+
+  .comment-author{
+    height: auto;
+    margin: 0px auto 16px auto;
+    display: flex;
+    align-items: flex-end;
+    p{
+      padding: 5px 3px 5px 20px;
+      margin: 0;
+      .author__image{
+        width: 40px;
+        height: 40px;
+        margin: 0;
+        }
+    }
+
+    .reply-list__box__comment {
+      height: auto;
+      display: inline-block;
+      position: relative; 
+      margin: 5px 0 0 5px;
+      padding: 17px 13px;
+      border-radius: 12px;
+      background: #d7ebfe;
+      max-width:350px;
+      word-wrap:break-word;
+      margin-right:10px ;
+    }
+    
+    .reply-list__box__comment:after {
+      content: "";
+      display: inline-block;
+      position: absolute;
+      top: 18px; 
+      left: -24px;
+      border: 12px solid transparent;
+      border-right: 12px solid #d7ebfe;
+      word-wrap:break-word;
+    }
+    
+    .reply-list__box__comment p {
+      margin: 0;
+      padding: 0;
+      word-wrap:break-word;
+    }
+    
+    .lower-reply__image{
+      width: 300px;
+      height: 300px;
+    }
+
+    .author__created_at{
+      margin: 0 0 0 auto;
+      padding-right:30px ;
+    }
+
+  }
+}

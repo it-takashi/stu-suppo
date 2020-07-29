@@ -1,0 +1,89 @@
+* {
+  box-sizing: border-box;
+}
+@mixin show-default{
+  background-color: #fff;
+  width: 50%;
+  box-shadow: 0 0 10px rgba($black,0.2);
+  border-radius: 10px;
+}
+
+header{
+  width: 100vw;
+  height: 130px;
+  box-shadow: 0 10px 6px -6px #888;
+
+  
+  .hyoji{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: gray;
+    .logo{
+      width: 120px;
+      .logo-link{
+        line-height: 30px;
+        font-size: 30px;
+        font-family: 'Oswald', sans-serif;
+        padding-left: 20px;
+        text-decoration: none;
+        color: black;
+      }
+    }
+
+    .title-link{
+      width: 600px;
+      height: 120%;
+      font-size: 80px;
+      line-height: 80px;
+      font-family: 'Anton', sans-serif;
+      text-align: center;
+      text-decoration: none;
+      color: black;
+    }
+
+    .btn{
+      padding-right: 20px;
+      &__logout{
+        text-decoration: none;
+        color: black;
+      }
+      &__profile{
+        text-decoration: none;
+        color: black;
+      }
+      &__tweet{
+        text-decoration: none;
+        color: black;
+      }      
+      &__teach{
+        text-decoration: none;
+        color: black;
+      }      
+      &__group{
+        text-decoration: none;
+        color: black;
+      }      
+    }   
+  }
+}
+
+.pagination{
+  justify-content: center;
+}
+  .pagination>li>a {          
+    color: #696969;   /*文字の色を変える*/
+    margin: auto;
+    text-align: center;
+  }
+  
+  /* 表示しているページ番号のデザイン */
+  .pagination>.active>a {     
+    background: #93c9ff;
+    margin: center;
+  }
+  
+  /*ホバー時のデザイン*/
+  .pagination>li>a:hover {        
+    margin: center;
+  }
