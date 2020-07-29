@@ -13,7 +13,6 @@ $(function(){
   $("#user_name").keyup(function () {
     $('.error_user_name').empty();
     var name = $("#user_name").val()
-    console.log(name)
 
     $.ajax({
       url: "/api/users/",
@@ -24,8 +23,6 @@ $(function(){
 
     .done(function(user){
       // userがあるかどうか確認しあればすでにその名前があることを伝える
-      console.log(user)
-      console.log(user.name)
       if (typeof user.name != "undefined"){
         var html = `<div class="error">すでにその名前は存在します。</div>
         `

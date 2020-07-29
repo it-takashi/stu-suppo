@@ -8,7 +8,6 @@ $(function(){
 
   // 先生側のモーダルウィンドウ
   function buildCalled(student){
-    console.log(student)
     if (student.image){
       var html =   
       `<p class = modal-profile-image-a>
@@ -65,8 +64,7 @@ $(function(){
   // 電話するボタンを押すとstdeunt.idやstatusが変わる。
   $('.call').click(function(e){
     e.preventDefault();
-    var id = $(this).data("call_id");          
-    console.log(id)
+    var id = $(this).data("call_id");
     
     $.ajax({
       url: "/callrooms/call",
@@ -91,7 +89,6 @@ $(function(){
         $('.cancelcall').on('click', function(e){
           e.preventDefault();
           var id = $(this).data("cancecall_id");
-          console.log(id)
           
           $.ajax({
             url: "/callrooms/cancelcall",
@@ -102,7 +99,6 @@ $(function(){
           .done(function(callroom){
             $(modal).hide();
             $(modalContent).empty();
-            console.log(callroom.user_name)
             var html = 
             `<div class = "escape">&times;</div>
             <p>${callroom.user_name}との連絡を取りやめました。</p>`
@@ -128,7 +124,6 @@ $(function(){
         $('.cancelcall').on('click', function(e){
           e.preventDefault();
           var id = $(this).data("cancecall_id");
-          console.log(id)
           
           $.ajax({
             url: "/callrooms/cancelcall",
@@ -139,7 +134,6 @@ $(function(){
           .done(function(callroom){
             $(modal).hide();
             $(modalContent).empty();
-            console.log(callroom.user_name)
             var html = 
             `<div class = "escape">&times;</div>
             <p>${callroom.user_name}との連絡を取りやめました。</p>`
@@ -161,10 +155,6 @@ $(function(){
       }
       
     })
-    
-    .fail(function(){
-      console.log("通信失敗")
-    })
   })
   
   $(callmodal).on('click', function(event) {
@@ -180,11 +170,8 @@ $(function(){
     $.ajax({
       //ルーティングで設定したパス
       url: "/api/callrooms",
-      //ルーティングで設定した通りhttpメソッドをgetに指定
       type: 'get',
-      dataType: 'json',
-      //dataオプションでリクエストに値を含める
-      // data: {id: called_id}
+      dataType: 'json'
     })
     
     .done(function(data){
@@ -211,8 +198,6 @@ $(function(){
     })
     
     .done(function(data){
-      console.log(data)
-      // ver callroom_now = data.callroom_now
       if(document.location.href.match(/\/callrooms\/\d+/)){
       }else if( typeof data.callroom10 != "undefined" && data.callroom10.status == 3){
         var html =
@@ -221,7 +206,6 @@ $(function(){
         $('#modal_content').empty();
         $('#modal_content').append(html);
         modal.show();
-        console.log("callroom10")
       } 
       else if(typeof data.callroom_now != "undefined" && data.callroom_now.status == 1){
         var html =
@@ -243,5 +227,5 @@ $(function(){
     (modal).fadeOut;
   });
   setInterval(reloadCalled, 3000);
-  setInterval(reloadCall, 5000);
+  setInterval(reloadCall, 3000);
 });

@@ -19,7 +19,6 @@ $(document).ready(function(){
       var reader = new FileReader();
       // DataURIScheme文字列を取得します
       reader.readAsDataURL(file);
-      console.log(file)
       // 読み込みが完了したら処理が実行されます
       reader.onload = function () {
         // 読み込んだファイルの内容を取得して変数imageに代入します

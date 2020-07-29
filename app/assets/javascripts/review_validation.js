@@ -8,12 +8,8 @@ $(document).ready(function(){
     messages: {
         "review[rate]": {required: "入力してください"},
     },
-
-
     errorPlacement: function(error,element){
       error.insertAfter($("#rate-error"));
-     },
-
-
+    },
   });
 });

@@ -101,7 +101,6 @@ $(function(){
     var html = buildHTML(data);
     $('.reply-list').append(html);
     $('.reply-list').animate({ scrollTop: $('.reply-list')[0].scrollHeight});
-    console.log('投稿完了')
   })
 
   .fail(function(){

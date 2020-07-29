@@ -65,14 +65,12 @@ $(function(){
           // Render remote stream for caller
           remoteVideo.srcObject = stream;
           remoteVideo.playsInline = true;
-          console.log("電話したぜ")
 
           await remoteVideo.play().catch(console.error);
         });
         mediaConnection.once('close', () => {
           remoteVideo.srcObject.getTracks().forEach(track => track.stop());
           remoteVideo.srcObject = null;
-          console.log("発信者通話終了")
           if (document.location.href.match(/\/callrooms\/\d+/)) {
             var id = $('.callroom_id').val();
             $.ajax({
@@ -83,11 +81,9 @@ $(function(){
             })
             
             .done(function(data){
-              console.log(data)
               student = data.student
               current_user  = data.current_user
               callroom = data.callroom
-              console.log(student)
               // 先生のモーダル
               if (callroom.user_id == current_user.id){
                 var html =
@@ -102,9 +98,6 @@ $(function(){
                 var html =
                 $("#student_close_modal").show();
               }
-            })
-            .fail(function(){
-              console.log("通信失敗")
             })
 
           }
@@ -134,7 +127,6 @@ $(function(){
         mediaConnection.once('close', () => {
           remoteVideo.srcObject.getTracks().forEach(track => track.stop());
           remoteVideo.srcObject = null;
-          console.log("受信者通話終了")
           // 通信終了時 status = 1(公開) student(生徒)をnillにする。
           if (document.location.href.match(/\/callrooms\/\d+/)) {
             var id = $('.callroom_id').val();
@@ -146,11 +138,9 @@ $(function(){
             })
             
             .done(function(data){
-              console.log(data)
               student = data.student
               current_user  = data.current_user
               callroom = data.callroom
-              console.log(student)
               // 先生のモーダル
               if (callroom.user_id == current_user.id){
                 var html =
@@ -164,9 +154,6 @@ $(function(){
               else{
                 $("#student_close_modal").show();
               }
-            })
-            .fail(function(){
-              console.log("通信失敗")
             })
 
           }
