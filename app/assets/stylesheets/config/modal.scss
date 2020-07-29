@@ -14,11 +14,12 @@
   width:500px;
   background:#fff;
   margin:15% auto;
-  padding:10px;
+  padding:20px;
   position:relative;
   animation:animatetop 0.4s;
 }
 
+// 閉じるボタン
 .escape{
   width: 15px;
   margin: 0 20px 0 auto;
@@ -203,6 +204,8 @@
   }
 }
 
+// モーダル関連ボタン
+
 .btn-flat-vertical-border {
   position: absolute;
   display: inline-block;
@@ -224,6 +227,41 @@
   cursor: pointer;
 }
 
+// 先生 承認ボタン
+.btn-border {
+  display: inline-block;
+  max-width: 180px;
+  text-align: left;
+  border: 2px solid #9ec34b;
+  font-size: 16px;
+  color: #9ec34b;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 8px 16px;
+  border-radius: 4px;
+  transition: .4s;
+}
+
+.btn-border:hover {
+  background-color: #9ec34b;
+  border-color: #cbe585;
+  color: #FFF;
+  text-decoration: none;
+}
+
+// 先生 拒否するボタン
+.btn-border.no-btn{
+  color: #FFABCE;
+  border: 2px solid #FFABCE;
+  margin-left: 20px;
+}
+.btn-border.no-btn:hover{
+  background-color: #FFABCE;
+  border-color: #FFBEDA;
+  color: #FFF;
+}
+
+// モーダル用usre-image
 .modal-profile-image-a{
   text-align: center;
   .modal-profile-image{
