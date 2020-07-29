@@ -85,16 +85,10 @@ class CallroomsController < ApplicationController
         @callroom = Callroom.find(params[:id])
         @student = User.find_by(id:@callroom.student_id)
         @current_user = User.find_by(id:current_user.id)
-
         @callroom.user_id == current_user.id
         @callroom.status = 1
         @callroom.student_id = []
         @callroom.save
-        # if @callroom.user_id == current_user.id
-        #   @callroom.status = 1
-        #   @callroom.student_id = []
-        #   @callroom.save
-        # end
       end
     end
   end

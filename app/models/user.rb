@@ -4,14 +4,14 @@ class User < ApplicationRecord
   devise  :database_authenticatable, :registerable,
           :recoverable, :rememberable, :validatable
 
-  validates :name, presence: true, uniqueness: true, length: { maximum: 10,  message:"は10文字以下で登録してください" }
-  THUMBNAIL_SIZE = [100, 100]
   mount_uploader :image, ImageUploader
   has_many :tweets
   has_many :messages
   has_many :replies
   has_one :callroom
   has_many :reviews
+
+  validates :name, presence: true, uniqueness: true, length: { maximum: 10,  message:"は10文字以下で登録してください" }
 
   # ゲストユーザー
   def self.guest
