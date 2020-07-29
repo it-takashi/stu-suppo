@@ -197,7 +197,7 @@ $(function(){
       }
 
       $(document).on("click", ".escape", function () {
-        (modal).fadeOut;
+        (modal).hide();
       });
       // }else if(callroom10.status == 3){
       //   var html =

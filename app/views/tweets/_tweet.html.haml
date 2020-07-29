@@ -7,9 +7,9 @@
 
   .post-box
     %h3.title
-      = truncate(tweet.title, length: 10)
+      = tweet.title
     %h5.body
-      = truncate(tweet.body, length: 116)
+      = tweet.body
 
   .profile-box
     %object

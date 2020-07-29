@@ -9,9 +9,9 @@
 
     = link_to callroom_path(callroom.id),class:"post-box" do
       %h3.title
-        = truncate(callroom.title, length: 10)
+        = callroom.title
       %h5.body
-        = truncate(callroom.body, length: 116)
+        = callroom.body
 
     -# 閲覧者
   - else
@@ -23,9 +23,9 @@
 
     .post-box{ class: "callroom-show", "data-show_id": "#{callroom.id}" }
       %h3.title
-        = truncate(callroom.title, length: 10)
+        = callroom.title
       %h5.body
-        = truncate(callroom.body, length: 116)
+        = callroom.body
 
   .profile-box
     = link_to user_path(callroom.user.id),method: :get, class: "profile-image-a"  do
