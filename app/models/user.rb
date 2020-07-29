@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_many :messages
   has_many :replies
   has_one :callroom
+  has_many :reviews
 
   # ゲストユーザー
   def self.guest

@@ -29,14 +29,16 @@ Rails.application.routes.draw do
     collection do
       get 'update_attribute', to: 'callrooms#update_attribute'
       get :call
+      post :cancelcall,defaults: { format: 'json' }
     end
-
+    
+    resources :reviews, only: [:create]
     resources :messages, only: [:create]
     namespace :api do
       resources :messages, only: :index, defaults: { format: 'json' }
     end
   end
-
+  
   namespace :api do
     resources :callrooms, only: [:index, :new], defaults: { format: 'json' }
     resources :users, only: [:index, :new], defaults: { format: 'json' }

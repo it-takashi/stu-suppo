@@ -16,3 +16,10 @@ json.set! :callroom do
   json.user_name @callroom.user.name
   json.user_imgage @callroom.user.image_url
 end
+
+if @already_callroom.present?
+  json.set! :already_callroom do
+    json.id @already_callroom.id
+    json.user_name @already_callroom.user.name
+  end
+end

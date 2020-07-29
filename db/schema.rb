@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200723082234) do
+ActiveRecord::Schema.define(version: 20200724124551) do
 
   create_table "callrooms", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "title",                    null: false
@@ -47,14 +47,15 @@ ActiveRecord::Schema.define(version: 20200723082234) do
     t.index ["user_id"], name: "index_replies_on_user_id", using: :btree
   end
 
-  create_table "teaches", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "title",                    null: false
-    t.text     "body",       limit: 65535, null: false
-    t.string   "image"
+  create_table "reviews", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "comment"
+    t.float    "rate",        limit: 24
     t.integer  "user_id"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-    t.index ["user_id"], name: "index_teaches_on_user_id", using: :btree
+    t.integer  "callroom_id"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.index ["callroom_id"], name: "index_reviews_on_callroom_id", using: :btree
+    t.index ["user_id"], name: "index_reviews_on_user_id", using: :btree
   end
 
   create_table "tweets", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -92,6 +93,7 @@ ActiveRecord::Schema.define(version: 20200723082234) do
   add_foreign_key "messages", "users"
   add_foreign_key "replies", "tweets"
   add_foreign_key "replies", "users"
-  add_foreign_key "teaches", "users"
+  add_foreign_key "reviews", "callrooms"
+  add_foreign_key "reviews", "users"
   add_foreign_key "tweets", "users"
 end

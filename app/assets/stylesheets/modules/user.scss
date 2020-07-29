@@ -406,10 +406,17 @@
         h3.title{
           font-size: 18px;
           font-weight: bold;
+          overflow: hidden;
+          text-overflow: ellipsis;
         }
         h5.body{
           font-size: 13px;
-          word-wrap: break-word
+          word-wrap: break-word;
+          height: calc(100% - 30px);
+          display: -webkit-box;
+          overflow: hidden;
+          -webkit-line-clamp: 6;
+          -webkit-box-orient: vertical;
         }
       }
   
@@ -440,6 +447,7 @@
           text-decoration: none;
           position: absolute;
           bottom: 0;
+          left: 30px;
           padding-left: 5px;
         }
         .post-created_at{

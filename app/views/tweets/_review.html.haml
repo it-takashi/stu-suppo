@@ -1,0 +1,28 @@
+-if review.comment.present?
+  .modal-review-card
+    .modal-reviewer.balloon_l 
+      -if review.user.image.present?
+        .faceicon
+          = image_tag reviewe.image.url
+      -else review.user.image.present?
+        .faceicon
+          .faceicon
+          = image_tag(src= "/no-image.png")
+      .says
+        %p{ class:"rate modal-rate", id:"modal-star-reviewr-info-#{review.id}"} 
+          #{review.rate}&nbsp/5&nbsp
+        %p 
+          = safe_join(review.comment.split("\n"), tag(:br))
+
+:javascript
+  $('#modal-star-reviewr-info-#{review.id}').raty({
+  size: 36,
+  starOff: "#{asset_path('star-off.png')}",
+  starOn: "#{asset_path('star-on.png')}",
+  starHalf: "#{asset_path('star-half.png')}",
+  half: true,
+  readOnly: true,
+  //平均点を算出し、round関数で切り上げ
+  score: "#{review.rate.to_f.round(1)}",
+  
+  });

@@ -92,3 +92,34 @@
       = render partial: 'message', collection: @messages, as: :messages
 
 %input{name: "callroom_id",type: "hidden",  value: @callroom.id, class: 'callroom_id'}
+
+
+/ review入力フォーム
+#student_close_modal
+  #student_close_content
+    = form_for [@callroom, @review] do |f|
+      %small.close-alert
+        *#{@callroom.user.name}さんとの連絡が終了しました。
+      %h5.review-title
+        #{@callroom.user.name}さんへ
+        %br
+        　　勉強の感想や手紙または、評価を書こう。
+      #star.form-group.row
+        = f.label :rate,'評価 ', class:'col-md-3 col-form-label', id:"rate-error"
+      / 評価javascript
+      :javascript
+        $('#star').raty({
+          size     : 36,
+          starOff:  '#{asset_path('star-off.png')}',
+          starOn : '#{asset_path('star-on.png')}',
+          starHalf: '#{asset_path('star-half.png')}',
+          scoreName: 'review[rate]',
+          half: true,
+        });
+
+      .form-group.row
+        = f.label :comment, 'コメント ', class:'col-md-3 col-form-label'
+        .col-md-9
+          = f.text_area :comment, class: "form-control", rows: "8", placeholder:'コメントがなくても、評価のみで投稿できます。'
+      .review-submit
+        = f.submit '投稿する', class:"btn btn-success"
