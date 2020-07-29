@@ -65,7 +65,6 @@ $(function(){
   // 電話するボタンを押すとstdeunt.idやstatusが変わる。
   $('.call').click(function(e){
     e.preventDefault();
-    $(modalContent).empty();
     var id = $(this).data("call_id");          
     console.log(id)
     
@@ -79,13 +78,14 @@ $(function(){
     .done(function(data){
       var student = data.student
       var callroom = data.callroom
+      var already_callroom = data.already_callroom
       
       if(callroom.student_id == student.id){
         var htmlCall = buildCall(callroom);
+        $(modalContent).empty();
         $('.call_info_modal').hide();
         $('#modal_content').append(htmlCall);
         modal.show();
-        
         
         // 通話キャンセル処理
         $('.cancelcall').on('click', function(e){
@@ -115,9 +115,46 @@ $(function(){
           })
         })
       }
+      else if ( typeof already_callroom != "undefined"){
+        var html = `<div class = "escape">&times;</div>
+        <div>すでにあなたは、${already_callroom.user_name}さんと連絡をとっています。連絡が終わるまで他のユーザーに連絡することができません。</p>
+        <div class = "ben_box">
+          <div class = "cancelcall btn-flat-vertical-border double_booking_btn", data-cancecall_id=${already_callroom.id}>${already_callroom.user_name}さんとの連絡を中止する</div>
+        </div>`
+        $('#modal_content').empty();
+        $('#modal_content').append(html);
+        modal.show();
+        // 通話キャンセル処理
+        $('.cancelcall').on('click', function(e){
+          e.preventDefault();
+          var id = $(this).data("cancecall_id");
+          console.log(id)
+          
+          $.ajax({
+            url: "/callrooms/cancelcall",
+            type: "POST",
+            data: {id:id}, 
+            dataType: 'json'
+          })
+          .done(function(callroom){
+            $(modal).hide();
+            $(modalContent).empty();
+            console.log(callroom.user_name)
+            var html = 
+            `<div class = "escape">&times;</div>
+            <p>${callroom.user_name}との連絡を取りやめました。</p>`
+            $(modalContent).append(html);
+            $(modal).show();
+            
+            $(".escape").on('click', function () {
+              $(modal).fadeOut();
+            });
+          })
+        })
+      }
       else{
-        `<div>すでに電話しています。</p>`
-        console.log("通信失敗")
+        var html = `<div class = "escape">&times;</div>
+                    <div>すでに相手が他のユーザーと連絡をとっています。</p>`
         $('#modal_content').empty();
         $('#modal_content').append(html);
         modal.show();
@@ -198,15 +235,7 @@ $(function(){
 
       $(document).on("click", ".escape", function () {
         (modal).hide();
-      });
-      // }else if(callroom10.status == 3){
-      //   var html =
-      //   `<div>${callroom10.user_name}さんに連絡が付きました。</div>
-      //   <a href="/callrooms/${callroom10.id}">こちらへ</a>`
-      //   $('#modal_content').empty();
-      //   $('#modal_content').append(html);
-      //   modal.show();
-      // } 
+      }); 
     })
   } 
   // ✗ボタンによるモーダル終了

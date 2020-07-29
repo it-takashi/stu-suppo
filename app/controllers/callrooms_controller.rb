@@ -110,9 +110,10 @@ class CallroomsController < ApplicationController
         end
       end
       format.json do
-        # 生徒側記事をクリックすると動く
+        # 生徒側 電話するをクリックすると動く すでに誰かに連絡中の場合新たに連絡することはできない。
         @callroom = Callroom.find(params[:id])
-        if @callroom.status == 1 && @callroom.student_id.nil?
+        @already_callroom = Callroom.find_by(student_id: current_user.id)
+        if @callroom.status == 1 && @already_callroom.nil? && @callroom.student_id.nil?
           @callroom.student_id = current_user.id
           @callroom.status = 2
           @callroom.save
@@ -123,6 +124,7 @@ class CallroomsController < ApplicationController
       end
     end
   end
+
 
   # 生徒側から連絡のキャンセル
   def cancelcall
