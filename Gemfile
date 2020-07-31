@@ -77,3 +77,9 @@ gem 'kaminari'
 gem 'kaminari-bootstrap', '~> 3.0.1'
 # 日本語化
 gem "rails-i18n"
+# AWS 外部ストレージのアップロード補助
+gem 'fog-aws'
+#環境変数を扱う
+gem 'dotenv-rails'
+# jqueryで変数を扱う
+gem 'gon'

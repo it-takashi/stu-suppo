@@ -1,19 +1,12 @@
 $(function(){ 
-  if (document.location.href.match(/\/teaches\/\d+|\/callrooms\/\d+/)) {
+  if (document.location.href.match(/\/callrooms\/\d+$/)) {
 
     // モーダル
-    var modal = $('#modal'),
-        modalContent = $('#modal_content'),
-        btnOpen = $("#btn_open"),
-        btnClose = $(".btn_close");
+    var modal = $('#modal')
 
-  var callmodal = $('#callmodal'),
-        callmodalContent = $('#callmodal_content'),
-        btnOpen = $("#btn_open"),
-        btnClose = $(".btn_close");
     
     const Peer = window.Peer;
-    window.__SKYWAY_KEY__ = 'e751c12a-973c-4ca1-bd50-1f2cec55d91a';
+    window.__SKYWAY_KEY__ = gon.skyway_key;
     
     (async function main() {
       const localVideo = document.getElementById('js-local-stream');

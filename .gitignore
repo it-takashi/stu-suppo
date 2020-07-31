@@ -16,3 +16,7 @@
 # Ignore Byebug command history file.
 .byebug_history
 public/uploads
+
+# 環境変数
+/.env
+config/secrets.yml

@@ -7,5 +7,5 @@ class Callroom < ApplicationRecord
 
   validates :title, presence: true
   validates :body, presence: true
-  validates :student_id, uniqueness: true
+  validates :student_id, uniqueness: true,allow_nil: true
 end

@@ -26,6 +26,7 @@ class CallroomsController < ApplicationController
       @message = Message.new
       @messages = @callroom.messages.includes(:user)
       @review = Review.new
+      gon.skyway_key = ENV['SKYWAY_KEY']
     else
       redirect_to root_path
     end

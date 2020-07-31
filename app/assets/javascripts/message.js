@@ -115,7 +115,6 @@ $(function(){
   var reloadMessages = function() {
   var last_message_id = $('.reply-list__box:last').data("message-id");
   var id = $('.callroom_id').val();
-
   $.ajax({
     url: + id + "/api/messages",
     type: 'GET',
@@ -133,10 +132,10 @@ $(function(){
     }
   })
   .fail(function() {
-    alert('error')
+    // alert('error')
   });
   };
-  if (document.location.href.match(/\/callrooms\/\d+/)) {
+  if (document.location.href.match(/\/callrooms\/\d+$/)) {
   setInterval(reloadMessages, 7000);
   }
 })
