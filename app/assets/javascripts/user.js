@@ -1,4 +1,5 @@
 $(function(){
+
   // マイページのタブ 
   $(".userpost_tab a").click(function() {
     $(this).parent().addClass("active").siblings(".active").removeClass("active");

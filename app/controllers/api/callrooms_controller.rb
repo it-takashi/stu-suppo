@@ -1,5 +1,5 @@
 class Api::CallroomsController < ApplicationController
-  # 自動更新　先生側着信があるか
+  # 自動更新 先生側着信があるか
   def index
     if user_signed_in?
       @callroom = Callroom.find_by(user_id: current_user.id)

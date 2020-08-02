@@ -1,4 +1,6 @@
 class CallroomsController < ApplicationController
+  before_action :authenticate_user!, except: [:index]
+
   def index
     @callrooms = Callroom.where(status:1, student_id:nil).includes(:user).order("created_at DESC").page(params[:page]).per(12)
   end

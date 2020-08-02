@@ -1,5 +1,6 @@
 class ReviewsController < ApplicationController
   before_action :set_callroom3
+  
   def create
     review = @callroom.reviews.new(review_params)
     # binding.pry
@@ -14,7 +15,6 @@ class ReviewsController < ApplicationController
   end
 
   private
-
   def review_params
     params.require(:review).permit(:comment, :rate).merge(user_id: current_user.id)
   end

@@ -1,4 +1,5 @@
 class TweetsController < ApplicationController
+  before_action :authenticate_user!, except: [:top_page, :index,:show]
 
   def top_page
     @tweets = Tweet.all.includes(:user).order("created_at DESC").limit(6)

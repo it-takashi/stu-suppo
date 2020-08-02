@@ -126,6 +126,14 @@
     .hidden{
       display: none;
     }
+    
+    button{
+      background: #7f6666;
+      font-size: 1em;
+      color: #ffffff;
+      font-weight: bold;
+      border-radius: 10px;
+    }
   }
 }
 
@@ -259,6 +267,5 @@
       margin: 0 0 0 auto;
       padding-right:30px ;
     }
-
   }
 }

@@ -54,11 +54,14 @@
         #{callroom.user.name}さん
       = link_to user_path(callroom.user.id),method: :get  ,class: "modal-post-created_at" do
         = callroom.created_at.strftime("%Y年%m月%d日")
-      .btn-flat-vertical-border{ class: "call", "data-call_id": "#{callroom.id}" }
-        電話する
+      - if user_signed_in?
+        .btn-flat-vertical-border{ class: "call", "data-call_id": "#{callroom.id}" }
+          電話する
+      - else
+        = link_to "電話する", callroom_path(callroom.id),method: :get,  class: "btn-flat-vertical-border"
     .modal-image-box
       - if callroom.image.present?
-        = image_tag callroom.image.url,method: :get , class: 'modal-index-image'
+        = image_tag callroom.image.url, class: 'modal-index-image'
       - else 
         = image_tag(src= "/teacher.png", class: "modal-index-image")
     .modal-post-box
