@@ -1,6 +1,7 @@
 # DB設計
 
-<img src="/er.png" title="stu-suppo er図">
+<img width="1070" alt="er" src="https://user-images.githubusercontent.com/64767604/89150600-e3654980-d599-11ea-883d-27fab3026b3a.png">
+
 
 ## usersテーブル
 |Column|Type|Options|
