@@ -1,5 +1,7 @@
 # DB設計
 
+<img src="/er.png" title="stu-suppo er図">
+
 ## usersテーブル
 |Column|Type|Options|
 |------|----|-------|

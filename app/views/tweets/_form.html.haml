@@ -4,7 +4,7 @@
       = form.label :title, "題名"
       %span.must※
     .field-input
-      = form.text_field :title,placeholder: "題名を入力してくだい"
+      = form.text_field :title,placeholder: "題名を入力してくだい",required: "",maxlength: "20"
   .field-image 
     .field-image-label
       = form.label :image, class:"form_image" do
