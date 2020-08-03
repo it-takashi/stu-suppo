@@ -1,113 +1,25 @@
+# 機能一覧
+- ユーザー登録、編集
+  - deviseを使用
+  - すでに使われているnameを非同期で確認することができる
+  -  画像アップロードにCarrierWaveを使用
+- ログイン・ログアウト機能
+  - かんたんログイン機能
+- 投稿機能（tweets,callroomsテーブル）
+  - 投稿編集、削除機能
+  - 投稿一覧、投稿詳細表示機能
+  - 画像アップロードにCarrierWaveを使用
+  - ページネーション機能にKaminariを使用
+- ビデオ機能
+  - ビデオ通話には、外部api( skyway )を使用
+  - 着信機能,発信機能( callroomのみ )
+- コメント機能 ( messages,repliesテーブル )
+  - 非同期でコメント投稿ができる
+  - 自動更新 ( messagesテーブルのみ )
+- レビュー機能 ( reviewsテーブル )
+  - jquery.ratyを使用
+  - ビデオ通話終了後に起動
+
 # DB設計
 
 <img width="1070" alt="er" src="https://user-images.githubusercontent.com/64767604/89150600-e3654980-d599-11ea-883d-27fab3026b3a.png">
-
-
-## usersテーブル
-|Column|Type|Options|
-|------|----|-------|
-|name|string|null: false, unique: true|
-|email|string|null: false, unique: true|
-|password|string|null: false|
-|my-image|string|
-|introduction|text||
-|profile|text||
-|subject|string||
-|rate|float||
-### Association
-- has_many :groups_users
-- has_many :groups, through: :user_groups
-- has_many :messages
-- has_many :tweets
-- has_many :teaches
-
-## groupsテーブル
-|Column|Type|Options|
-|------|----|-------|
-|name|string|null: false, unique: true|
-### Association
-- has_many :user_groups
-- has_many :users, through: :user_groups
-- has_many :messages
-
-## user_groupsテーブル
-|Column|Type|Options|
-|------|----|-------|
-|group_id|integer|null: false, foreign_key: true|
-|user_id|integer|null: false, foreign_key: true|
-### Association
-- belongs_to :group
-- belongs_to :user
-
-## groupmessagesテーブル
-|Column|Type|Options|
-|------|----|-------|
-|comment|text|null: false|
-|image|string||
-|group_id|integer|null: false, foreign_key: true|
-|user_id|integer|null: false, foreign_key: true|
-### Association
-- belongs_to :group
-- belongs_to :user
-
-## Tweetsテーブル
-|Column|Type|Options|
-|------|----|-------|
-|title|string|null: false|
-|body|text|null: false|
-|image|string||
-|user_id|integer|null: false, foreign_key: true|
-### Association
-- belongs_to :user
-
-## tweetmessagesテーブル
-|Column|Type|Options|
-|------|----|-------|
-|comment|text|null: false|
-|image|string||
-|tweet_id|integer|null: false, foreign_key: true|
-|user_id|integer|null: false, foreign_key: true|
-### Association
-- belongs_to :tweet
-- belongs_to :user
-
-## teachテーブル
-|Column|Type|Options|
-|------|----|-------|
-|title|string||
-|image|string||
-|body|text||
-|user_id|integer|null: false, foreign_key: true|
-### Association
-- has_many :teach_tags
-- has_many :tags, through: :teach_tags
-
-## teach_tagsテーブル
-|Column|Type|Options|
-|------|----|-------|
-|title|string||
-|image|string||
-|teach_id|integer|null: false, foreign_key: true|
-|tag_id|integer|null: false, foreign_key: true|
-### Association
-- belongs_to : teach
-- belongs_to :tag
-
-## tegsテーブル
-|Column|Type|Options|
-|------|----|-------|
-|text|string||
-### Association
-- has_many :teach_tags
-- has_many :teaches, through: :teach_tags
-
-## teach_messagesテーブル
-|Column|Type|Options|
-|------|----|-------|
-|comment|text|null: false|
-|image|string||
-|teach_id|integer|null: false, foreign_key: true|
-|user_id|integer|null: false, foreign_key: true|
-### Association
-- belongs_to :teach
-- belongs_to :user
