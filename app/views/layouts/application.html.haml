@@ -32,17 +32,16 @@
               %li ログアウト
             = link_to new_tweet_path, method: :get, class:"btn__tweet" do
               %li アウトプット
-            - if @callroom.present?
               -# 電話ができるようにする。（編集モード）
-              - if @callroom.status == 0
-                = link_to edit_callroom_path(@callroom.id), method: :get, class:"btn__teach" do
-                  %li 教えるモード
-                -# 電話ができないようにする。
-              - else @callroom.status == 1
-                = link_to update_attribute_callrooms_path, method: :get, class:"btn__teach" do
-                  %li 教えるモード解除
+            - if @callroom.present? && @callroom.status == 0 
+              = link_to edit_callroom_path(@callroom.id), method: :get, class:"btn__teach" do
+                %li 教えるモード(編集)
+              -# 電話ができないようにする。
+            - elsif @callroom.present? && @callroom.status == 1
+              = link_to update_attribute_callrooms_path, method: :get, class:"btn__teach" do
+                %li 教えるモード（非公開）
               -# 新しく電話ができないようにする。
-            -else
+            - elsif @callroom.nil?
               = link_to new_callroom_path, method: :get, class:"btn__teach" do
                 %li 教えるモード
             

@@ -4,7 +4,7 @@
       = form.label :title, "題名"
       %span.must※
     .field-input
-      = form.text_field :title,placeholder: "題名を入力してくだい",required: "",maxlength: "20"
+      = form.text_field :title,placeholder: "題名を入力してくだい(最大２０文字)",required: "",maxlength: "20"
   .field-image 
     .field-image-label
       = form.label :image, class:"form_image" do
@@ -20,6 +20,6 @@
       = form.label :body, "本文"
       %span.must※
     .field-input
-      = form.text_area :body, placeholder:"勉強したことやわかったことをまとめよう" 
+      = form.text_area :body, placeholder:"勉強したことやわかったことをまとめよう", required: "" 
 .actions
   = form.submit "投稿する", class: 'btn'
