@@ -14,7 +14,7 @@ json.set! :callroom do
   json.student_id @callroom.student_id
   json.body @callroom.body
   json.user_name @callroom.user.name
-  json.user_imgage @callroom.user.image_url
+  json.user_image @callroom.user.image_url
 end
 
 if @already_callroom.present?

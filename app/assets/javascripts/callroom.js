@@ -32,10 +32,10 @@ $(function(){
 
   // 連絡待ち
   function buildCall(callroom) {
-    if ( callroom.user_imgage ){
+    if ( callroom.user_image ){
       var html =
       `<p class = modal-profile-image-a>
-        <img src= ${callroom.user_image.url} class='modal-profile-image'>
+        <img src= ${callroom.user_image} class='modal-profile-image'>
       </p>
       <p>${callroom.user_name}さんに連絡しています！</p>
       <div class = "cancelcall btn-flat-vertical-border", data-cancecall_id=${callroom.id}>キャンセル</div>`

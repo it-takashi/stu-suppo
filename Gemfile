@@ -81,6 +81,5 @@ gem "rails-i18n"
 gem 'fog-aws'
 #環境変数を扱う
 gem 'dotenv-rails'
-
 # jqueryで変数を扱う
 gem 'gon'
