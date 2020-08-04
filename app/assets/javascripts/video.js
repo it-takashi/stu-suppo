@@ -88,7 +88,6 @@ $(function(){
               }
               // 生徒のモーダル
               else{
-                var html =
                 $("#student_close_modal").show();
               }
             })
