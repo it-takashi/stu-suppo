@@ -12,6 +12,7 @@
       margin-left: 300px;
       #js-remote-stream{
         width:100%;
+        transform: scale(-1, 1);
       }
     }
     
@@ -23,6 +24,7 @@
   
       #js-local-stream{
         width: 100%;
+        transform: scale(-1, 1);
       }
     }
   }
