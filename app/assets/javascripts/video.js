@@ -7,6 +7,7 @@ $(function(){
     
     const Peer = window.Peer;
     window.__SKYWAY_KEY__ = gon.skyway_key;
+    console.log(gon.skyway_key);
     
     (async function main() {
       const localVideo = document.getElementById('js-local-stream');
