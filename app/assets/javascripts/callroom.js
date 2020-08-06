@@ -14,7 +14,7 @@ $(function(){
         <img src= ${student.image} class='modal-profile-image'>
       </p>
       <p>${student.name}さんから連絡が来ています。</p>
-      <P>紹介:${student.profile}</p>
+      <P>紹介:${student.introduction}</p>
       <a href="/callrooms/call" class = "btn-border">承認する</a>
       <a href="/callrooms/update_attribute" class = "btn-border no-btn">拒否する</a>`
       return html;
