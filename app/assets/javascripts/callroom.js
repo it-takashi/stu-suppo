@@ -11,7 +11,7 @@ $(function(){
     if (student.image){
       var html =   
       `<p class = modal-profile-image-a>
-        <img src= ${student.image.url} class='modal-profile-image'>
+        <img src= ${student.image} class='modal-profile-image'>
       </p>
       <p>${student.name}さんから連絡が来ています。</p>
       <P>紹介:${student.profile}</p>
