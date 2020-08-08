@@ -115,6 +115,7 @@ class CallroomsController < ApplicationController
           @callroom.status = 2
           @callroom.save
           @student = current_user
+          NotificationMailer.send_called_to_user(@user, @student).deliver
         else @callroom.status == 2 && @callroom.student_id == current_user.id
           @student = current_user
         end
