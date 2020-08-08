@@ -71,7 +71,7 @@ gem 'font-awesome-sass'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'pry-rails'
-gem 'bootstrap', '~> 4.1.1'
+gem 'bootstrap', '~> 4.3.1'
 # リッチエディターのTinyMCE
 gem 'tinymce-rails'
 gem 'kaminari'
