@@ -37,7 +37,7 @@
               = link_to edit_callroom_path(@callroom.id), method: :get, class:"btn__teach" do
                 %li 教えるモード(編集)
               -# 電話ができないようにする。
-            - elsif @callroom.present? && @callroom.status == 1
+            - elsif @callroom.present? && @callroom.status == 1 @callroom.status == 1
               = link_to update_attribute_callrooms_path, method: :get, class:"btn__teach" do
                 %li 教えるモード（非公開）
               -# 新しく電話ができないようにする。
