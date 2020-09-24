@@ -39,11 +39,11 @@
               -# 新しく電話ができないようにする。
             - elsif @callroom.nil?
               = link_to new_callroom_path, method: :get, class:"btn__teach" do
+                %li 教えるモード
               -# 電話ができないようにする。
             - elsif @callroom.present? && @callroom.status == 1 or @callroom.status == 2 or @callroom.status == 3
               = link_to update_attribute_callrooms_path, method: :get, class:"btn__teach" do
                 %li 教えるモード（非公開）
-                %li 教えるモード
             
           -else
             = link_to new_user_registration_path, method: :get, class:"btn__logout" do
